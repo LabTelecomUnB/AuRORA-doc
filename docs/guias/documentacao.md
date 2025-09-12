@@ -1,6 +1,6 @@
 # Como Contribuir para a Documentação
 
-A documentação serve para guiar os desenvolvedores ao realizarem melhorias na aplicação e deve sempre estar atualizada. Ao adicionar novas funcionalidades ou realizar manutenções na aplicação é válido revisá-la e atualizá-la. Também é recomendado documentar os processos anteriores ao desenvolvimento como reuniões, pesquisas, decições técnicas, etc. 
+A documentação serve para guiar os desenvolvedores ao realizarem melhorias na aplicação e deve sempre estar atualizada. Ao adicionar novas funcionalidades ou realizar manutenções na aplicação, é válido revisá-la e atualizá-la. Recomenda-se também documentar os processos anteriores ao desenvolvimento, como reuniões, pesquisas, decisões técnicas etc.
 
 O que pode ser óbvio para você pode não ser para outra pessoa. Tenha isso em mente.
 
@@ -37,7 +37,6 @@ Acesse `http://127.0.0.1:8000` para visualizar a documentação localmente.
 - Use Markdown para formatar o conteúdo 
 - Evite usar HTML
 - Imagens devem ser adicionadas em `docs/assets/images/`
-- Imagens utilizadas em código HTML devem ser adicionadas em `overrides/assets/images`
 
 ### Padrões de escrita
 
