@@ -79,9 +79,3 @@
 .md-nav--integrated>.md-nav__list>.md-nav__item--active .md-nav--secondary {
     border-left: 2px solid #6CC99E !important;
 }
-
-/* H1 styling to fix warning */
-.md-typeset h1 {
-    font-size: 2em !important;
-    margin: 0.67em 0 !important;
-}

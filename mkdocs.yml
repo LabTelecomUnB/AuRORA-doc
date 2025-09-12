@@ -2,7 +2,7 @@ site_name: AuRORA
 
 repo_name: 'AuRORA-doc'
 repo_url: https://github.com/LabTelecomUnB/AuRORA-doc
-# site_url: 
+site_url: https://labtelecomunb.github.io/AuRORA-doc/
 edit_uri: edit/main/docs/
 
 # copyright: Copyright & copy; 2024 Nome do app
