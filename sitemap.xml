@@ -2,12 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://labtelecomunb.github.io/AuRORA-doc/</loc>
-         <lastmod>2025-09-12</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2025-11-04</lastmod>
+    </url>
+    <url>
+         <loc>https://labtelecomunb.github.io/AuRORA-doc/design_system/personas/</loc>
+         <lastmod>2025-11-04</lastmod>
+    </url>
+    <url>
+         <loc>https://labtelecomunb.github.io/AuRORA-doc/design_system/stakeholders/</loc>
+         <lastmod>2025-11-04</lastmod>
     </url>
     <url>
          <loc>https://labtelecomunb.github.io/AuRORA-doc/guias/documentacao/</loc>
-         <lastmod>2025-09-12</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2025-11-04</lastmod>
     </url>
 </urlset>
