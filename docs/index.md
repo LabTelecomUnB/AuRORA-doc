@@ -1,11 +1,12 @@
-# 
+#
 
-<center>
+<div align="center" markdown="1">
 
-![Logo](assets/images/logo-light.png#only-light)
-![Logo](assets/images/logo-dark.png#only-dark)
+![Logo AuRORA](assets/images/logo-dark.png#only-light){ width="300" }
+![Logo AuRORA](assets/images/logo-light.png#only-dark){ width="300" }
 
-</center>
+
+</div>
 
 ## Sobre
 

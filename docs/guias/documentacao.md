@@ -1,4 +1,4 @@
-# Como Contribuir para a Documentação
+# Documentação
 
 A documentação serve para guiar os desenvolvedores ao realizarem melhorias na aplicação e deve sempre estar atualizada. Ao adicionar novas funcionalidades ou realizar manutenções na aplicação, é válido revisá-la e atualizá-la. Recomenda-se também documentar os processos anteriores ao desenvolvimento, como reuniões, pesquisas, decisões técnicas etc.
 
