@@ -79,6 +79,7 @@ nav:
   - Início: index.md
   - Guias de Contribuição:
     - Documentação: guias/documentacao.md
-  - Design System:
-    - Stakeholders: design_system/stakeholders.md
-    - Personas: design_system/personas.md
+  - Requisitos:
+    - Stakeholders: requisitos/stakeholders.md
+    - Entrevistas: requisitos/entrevistas.md
+

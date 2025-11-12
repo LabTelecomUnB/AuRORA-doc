@@ -1,5 +1,7 @@
 # Stakeholder
 
+# Metodologia
+
 O stakeholder de uma aplicação pode ser definido como um grupo ou indivíduo que pode ser afetado pela realização do propósito de uma organização [1]. No ponto de vista de software, podemos dizer que os stakeholders são definidos como os grupos ou indivíduos que são afetados pelo desenvolvimento do sistema.
 
 Segundo a norma ISO 42.010 de 2022 alguns exemplos típicos que devem ser considerados, quando aplicável, são:
@@ -15,11 +17,7 @@ Segundo a norma ISO 42.010 de 2022 alguns exemplos típicos que devem ser consid
     <li> Mantenedores do sistema. </li>
 </ul>
 
-No escopo do projeto, algumas dessas difinições se fundem, tendo em mente que os usuários do software também serão os responsável por realizar a manutenção do sistema. Dessa froma, foi realizado uma pesquisa inicial para traçar o perfil dos stakeholders da aplicação.
-
-# Metodologia
-
-Para identificar e compreender os stakeholders do sistema AuRORA, foi aplicada em um primeiro momento uma metodologia de pesquisa estruturada utilizando formulário online como principal instrumento de coleta de dados.
+No escopo do projeto, algumas dessas difinições se fundem, tendo em mente que os usuários do software também serão os responsável por realizar a manutenção do sistema. Dessa forma, foi aplicada a metodologia de formulário para coletar informações sobre os stakeholders com foco em seus conhecimentos técnicos e práticos.
 
 ## 1ª Etapa
 
@@ -130,7 +128,7 @@ A Figura 7 revela que a maioria dos participantes (60%) se considera familiariza
 
 <figure markdown="span">  
   <figcaption>Figura 8 - Sistema Operacional dos Stakeholders.</figcaption>
-  ![stakeholders age](../assets/images/stakeholders/operational-system.png){ width="600" }
+  ![stakeholders age](../assets/images/stakeholders/operational-systems.png){ width="600" }
   <figcaption>Fonte: Autor.</figcaption>
 </figure>
 

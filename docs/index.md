@@ -12,7 +12,7 @@
 
 O softwere AuRORA (Automação de Rastreamento Orbital e Recepção por Antenas) visa fornecer aos pesquisadores do Laboratório Compartilhado de Ensino e Pesquisa em Telecomunicações (Lab Telecom) uma interface gráfica simples e intuitiva para a manipulação de uma rede de antenas para capitação de dados de satélites.
 
-Ness página você encontrará toda a documentação dos processos de desenvolvimento desse software, desde os requisitos elicitados a como contribuir com novas funcionalidades.
+Nesta página você encontrará toda a documentação dos processos de desenvolvimento desse software, desde os requisitos elicitados a como contribuir com novas funcionalidades.
 
 <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; text-align: center;">
 
