@@ -39,22 +39,89 @@ Foi apresentada a proposta da entrevista ao stakeholder e solicitada sua permiss
 
 ### Funcionalidades principais
 
-#### O sistema deve calcular e enviar automaticamente os ângulos ideais da antena para determinado satélite?
+#### 4. O sistema deve calcular e enviar automaticamente os ângulos ideais da antena para determinado satélite?
 
 **Considerações**: Sim.
 
-#### Deve permitir inserção manual de coordenadas (latitude/longitude) e dados do satélite?
+#### 5. Deve permitir inserção manual de coordenadas (latitude/longitude) e dados do satélite?
 
 **Considerações**: Sim.
 
-#### O sistema deve mostrar visualmente (mapa, bússola, gráfico 3D) o posicionamento da antena?
+#### 6. O sistema deve mostrar visualmente (mapa, bússola, gráfico 3D) o posicionamento da antena?
 
 **Considerações**: Sim, porém é secundário. A informação mais relevante seria a posição atual e a próxima posição da antena. Talvez por meio de um gráfico para possibilitar a observação da evolução do posicionamento da antena, futuramente podendo ser complementado com uma gravação em tempo real da antena.
 
-#### Deve permitir salvar configurações de satélites/antenas para uso futuro?
+#### 7. Deve permitir salvar configurações de satélites/antenas para uso futuro?
 
 **Considerações**: Sim, para evitar retrabalho.
 
-#### Há necessidade de logs de operação (quem moveu, quando, para onde, falhas)?
+#### 8. Há necessidade de logs de operação (quem moveu, quando, para onde, falhas)?
 
-**Considerações**: Sim, 
+**Considerações**: Sim, a maior quantidade de feedbacks do sistema possível. Desde saber quando a antena finalizou o posicionamento até se ela está recebendo os dados do satélite.
+
+#### 9. O software deve travar certos comandos para evitar colisões mecânicas ou movimentos não permitidos?
+
+**Considerações**: Deve haver travamento no final do curso, para comandos que passem de 180º de elevação, comandos que passem de 360º em azimute e que passem da velocidade máxima suportada pela antena.
+
+### Usuário e perfil
+
+#### 10. Quem vai utilizar o sistema (técnicos, engenheiros, operadores, público leigo)?
+
+**Considerações**: Professores, alunos de pós graduação e alunos de graduação capacitados.
+
+#### 11. Diferentes perfis de usuários precisam de níveis diferentes de acesso (admin, operador, visitante)?
+
+**Considerações**: É necessário um perfil de administrador que fará o controle dos usuários da plataforma.
+
+#### 12. O software precisa ser multilíngue?
+
+**Considerações**: Sim, português e inglês.
+
+### Requisitos não funcionais 
+
+#### 13. O sistema precisa rodar em quais plataformas? (desktop, web, mobile, embarcado)
+
+**Considerações**: Apenas em sistemas desktop pela web em um primeiro momento. O software deve ser acessível pelos principais navegadores.
+
+#### 14. Há restrições de hardware? (PCs, tablets, Raspberry Pi, equipamentos militares etc.)
+
+**Considerações**: Não.
+
+#### 15. Qual é o nível de precisão necessário no cálculo do posicionamento?
+
+**Considerações**: 0.5º.
+
+#### 16. Existem requisitos de segurança (ex: dados criptografados, acesso restrito)?
+
+**Considerações**: Não.
+
+#### 17. Alguma certificação ou norma precisa ser atendida (ex: telecom, defesa, aviação)?
+
+**Considerações**: Não.
+
+### Usabilidade e interface
+
+#### 18. Como você imagina a interface ideal (mapas, indicadores numéricos, gráficos em tempo real)?
+
+**Considerações**: Fluxos pequenos e intuitivos possibilitando a realização de tarefas em poucos clicks. Possibilidade de gerenciamento de multiplas abas, uma para cada antena. Possibilidade de verificação das condições climáticas em tempo real. Feedback visual do status atual da antena. Persolização da rotina de posicionamento, como, por exemplo, a quantidade de pontos da interpolação. Interface amigável com as cores do laboratório.
+
+#### Qual o nível de detalhe esperado no feedback do sistema (somente ângulos, ou também métricas de intensidade do sinal)?
+
+**Considerações**: Feedbacks de conexão, posicionamento, locking, potência do sinal, satélite selecionado e sua frequência, tempo de recebimento dos dados e última vez que foi calibrado. 
+
+#### Precisa gerar relatórios ou exportar dados (CSV, PDF)?
+
+**Considerações**: Sim, os dados no momento da medição e os gráficos de posicionamento.
+
+#### Você gostaria de visualizar em tempo real o posicionamento atual da antena (dashboard, gauge, gráfico)?
+
+**Considerações**: Sim, mas não é crucial para a primeira versão.
+
+#### O sistema deve exibir métricas do sinal captado para auxiliar no ajuste fino (ex.: intensidade, qualidade do sinal)?
+
+**Considerações**: Sim, gráficos de frequência x tempo e de potência do sinal.
+
+### Expectativas e futuro
+
+
+
