@@ -1,8 +1,8 @@
-# Formulaŕio de perfil do usuário
+## Formulário de perfil do usuário
 
 O stakeholder de uma aplicação pode ser definido como um grupo ou indivíduo que pode ser afetado pela realização do propósito de uma organização [1]. No ponto de vista de software, podemos dizer que os stakeholders são definidos como os grupos ou indivíduos que são afetados pelo desenvolvimento do sistema.
 
-# Metodologia
+## Metodologia
 
 
 Segundo a norma ISO 42.010 de 2022 alguns exemplos típicos que devem ser considerados, quando aplicável, são:
@@ -20,23 +20,23 @@ Segundo a norma ISO 42.010 de 2022 alguns exemplos típicos que devem ser consid
 
 No escopo do projeto, algumas dessas difinições se fundem, tendo em mente que os usuários do software também serão os responsável por realizar a manutenção do sistema. Dessa forma, foi aplicada a metodologia de formulário para coletar informações sobre os stakeholders com foco em seus conhecimentos técnicos e práticos.
 
-## 1ª Etapa
+### 1ª Etapa
 
-### Instrumento de Coleta
+#### Instrumento de Coleta
 
 Foi desenvolvido um formulário estruturado com o objetivo de:
 
 - Identificar o perfil demográfico e profissional dos usuários
 - Mapear o conhecimento técnico dos usuaŕios
 
-### Estrutura do Formulário
+#### Estrutura do Formulário
 
 O formulário foi organizado em seções específicas:
 
-#### 1. Termo de Consentimento 
+##### 1. Termo de Consentimento 
 - Consentimento por parte do usuário da utilização de seus dados para pesquisa e desenvolvimento.
 
-#### 2. Perfil Demográfico
+##### 2. Perfil Demográfico
 - Nome completo.
 - E-mail.
 - Idade.
@@ -45,7 +45,7 @@ O formulário foi organizado em seções específicas:
 - Nível de experiência profissional.
 - Utiliza aparelhos pessoais ou os fornecidos no laboratório.
 
-#### 3. Conhecimentos técnicos
+##### 3. Conhecimentos técnicos
 - Possui experiência com programação.
 - Possui familiaridade com softwares complexos.
 - Utiliza qual sistema operacional.
@@ -58,7 +58,7 @@ O formulário foi organizado em seções específicas:
 - Quais bancos de dados não relacionais possui familiaridade.
 - Possui familiaridade com containers.
 
-### Processo de Aplicação
+#### Processo de Aplicação
 
 1. **Divulgação**: O formulário foi distribuído através de WhatsApp para os potenciais usuários do sistema
 2. **Período de coleta**: Disponibilizado por 2 dias.

@@ -184,12 +184,9 @@ A partir das considerações realizadas durante as entrevistas os requisitos aba
 |  EN029            | O software deve ser desenvolvido seguindo boas práticas de programação.         | NF |
 |  EN030            | O software deve ser desenvolvido utilizando tecnologias com boas curvas de aprendizagem.         | NF |
 
-
-
-
-
-
-
+<center>
+    <figcaption>Figura 1 - Requisitos da entrevista. Fonte: Autor.</figcaption>
+</center>
 
 ## Referências
 
