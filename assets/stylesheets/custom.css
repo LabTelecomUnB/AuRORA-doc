@@ -74,6 +74,24 @@
     padding: 0.5rem !important;
 }
 
+/* Logo theme switching */
+.md-header__button.md-logo img[src*="logo-light"] {
+    display: block;
+}
+
+.md-header__button.md-logo img[src*="logo-dark"] {
+    display: none;
+}
+
+/* Show dark logo in dark mode */
+[data-md-color-scheme="slate"] .md-header__button.md-logo img[src*="logo-light"] {
+    display: none;
+}
+
+[data-md-color-scheme="slate"] .md-header__button.md-logo img[src*="logo-dark"] {
+    display: block;
+}
+
 /* Sidebar structure lines in red */
 
 .md-nav--integrated>.md-nav__list>.md-nav__item--active .md-nav--secondary {
