@@ -211,3 +211,19 @@ A aplicação do formulário permitiu:
 
 - Amostra limitada ao contexto institucional específico
 - Possível viés de seleção dos respondentes
+
+<div align="center">
+    <table>
+        <tr>
+            <th>Data</th>
+            <th>Versão</th>
+            <th>Descrição</th>
+            <th>Autor</th>
+        </tr>
+        <tr>
+            <td>31/10</td>
+            <td>1.0</td>
+            <td>Primeira versão finalizada</td>
+            <td><a href="https://github.com/ccarlaa">Carla Clementino</a></td>
+    </table>
+</div>

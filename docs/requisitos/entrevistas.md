@@ -123,5 +123,44 @@ Foi apresentada a proposta da entrevista ao stakeholder e solicitada sua permiss
 
 ### Expectativas e futuro
 
+#### Quais seriam as funcionalidades “indispensáveis” para a primeira versão?
+
+**Considerações**: Comunicação com o hardware de forma a realizar o apontamento das antenas de forma correta, mesmo que seja para um ponto fixo (sem acompanhar o satélite), e o armazenamento dos dados recebidos dos satélites monitorados.  
+
+#### E quais seriam “desejáveis”, mas que podem ficar para versões futuras?
+
+**Considerações**: Possibilitar a antena seguir a trajetória do satélite. Gráficos para visualizar o progresso do posicionamento. Comunicação com apis externas. Geração de relatórios sobre o posicionamento e logs do sistema.
+
+#### Você tem exemplos de softwares semelhantes que já usou e que servem de referência?
+
+**Considerações**: Não, apenas o software desenvolvido para o cálculo de trajetória citado anteriormente.
+
+#### Há alguma limitação de tempo ou orçamento que impacte no desenvolvimento do sistema?
+
+**Considerações**: A primeira versão deve ser entregue até julho de 2026 e o orçamento atual é de R$ 70.000,00.
+
+### Encerramento
+
+Agradecimentos e observações:
+
+**Considerações**: Foi citado que o software deve ter uma boa documentação tendo em vista que os próprios integrantes do laboratório seram responsáveis pela sua manutenção.
 
 
+## Versão
+
+
+<div align="center">
+    <table>
+        <tr>
+            <th>Data</th>
+            <th>Versão</th>
+            <th>Descrição</th>
+            <th>Autor</th>
+        </tr>
+        <tr>
+            <td>14/11</td>
+            <td>1.0</td>
+            <td>Primeira versão finalizada</td>
+            <td><a href="https://github.com/ccarlaa">Carla Clementino</a></td>
+    </table>
+</div>
