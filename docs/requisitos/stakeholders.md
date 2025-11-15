@@ -1,8 +1,9 @@
 # Stakeholder
 
+O stakeholder de uma aplicação pode ser definido como um grupo ou indivíduo que pode ser afetado pela realização do propósito de uma organização [1]. No ponto de vista de software, podemos dizer que os stakeholders são definidos como os grupos ou indivíduos que são afetados pelo desenvolvimento do sistema.
+
 # Metodologia
 
-O stakeholder de uma aplicação pode ser definido como um grupo ou indivíduo que pode ser afetado pela realização do propósito de uma organização [1]. No ponto de vista de software, podemos dizer que os stakeholders são definidos como os grupos ou indivíduos que são afetados pelo desenvolvimento do sistema.
 
 Segundo a norma ISO 42.010 de 2022 alguns exemplos típicos que devem ser considerados, quando aplicável, são:
 
@@ -197,7 +198,6 @@ A aplicação do formulário permitiu:
 - **Validação de hipóteses** sobre as necessidades dos usuários
 - **Descoberta de requisitos** não previamente considerados
 - **Priorização objetiva** das funcionalidades a desenvolver
-- **Criação de personas** baseadas em perfis reais
 - **Definição de métricas de sucesso** para o projeto
 
 ## Considerações Éticas
@@ -211,4 +211,3 @@ A aplicação do formulário permitiu:
 
 - Amostra limitada ao contexto institucional específico
 - Possível viés de seleção dos respondentes
-- Dependência da interpretação subjetiva em questões abertas
