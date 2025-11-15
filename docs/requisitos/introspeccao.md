@@ -15,7 +15,7 @@ Para sua realização, primeiramente foi listado os possíveis cenários de uso 
 | Realizar o login na plataforma      |  É necessário a criação de uma página de login.    |
 | Verificar o status das antenas      |  O usuário deve poder ver quais antenas estão ou não disponíveis.    |
 | Escolher o satélite a ser rastreado      |  O usuário deve poder ver a lista de satélites disponíveis para receber dados.    |
-| Realizar rotina de calibração      |  Deve ser possível configurar e realizar a rotina de calibração das antenas   |
+| Realizar rotina de calibração      |  Deve ser possível configurar e realizar a rotina de calibração das antenas.   |
 | Verificar se a antena está calibrada      |  Deve ser possível ver a última vez que a antena foi configurada.   |
 | Ver trajetória da antena    |  O usuário deve poder ver se a antena está sendo corretamente posicionada.   |
 | Baixar dados coletados do satélite      |  Deve ser possível baixar um arquivo com os dados coletados do satélite monitorado.    |
