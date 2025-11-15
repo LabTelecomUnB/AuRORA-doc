@@ -1,4 +1,4 @@
-# Stakeholder
+# Formulaŕio de perfil do usuário
 
 O stakeholder de uma aplicação pode ser definido como um grupo ou indivíduo que pode ser afetado pela realização do propósito de uma organização [1]. No ponto de vista de software, podemos dizer que os stakeholders são definidos como os grupos ou indivíduos que são afetados pelo desenvolvimento do sistema.
 
@@ -211,6 +211,12 @@ A aplicação do formulário permitiu:
 
 - Amostra limitada ao contexto institucional específico
 - Possível viés de seleção dos respondentes
+
+## Referência
+
+[1] FREEMAN, R. Edward. Strategic management: a stakeholder approach. Marshfield, Massachusetts: Pitman Publishing, 1984.
+
+## Histórico de versões
 
 <div align="center">
     <table>

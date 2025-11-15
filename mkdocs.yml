@@ -13,6 +13,7 @@ extra_css:
 extra_javascript:
   - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js
   - javascripts/tablesort.js
+  - javascripts/logo-theme.js
 
 
 theme:
@@ -74,12 +75,16 @@ markdown_extensions:
         custom_icons:
           - overrides/.icons 
   - footnotes 
-
+  - toc:
+        permalink: true
+        toc_depth: 2
 nav:
   - Início: index.md
   - Guias de Contribuição:
     - Documentação: guias/documentacao.md
   - Requisitos:
-    - Stakeholders: requisitos/stakeholders.md
+    - Perfil dos usuários: requisitos/perfil_do_usuario.md
     - Entrevistas: requisitos/entrevistas.md
+    - Introspecção: requisitos/introspeccao.md
+
 

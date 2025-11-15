@@ -103,7 +103,7 @@ Foi apresentada a proposta da entrevista ao stakeholder e solicitada sua permiss
 
 #### 18. Como você imagina a interface ideal (mapas, indicadores numéricos, gráficos em tempo real)?
 
-**Considerações**: Fluxos pequenos e intuitivos possibilitando a realização de tarefas em poucos clicks. Possibilidade de gerenciamento de multiplas abas, uma para cada antena. Possibilidade de verificação das condições climáticas em tempo real. Feedback visual do status atual da antena. Persolização da rotina de posicionamento, como, por exemplo, a quantidade de pontos da interpolação. Interface amigável com as cores do laboratório.
+**Considerações**: Fluxos pequenos e intuitivos possibilitando a realização de tarefas em poucos clicks. Possibilidade de gerenciamento de multiplas janelas, uma para cada antena. Possibilidade de verificação das condições climáticas em tempo real. Feedback visual do status atual da antena. Persolização da rotina de posicionamento, como, por exemplo, a quantidade de pontos da interpolação. Interface amigável com as cores do laboratório.
 
 #### Qual o nível de detalhe esperado no feedback do sistema (somente ângulos, ou também métricas de intensidade do sinal)?
 
@@ -145,9 +145,11 @@ Agradecimentos e observações:
 
 **Considerações**: Foi citado que o software deve ter uma boa documentação tendo em vista que os próprios integrantes do laboratório seram responsáveis pela sua manutenção.
 
+## Referências
 
-## Versão
+[1] VAZQUEZ, Carlos Eduardo; SIMÕES, Guilherme Siqueira. Engenharia de requisitos: software orientado ao negócio. Rio de Janeiro: Brasport , 2016.
 
+## Histórico de versões
 
 <div align="center">
     <table>
