@@ -1,4 +1,6 @@
-## Entrevista
+# Entrevista
+
+O presente artefato descreve a técnica de entrevista utilizada para a elicitação de requisitos so software AuRORA.
 
 ## Metodologia
 

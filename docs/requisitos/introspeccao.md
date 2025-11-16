@@ -1,4 +1,6 @@
-## Introspecção
+# Introspecção
+
+O presente artefato descreve a técnica de introspecção utilizada para a elicitação de requisitos so software AuRORA.
 
 ## Metodologia
 
@@ -38,34 +40,33 @@ Os requisitos abaixo foram elicitados apartir dos cenários listados acima. Os r
 
 |  Indentificador  | Requisito                             | Tipo                     |
 | -----------------|---------------------------------------| ------------------------ |
-|  INT01           | O usuário deve poder realizar o login na plataforma.          | RF |
-|  INT02           | O administrador deve cadastrar novos usuários na plataforma. | RF |
-|  INT03           | O usuário deve poder redefinir sua senha. | RF |
-|  INT04           | O usuário deve poder verificar o status das antenas (disponível, indisponível e ocupada). | RF |
-|  INT05           | O usuário deve poder ver uma lista de todas as antenas. | RF |
-|  INT07           | O usuário deve poder adicionar novas antenas. | RF |
-|  INT08           | O usuário deve poder selecionar qual antena ele deseja utilizar. | RF |
-|  INT09           | O usuário deve poder salvar rotinas. | RF |
-|  INT10           | O usuário deve poder realizar rotinas de calibração. | RF |
-|  INT11           | O usuário deve poder selecionar o satélite a ser rastreado. | RF |
-|  INT12           | O usuário deve poder selecionar personalizar a rotina a ser realizada pela antena. | RF |
-|  INT13           | O software deve fazer o cálculo de posicionamento de acordo com os parâmetros selecionados pelo usuário. | RF |
-|  INT14           | O software deve bloquear rotinas invalidas. | RF |
-|  INT15           | O software deve mostrar a última vez que a antena foi calibrada. | RF |
-|  INT16           | O software deve alertar quando a antena precisa de calibração. | RF |
-|  INT17           | O software deve mostrar a evolução do posicionamento da antena. | RF |
-|  INT18           | O software deve salvar os dados recebidos pelo satélite selecionado. | RF |
-|  INT19           | O software deve alertar se a antena está recendo os dados do satélite selecionado. | RF |
-|  INT20           | O software deve dar a opção do usuário baixar os dados salvos. | RF |
-|  INT21           | De tempos em tempos o bando deve limpar os dados coletados. | RF |
-|  INT22           | De tempos em tempos o bando deve limpar os dados coletados. | RF |
-|  INT23           | O software deve mostrar a trajetória do satélite. | RF |
-|  INT24           | O usuário deve poder selecionar entre dark mode e light mode. | RF |
-|  INT25           | O usuário deve poder selecionar entre inglês e português. | RF |
-|  INT26           | O usuário deve ser capaz de interromper uma rotina. | RF |
-|  INT27           | O administrador deve poder bloquear uma antena. | RF |
-|  INT28           | O software deve ser compatível com o chrome. | NF |
-|  INT29           | O software deve ser compatível com o firefox. | NF |
+|  IN01           | O usuário deve poder realizar o login na plataforma.          | RF |
+|  IN02           | O administrador deve cadastrar novos usuários na plataforma. | RF |
+|  IN03           | O usuário deve poder redefinir sua senha. | RF |
+|  IN04           | O usuário deve poder verificar o status das antenas (disponível, indisponível e ocupada). | RF |
+|  IN05           | O usuário deve poder ver uma lista de todas as antenas. | RF |
+|  IN06           | O usuário deve poder adicionar novas antenas. | RF |
+|  IN07           | O usuário deve poder selecionar qual antena ele deseja utilizar. | RF |
+|  IN08           | O usuário deve poder salvar rotinas. | RF |
+|  IN09           | O usuário deve poder realizar rotinas de calibração. | RF |
+|  IN10           | O usuário deve poder selecionar o satélite a ser rastreado. | RF |
+|  IN11           | O usuário deve poder personalizar a rotina a ser realizada pela antena. | RF |
+|  IN12           | O software deve fazer o cálculo de posicionamento de acordo com os parâmetros selecionados pelo usuário. | RF |
+|  IN13           | O software deve bloquear rotinas inválidas. | RF |
+|  IN14           | O software deve mostrar a última vez que a antena foi calibrada. | RF |
+|  IN15           | O software deve alertar quando a antena precisa de calibração. | RF |
+|  IN16           | O software deve mostrar a evolução do posicionamento da antena. | RF |
+|  IN17           | O software deve salvar os dados recebidos pelo satélite selecionado. | RF |
+|  IN18           | O software deve alertar se a antena está recebendo os dados do satélite selecionado. | RF |
+|  IN19           | O software deve dar a opção do usuário baixar os dados salvos. | RF |
+|  IN20           | O banco deve limpar os dados coletados periodicamente. | RF |
+|  IN21           | O software deve mostrar a trajetória do satélite. | RF |
+|  IN22           | O usuário deve poder selecionar entre dark mode e light mode. | RF |
+|  IN23           | O usuário deve poder selecionar entre inglês e português. | RF |
+|  IN24           | O usuário deve ser capaz de interromper uma rotina. | RF |
+|  IN25           | O administrador deve poder bloquear uma antena. | RF |
+|  IN26           | O software deve ser compatível com o chrome. | NF |
+|  IN27           | O software deve ser compatível com o firefox. | NF |
 
 
 <center>
@@ -87,7 +88,7 @@ Os requisitos abaixo foram elicitados apartir dos cenários listados acima. Os r
             <th>Autor</th>
         </tr>
         <tr>
-            <td>31/10</td>
+            <td>14/11</td>
             <td>1.0</td>
             <td>Primeira versão finalizada</td>
             <td><a href="https://github.com/ccarlaa">Carla Clementino</a></td>

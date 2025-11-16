@@ -1,9 +1,10 @@
-## Formulário de perfil do usuário
+# Formulário de perfil do usuário
 
-O stakeholder de uma aplicação pode ser definido como um grupo ou indivíduo que pode ser afetado pela realização do propósito de uma organização [1]. No ponto de vista de software, podemos dizer que os stakeholders são definidos como os grupos ou indivíduos que são afetados pelo desenvolvimento do sistema.
+O presente artefato descreve a técnica de formulário utilizada para a definição do perfil do usuário do software AuRORA.
 
 ## Metodologia
 
+O stakeholder de uma aplicação pode ser definido como um grupo ou indivíduo que pode ser afetado pela realização do propósito de uma organização [1]. No ponto de vista de software, podemos dizer que os stakeholders são definidos como os grupos ou indivíduos que são afetados pelo desenvolvimento do sistema.
 
 Segundo a norma ISO 42.010 de 2022 alguns exemplos típicos que devem ser considerados, quando aplicável, são:
 
