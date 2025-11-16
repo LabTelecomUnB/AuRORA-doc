@@ -14,6 +14,8 @@
         <link rel="prev" href="../entrevistas/">
       
       
+        <link rel="next" href="../requisitos_elicitados/">
+      
       
         
       
@@ -561,6 +563,8 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
@@ -603,23 +607,14 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
       Índice
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#introspeccao" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Introspecção
-      
-    </span>
-  </a>
-  
-</li>
       
         <li class="md-nav__item">
   <a href="#metodologia" class="md-nav__link">
@@ -674,6 +669,62 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../requisitos_elicitados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Requisitos elicitados
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../priorizacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Priorização
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -701,9 +752,8 @@
   
 
 
-  <h1>Introspecção</h1>
-
-<h2 id="introspeccao">Introspecção<a class="headerlink" href="#introspeccao" title="Permanent link">&para;</a></h2>
+<h1 id="introspeccao">Introspecção<a class="headerlink" href="#introspeccao" title="Permanent link">&para;</a></h1>
+<p>O presente artefato descreve a técnica de introspecção utilizada para a elicitação de requisitos so software AuRORA.</p>
 <h2 id="metodologia">Metodologia<a class="headerlink" href="#metodologia" title="Permanent link">&para;</a></h2>
 <p>O método de introspecção é uma técnica útil para o levantamento de requisitos, na qual os desenvolvedores imaginam como o software idealmente deveria se comportar. Embora seja ágil, deve ser complementado por outros métodos, como os previamente especificados (entrevista e formulário), pois pode gerar falsas conclusões sobre a experiência do usuário. Por exemplo, uma funcionalidade considerada intuitiva pela equipe de desenvolvimento pode se mostrar desafiadora para os usuários finais[1].
 Para sua realização, primeiramente foi listado os possíveis cenários de uso do software a ser desenvolvido e, em seguida, foi feita a elicitação dos requisitos necessários para a realização das tarefas previstas pelos cenários.</p>
@@ -799,142 +849,137 @@ Para sua realização, primeiramente foi listado os possíveis cenários de uso 
 </thead>
 <tbody>
 <tr>
-<td>INT01</td>
+<td>IN01</td>
 <td>O usuário deve poder realizar o login na plataforma.</td>
 <td>RF</td>
 </tr>
 <tr>
-<td>INT02</td>
+<td>IN02</td>
 <td>O administrador deve cadastrar novos usuários na plataforma.</td>
 <td>RF</td>
 </tr>
 <tr>
-<td>INT03</td>
+<td>IN03</td>
 <td>O usuário deve poder redefinir sua senha.</td>
 <td>RF</td>
 </tr>
 <tr>
-<td>INT04</td>
+<td>IN04</td>
 <td>O usuário deve poder verificar o status das antenas (disponível, indisponível e ocupada).</td>
 <td>RF</td>
 </tr>
 <tr>
-<td>INT05</td>
+<td>IN05</td>
 <td>O usuário deve poder ver uma lista de todas as antenas.</td>
 <td>RF</td>
 </tr>
 <tr>
-<td>INT07</td>
+<td>IN06</td>
 <td>O usuário deve poder adicionar novas antenas.</td>
 <td>RF</td>
 </tr>
 <tr>
-<td>INT08</td>
+<td>IN07</td>
 <td>O usuário deve poder selecionar qual antena ele deseja utilizar.</td>
 <td>RF</td>
 </tr>
 <tr>
-<td>INT09</td>
+<td>IN08</td>
 <td>O usuário deve poder salvar rotinas.</td>
 <td>RF</td>
 </tr>
 <tr>
-<td>INT10</td>
+<td>IN09</td>
 <td>O usuário deve poder realizar rotinas de calibração.</td>
 <td>RF</td>
 </tr>
 <tr>
-<td>INT11</td>
+<td>IN10</td>
 <td>O usuário deve poder selecionar o satélite a ser rastreado.</td>
 <td>RF</td>
 </tr>
 <tr>
-<td>INT12</td>
-<td>O usuário deve poder selecionar personalizar a rotina a ser realizada pela antena.</td>
+<td>IN11</td>
+<td>O usuário deve poder personalizar a rotina a ser realizada pela antena.</td>
 <td>RF</td>
 </tr>
 <tr>
-<td>INT13</td>
+<td>IN12</td>
 <td>O software deve fazer o cálculo de posicionamento de acordo com os parâmetros selecionados pelo usuário.</td>
 <td>RF</td>
 </tr>
 <tr>
-<td>INT14</td>
-<td>O software deve bloquear rotinas invalidas.</td>
+<td>IN13</td>
+<td>O software deve bloquear rotinas inválidas.</td>
 <td>RF</td>
 </tr>
 <tr>
-<td>INT15</td>
+<td>IN14</td>
 <td>O software deve mostrar a última vez que a antena foi calibrada.</td>
 <td>RF</td>
 </tr>
 <tr>
-<td>INT16</td>
+<td>IN15</td>
 <td>O software deve alertar quando a antena precisa de calibração.</td>
 <td>RF</td>
 </tr>
 <tr>
-<td>INT17</td>
+<td>IN16</td>
 <td>O software deve mostrar a evolução do posicionamento da antena.</td>
 <td>RF</td>
 </tr>
 <tr>
-<td>INT18</td>
+<td>IN17</td>
 <td>O software deve salvar os dados recebidos pelo satélite selecionado.</td>
 <td>RF</td>
 </tr>
 <tr>
-<td>INT19</td>
-<td>O software deve alertar se a antena está recendo os dados do satélite selecionado.</td>
+<td>IN18</td>
+<td>O software deve alertar se a antena está recebendo os dados do satélite selecionado.</td>
 <td>RF</td>
 </tr>
 <tr>
-<td>INT20</td>
+<td>IN19</td>
 <td>O software deve dar a opção do usuário baixar os dados salvos.</td>
 <td>RF</td>
 </tr>
 <tr>
-<td>INT21</td>
-<td>De tempos em tempos o bando deve limpar os dados coletados.</td>
+<td>IN20</td>
+<td>O banco deve limpar os dados coletados periodicamente.</td>
 <td>RF</td>
 </tr>
 <tr>
-<td>INT22</td>
-<td>De tempos em tempos o bando deve limpar os dados coletados.</td>
-<td>RF</td>
-</tr>
-<tr>
-<td>INT23</td>
+<td>IN21</td>
 <td>O software deve mostrar a trajetória do satélite.</td>
 <td>RF</td>
 </tr>
 <tr>
-<td>INT24</td>
+<td>IN22</td>
 <td>O usuário deve poder selecionar entre dark mode e light mode.</td>
 <td>RF</td>
 </tr>
 <tr>
-<td>INT25</td>
+<td>IN23</td>
 <td>O usuário deve poder selecionar entre inglês e português.</td>
 <td>RF</td>
 </tr>
 <tr>
-<td>INT26</td>
+<td>IN24</td>
 <td>O usuário deve ser capaz de interromper uma rotina.</td>
 <td>RF</td>
 </tr>
 <tr>
-<td>INT27</td>
+<td>IN25</td>
 <td>O administrador deve poder bloquear uma antena.</td>
 <td>RF</td>
 </tr>
 <tr>
-<td>INT28</td>
+<td>IN26</td>
 <td>O software deve ser compatível com o chrome.</td>
 <td>NF</td>
 </tr>
 <tr>
-<td>INT29</td>
+<td>IN27</td>
 <td>O software deve ser compatível com o firefox.</td>
 <td>NF</td>
 </tr>
@@ -956,7 +1001,7 @@ Para sua realização, primeiramente foi listado os possíveis cenários de uso 
             <th>Autor</th>
         </tr>
         <tr>
-            <td>31/10</td>
+            <td>14/11</td>
             <td>1.0</td>
             <td>Primeira versão finalizada</td>
             <td><a href="https://github.com/ccarlaa">Carla Clementino</a></td>
@@ -1012,6 +1057,22 @@ Para sua realização, primeiramente foi listado os possíveis cenários de uso 
             </div>
           </a>
         
+        
+          
+          <a href="../requisitos_elicitados/" class="md-footer__link md-footer__link--next" aria-label="Próximo: Requisitos elicitados">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Próximo
+              </span>
+              <div class="md-ellipsis">
+                Requisitos elicitados
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
         
       </nav>
     
