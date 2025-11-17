@@ -4,7 +4,7 @@ O presente artefato descreve a técnica de entrevista utilizada para a elicitaç
 
 ## Metodologia
 
-A tecnica de entrevista consiste no diálogo entre duas ou mais pessoas no qual uma delas, o entrevistador, busca encontrar respostas para uma série de questões previamente planejadas [1]. A partir das respostas dos entrevistados, é possível elicitar os requisitos esperados pelo usuário.
+A tecnica de entrevista consiste no diálogo entre duas ou mais pessoas no qual uma delas, o entrevistador, busca encontrar respostas para uma série de questões previamente planejadas. A partir das respostas dos entrevistados, é possível elicitar os requisitos esperados pelo usuário.
 
 A entrevista foi dividida em 8 partes, de forma a abranger desde a motivação dos stakeholders a expectativas futuras. Foram utilizadas perguntas abertas e fechadas na sua realização. Abaixo estão listados os tópicos abordados:
 

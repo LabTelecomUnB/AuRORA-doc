@@ -4,7 +4,9 @@ O presente artefato busca descrever a aplicação da metodologia Moscow para pri
 
 ## Metodologia
 
-A técnica Moscow para a análise de requisitos consiste em classificá-los em quatro valores: must, should, could e won't. Abaixo é descrito o significado de cada um deles: 
+A técnica MoSCoW é um método popular e eficaz para a priorização de requisitos em desenvolvimento ágil. Ela consiste em classificar cada requisito em quatro categorias de valor, que determinam sua importância e impacto na entrega. 
+
+As categorias são classificadas em:
 
 1. **Must have (deve ter)**: Requisitos essenciais para o funcionamento do sistema. Sem eles o sistema não atende as necessidades mínimas dos usuários e não agrega valor.
 
@@ -13,6 +15,8 @@ A técnica Moscow para a análise de requisitos consiste em classificá-los em q
 3. **Could have (poderia ter)**: Requisitos desejáveis pelo cliente mas que não afetam o funcionamento do software. Também pode afetar a satisfação do cliente mas de forma menos clucial que um requisito should.
 
 4. **Won't have this time (não terá agora)**: São requisitos que não aferam o funcionamento do sistema e podem ser implementados em versões futuras do software.
+
+Este modelo garante que os recursos sejam focados nos "Must Haves", assegurando que o produto mínimo viável (MVP) seja entregue dentro do prazo e atenda às necessidades críticas do negócio. A transparência na priorização do MoSCoW facilita a gestão de expectativas do cliente, mitiga riscos de escopo excessivo e otimiza o planejamento das iterações futuras.
 
 ## Resultado
 

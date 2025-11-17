@@ -4,8 +4,9 @@ O presente artefato descreve a técnica de introspecção utilizada para a elici
 
 ## Metodologia
 
-O método de introspecção é uma técnica útil para o levantamento de requisitos, na qual os desenvolvedores imaginam como o software idealmente deveria se comportar. Embora seja ágil, deve ser complementado por outros métodos, como os previamente especificados (entrevista e formulário), pois pode gerar falsas conclusões sobre a experiência do usuário. Por exemplo, uma funcionalidade considerada intuitiva pela equipe de desenvolvimento pode se mostrar desafiadora para os usuários finais[1].
+O método de introspecção é uma técnica útil para o levantamento de requisitos, na qual os desenvolvedores imaginam como o software idealmente deveria se comportar.
 Para sua realização, primeiramente foi listado os possíveis cenários de uso do software a ser desenvolvido e, em seguida, foi feita a elicitação dos requisitos necessários para a realização das tarefas previstas pelos cenários.
+Embora a introspecção seja ágil e útil para estabelecer a base dos requisitos, reconhece-se sua limitação principal: o risco de viés de desenvolvedor. Uma funcionalidade considerada intuitiva pela equipe pode se mostrar desafiadora para os usuários finais. Por isso, os requisitos preliminares obtidos por introspecção foram obrigatoriamente complementados e validados por métodos externos de interação com o usuário, como entrevistas e formulários, garantindo a precisão e a usabilidade do produto final.
 
 ## Resultados 
 
