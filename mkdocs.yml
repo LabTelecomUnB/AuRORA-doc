@@ -20,18 +20,14 @@ theme:
   custom_dir: overrides
   name: material
   language: pt-BR
-  favicon: assets/images/logo-light.png
+  favicon: assets/images/favicon.png
 
   icon:
-    logo: material/satellite-variant
     repo: fontawesome/brands/github
 
   features:
-    - toc.integrate
-    - toc.follow
     - navigation.tabs
     - navigation.tabs.sticky
-    - navigation.footer
     - navigation.instant
     - navigation.top
 
@@ -75,9 +71,7 @@ markdown_extensions:
         custom_icons:
           - overrides/.icons 
   - footnotes 
-  - toc:
-        permalink: true
-        toc_depth: 2
+  
 nav:
   - Início: index.md
   - Guias de Contribuição:

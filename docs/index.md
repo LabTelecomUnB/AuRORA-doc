@@ -2,7 +2,7 @@
 
 <div align="center" markdown="1">
 
-![Logo AuRORA](assets/images/logo-with-name.png){ width="600" }
+![Logo AuRORA](assets/images/logo_with_name.png){ width="250" }
 
 
 </div>
