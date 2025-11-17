@@ -2,8 +2,7 @@
 
 <div align="center" markdown="1">
 
-![Logo AuRORA](assets/images/logo-dark.png#only-light){ width="200" }
-![Logo AuRORA](assets/images/logo-light.png#only-dark){ width="200" }
+![Logo AuRORA](assets/images/logo-with-name.png){ width="600" }
 
 
 </div>
@@ -22,6 +21,15 @@ Nesta página você encontrará toda a documentação dos processos de desenvolv
             <img src="assets/images/doc-icon.png" alt="Guias" width="80">
         <br>
         <p>Guias de Contribuição</p>
+        </div>
+    </a>
+
+    <a href="requisitos/backlog.md">
+        <div style="border: 1px solid #6CC99E; box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); border-radius: 20px; padding: 20px 10px; transition: background-color 0.3s; cursor: pointer;" onmouseover="this.style.backgroundColor='#F5FDFA';" onmouseout="this.style.backgroundColor='';">
+
+            <img src="assets/images/to-do-list-icon.png" alt="Guias" width="80">
+        <br>
+        <p>Backlog</p>
         </div>
     </a>
 

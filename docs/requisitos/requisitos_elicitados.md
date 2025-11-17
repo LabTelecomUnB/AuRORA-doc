@@ -28,7 +28,7 @@ Os requisitos são listados nas tabelas 1 e 2, as quais possuem 3 colunas: uma p
 | RF09 | O software deve calcular e enviar os ângulos de posicionamento da antena. | EN01, IN13 |
 | RF10 | O software deve ser capaz de salvar os dados recebidos pelo satélite monitorado. | EN03, IN18 |
 | RF11 | O software deve mostrar a evolução do posicionamento da antena. | EN05, IN17 |
-| RF12 | O usuário deve ser capaz de salvar rotinas de posicionamento. | EN06, IN09 |
+| RF12 | O usuário deve ser capaz de salvar e deletar rotinas de posicionamento. | EN06, IN09 |
 | RF13 | O software deve mostrar a última vez que a antena foi calibrada. | EN08, IN15 |
 | RF14 | O software deve bloquear rotinas que ultrapassem limites físicos ou de velocidade da antena. | EN11, EN12, IN14 |
 | RF15 | O administrador deve poder gerenciar (cadastrar/controlar) usuários na plataforma. | EN13, IN02 |

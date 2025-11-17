@@ -39,16 +39,16 @@ Embora a introspecção seja ágil e útil para estabelecer a base dos requisito
 
 Os requisitos abaixo foram elicitados apartir dos cenários listados acima. Os requisitos foram classificados em funcionais (RF) e não funcionais (NF).
 
-|  Indentificador  | Requisito                             | Tipo                     |
+|  Identificador  | Requisito                             | Tipo                     |
 | -----------------|---------------------------------------| ------------------------ |
 |  IN01           | O usuário deve poder realizar o login na plataforma.          | RF |
-|  IN02           | O administrador deve cadastrar novos usuários na plataforma. | RF |
+|  IN02           | O administrador deve poder administrar os novos usuários na plataforma. | RF |
 |  IN03           | O usuário deve poder redefinir sua senha. | RF |
 |  IN04           | O usuário deve poder verificar o status das antenas (disponível, indisponível e ocupada). | RF |
 |  IN05           | O usuário deve poder ver uma lista de todas as antenas. | RF |
 |  IN06           | O usuário deve poder adicionar novas antenas. | RF |
 |  IN07           | O usuário deve poder selecionar qual antena ele deseja utilizar. | RF |
-|  IN08           | O usuário deve poder salvar rotinas. | RF |
+|  IN08           | O usuário deve poder salvar e deletar rotinas. | RF |
 |  IN09           | O usuário deve poder realizar rotinas de calibração. | RF |
 |  IN10           | O usuário deve poder selecionar o satélite a ser rastreado. | RF |
 |  IN11           | O usuário deve poder personalizar a rotina a ser realizada pela antena. | RF |

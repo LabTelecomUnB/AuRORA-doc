@@ -19,7 +19,7 @@ Segundo a norma ISO 42.010 de 2022 alguns exemplos típicos que devem ser consid
     <li> Mantenedores do sistema. </li>
 </ul>
 
-No escopo do projeto, algumas dessas difinições se fundem, tendo em mente que os usuários do software também serão os responsável por realizar a manutenção do sistema. Dessa forma, foi aplicada a metodologia de formulário para coletar informações sobre os stakeholders com foco em seus conhecimentos técnicos e práticos.
+No escopo do projeto, algumas dessas difinições se fundem, tendo em mente que os usuários do software também serão os responsável por realizar a manutenção do sistema. Dessa forma, conseguimos identificar 4 tipos de usuário no sistema AuRORA: usuários do sistema, operadores do sistema, desenvolvedores do sistema e mantenedores do sistema. Com base nisso, foi aplicada a metodologia de formulário para coletar informações sobre os stakeholders com foco em seus conhecimentos técnicos e práticos, de forma a utilizar os dados para a tomada de decisões técnicas que facilitem a manutenção futura do software.
 
 ### 1ª Etapa
 
