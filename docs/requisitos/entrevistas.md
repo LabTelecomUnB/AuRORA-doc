@@ -147,7 +147,7 @@ Foi apresentada a proposta da entrevista ao stakeholder e solicitada sua permiss
 
 Agradecimentos e observações:
 
-**Considerações**: Foi citado que o software deve ter uma boa documentação tendo em vista que os próprios integrantes do laboratório seram responsáveis pela sua manutenção.
+**Considerações**: Foi citado que o software deve ter uma boa documentação tendo em vista que os próprios integrantes do laboratório serão responsáveis pela sua manutenção.
 
 ### Elicitação
 
