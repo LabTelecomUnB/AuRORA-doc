@@ -151,7 +151,7 @@ Agradecimentos e observações:
 
 ### Elicitação
 
-A partir das considerações realizadas durante as entrevistas os requisitos abaixo foram elicitados. Eles foram classificados em funcionais (RF) e não funcionais (NF):
+A partir das considerações realizadas durante as entrevistas os requisitos abaixo foram elicitados. Eles foram classificados em funcionais (RF) e não funcionais (NF). Além disso, também foram identificadas algumas regras de negócio que serão identificadas por (RN):
 
 |  Indentificador  | Requisito                             | Tipo                     |
 | -----------------|---------------------------------------| ------------------------ |
@@ -164,27 +164,25 @@ A partir das considerações realizadas durante as entrevistas os requisitos aba
 |  EN07            | O software deve mostrar a última pessoa que moveu a antena.          | RF |
 |  EN08            | O software deve mostrar a última vez que a antena foi calibrada.          | RF |
 |  EN09            | O software deve mostrar qual foi a última rotina realizada pela antena.          | RF |
-|  EN010            | O software deve mostrar se a antena está apresentando falhas no posicionamento.          | RF |
-|  EN011            | O software deve bloquear rotinas que tenham uma configuração de elevação que passe de 180º.         | RF |
-|  EN012           | O software deve bloquear rotinas que tenham uma configuração de azimute que passe de 360º.         | RF |
-|  EN013            | O software deve ter um perfil de administrador.         | RF |
-|  EN014            | O software deve ter um perfil de usuário normal.         | RF |
-|  EN015            | O usuário deve poder escolher entre inglês e português.         | RF |
-|  EN016            | O software deve rodar na web.         | NF |
-|  EN017            | O software deve rodar nos principais navegadores.         | NF |
-|  EN018            | O cálculo de posicionamento tem que ter um erro de no máximo 0,5º.         | NF |
-|  EN019            | Os fluxos para a realização de tarefas devem ser curtos.         | NF |
-|  EN020            | O usuário deve poder verificar a situação atual do clima onde as antenas estão localizadas.        | RF |
-|  EN021            | O usuário deve poder abrir multiplas janelas, uma para cada antena.         | RF |
-|  EN022            | O usuário deve poder verificar o status da antena.         | RF |
-|  EN023            | O software deve seguir a identidade visual do laboratório.         | NF |
-|  EN024            | O software deve mostrar a potência do sinal recebido.         | RF |
-|  EN025            | O software deve mostrar a frequência do sinal recebido.         | RF |
-|  EN026            | O usuário deve poder exportar os dados do status da antena no momento da medição.         | RF |
-|  EN027            | O software deve mostrar o posicionamento da antena em tempo real.         | RF |
-|  EN028            | O software deve ter uma boa documentação.         | NF |
-|  EN029            | O software deve ser desenvolvido seguindo boas práticas de programação.         | NF |
-|  EN030            | O software deve ser desenvolvido utilizando tecnologias com boas curvas de aprendizagem.         | NF |
+|  EN10            | O software deve mostrar se a antena está apresentando falhas no posicionamento.          | RF |
+|  -            | O software deve bloquear rotinas que tenham uma configuração de elevação que passe de 180º.         | RN |
+|  -           | O software deve bloquear rotinas que tenham uma configuração de azimute que passe de 360º.         | RN |
+|  EN11            | O software deve ter um perfil de administrador.         | RF |
+|  EN12            | O software deve ter um perfil de usuário normal.         | RF |
+|  EN13            | O usuário deve poder escolher entre inglês e português.         | RF |
+|  EN14            | O software deve rodar na web.         | NF |
+|  EN15            | O software deve rodar nos principais navegadores.         | NF |
+|  -            | O cálculo de posicionamento tem que ter um erro de no máximo 0,5º.         | RN |
+|  EN16            | Os fluxos para a realização de tarefas devem ser curtos.         | NF |
+|  EN17            | O usuário deve poder verificar a situação atual do clima onde as antenas estão localizadas.        | RF |
+|  EN18            | O usuário deve poder abrir multiplas janelas, uma para cada antena.         | RF |
+|  EN19            | O usuário deve poder verificar o status da antena.         | RF |
+|  EN20            | O software deve seguir a identidade visual do laboratório.         | NF |
+|  EN21            | O software deve mostrar a potência do sinal recebido.         | RF |
+|  EN22            | O software deve mostrar a frequência do sinal recebido.         | RF |
+|  EN23            | O usuário deve poder exportar os dados do status da antena no momento da medição.         | RF |
+|  EN24            | O software deve mostrar o posicionamento da antena em tempo real.         | RF |
+|  EN25            | O software deve ter uma boa documentação.         | NF |
 
 <center>
     <figcaption>Figura 1 - Requisitos da entrevista. Fonte: Autor.</figcaption>

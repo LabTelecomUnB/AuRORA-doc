@@ -46,29 +46,26 @@ Os requisitos abaixo foram elicitados apartir dos cenários listados acima. Os r
 |  IN03           | O usuário deve poder redefinir sua senha. | RF |
 |  IN04           | O usuário deve poder verificar o status das antenas (disponível, indisponível e ocupada). | RF |
 |  IN05           | O usuário deve poder ver uma lista de todas as antenas. | RF |
-|  IN06           | O usuário deve poder adicionar novas antenas. | RF |
-|  IN07           | O usuário deve poder selecionar qual antena ele deseja utilizar. | RF |
-|  IN08           | O usuário deve poder salvar e deletar rotinas. | RF |
-|  IN09           | O usuário deve poder realizar rotinas de calibração. | RF |
-|  IN10           | O usuário deve poder selecionar o satélite a ser rastreado. | RF |
-|  IN11           | O usuário deve poder personalizar a rotina a ser realizada pela antena. | RF |
-|  IN12           | O software deve fazer o cálculo de posicionamento de acordo com os parâmetros selecionados pelo usuário. | RF |
-|  IN13           | O software deve bloquear rotinas inválidas. | RF |
-|  IN14           | O software deve mostrar a última vez que a antena foi calibrada. | RF |
-|  IN15           | O software deve alertar quando a antena precisa de calibração. | RF |
-|  IN16           | O software deve mostrar a evolução do posicionamento da antena. | RF |
-|  IN17           | O software deve salvar os dados recebidos pelo satélite selecionado. | RF |
-|  IN18           | O software deve alertar se a antena está recebendo os dados do satélite selecionado. | RF |
-|  IN19           | O software deve dar a opção do usuário baixar os dados salvos. | RF |
-|  IN20           | O banco deve limpar os dados coletados periodicamente. | RF |
-|  IN21           | O software deve mostrar a trajetória do satélite. | RF |
-|  IN22           | O usuário deve poder selecionar entre dark mode e light mode. | RF |
-|  IN23           | O usuário deve poder selecionar entre inglês e português. | RF |
-|  IN24           | O usuário deve ser capaz de interromper uma rotina. | RF |
-|  IN25           | O administrador deve poder bloquear uma antena. | RF |
-|  IN26           | O software deve ser compatível com o chrome. | NF |
-|  IN27           | O software deve ser compatível com o firefox. | NF |
-
+|  IN06           | O usuário deve poder selecionar qual antena ele deseja utilizar. | RF |
+|  IN07           | O usuário deve poder salvar e deletar rotinas. | RF |
+|  IN8           | O usuário deve poder realizar rotinas de calibração. | RF |
+|  IN9           | O usuário deve poder selecionar o satélite a ser rastreado. | RF |
+|  IN10           | O software deve fazer o cálculo de posicionamento de acordo com os parâmetros selecionados pelo usuário. | RF |
+|  IN11           | O software deve bloquear rotinas inválidas. | RF |
+|  IN12           | O software deve mostrar a última vez que a antena foi calibrada. | RF |
+|  IN13           | O software deve alertar quando a antena precisa de calibração. | RF |
+|  IN14           | O software deve mostrar a evolução do posicionamento da antena. | RF |
+|  IN15           | O software deve salvar os dados recebidos pelo satélite selecionado. | RF |
+|  IN16           | O software deve alertar se a antena está recebendo os dados do satélite selecionado. | RF |
+|  IN17           | O software deve dar a opção do usuário baixar os dados salvos. | RF |
+|  IN18           | O banco deve limpar os dados coletados periodicamente. | RF |
+|  IN19           | O software deve mostrar a trajetória do satélite. | RF |
+|  IN20           | O usuário deve poder selecionar entre dark mode e light mode. | RF |
+|  IN21           | O usuário deve poder selecionar entre inglês e português. | RF |
+|  IN22           | O usuário deve ser capaz de interromper uma rotina. | RF |
+|  IN23           | O administrador deve poder bloquear uma antena. | RF |
+|  IN24           | O software deve ser compatível com o chrome. | NF |
+|  IN25           | O software deve ser compatível com o firefox. | NF |
 
 <center>
     <figcaption>Figura 2 - Requisitos da instrospecção. Fonte: Autor.</figcaption>

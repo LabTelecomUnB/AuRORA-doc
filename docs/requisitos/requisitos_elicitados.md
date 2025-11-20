@@ -17,25 +17,39 @@ Os requisitos são listados nas tabelas 1 e 2, as quais possuem 3 colunas: uma p
 
 | Identificador | Requisito | Rastreabilidade |
 |---------------|-----------|-----------------|
-| RF01 | O software deve mostrar a última pessoa que moveu a antena (log de operação). | EN07 |
-| RF02 | O software deve mostrar se a antena está apresentando falhas no posicionamento. | EN10 |
-| RF03 | O usuário deve poder verificar a situação atual do clima onde as antenas estão localizadas. | EN20 |
-| RF04 | O usuário deve poder realizar o login na plataforma. | IN01 |
-| RF05 | O usuário deve poder redefinir sua senha. | IN03 |
-| RF06 | O software deve alertar quando a antena precisa de calibração. | IN16 |
-| RF07 | O usuário deve poder selecionar entre dark mode e light mode. | IN24 |
-| RF08 | O usuário deve ser capaz de interromper uma rotina. | IN26 |
-| RF09 | O software deve calcular e enviar os ângulos de posicionamento da antena. | EN01, IN13 |
-| RF10 | O software deve ser capaz de salvar os dados recebidos pelo satélite monitorado. | EN03, IN18 |
-| RF11 | O software deve mostrar a evolução do posicionamento da antena. | EN05, IN17 |
-| RF12 | O usuário deve ser capaz de salvar e deletar rotinas de posicionamento. | EN06, IN09 |
-| RF13 | O software deve mostrar a última vez que a antena foi calibrada. | EN08, IN15 |
-| RF14 | O software deve bloquear rotinas que ultrapassem limites físicos ou de velocidade da antena. | EN11, EN12, IN14 |
-| RF15 | O administrador deve poder gerenciar (cadastrar/controlar) usuários na plataforma. | EN13, IN02 |
-| RF16 | O software deve ter um perfil de usuário normal (Operador). | EN14 |
-| RF17 | O usuário deve poder selecionar entre os idiomas português e inglês. | EN15, IN25 |
-| RF18 | O usuário deve poder exportar/baixar dados (gráficos de posicionamento e dados da medição). | EN26, IN20 |
-| RF19 | O usuário deve poder verificar o status das antenas (ex: disponível, indisponível e ocupada). | EN22, IN04 |
+| RF01 | O usuário deve poder realizar login na plataforma. | IN03 |
+| RF02 | O usuário deve poder redefinir sua senha. | EN10 |
+| RF03 | O software deve ter perfis de usuário (administrador e usuário normal). | EN11, EN12 |
+| RF04 | O administrador deve poder administrar novos usuários na plataforma. | IN02 |
+| RF05 | O usuário deve poder visualizar o status das antenas. | IN04, EN19 |
+| RF06 | O usuário deve poder visualizar uma lista de todas as antenas. | IN05 |
+| RF07 | O usuário deve poder abrir múltiplas janelas, uma para cada antena. | EN18 |
+| RF08 | O software deve mostrar o posicionamento da antena em tempo real. | EN24 |
+| RF09 | O software deve mostrar falhas no posicionamento da antena. | EN10 |
+| RF10 | O software deve mostrar a última pessoa que moveu a antena. | EN07 |
+| RF11 | O software deve mostrar qual foi a última rotina realizada pela antena. | EN09 |
+| RF12 | O administrador deve poder bloquear uma antena. | IN23 |
+| RF13 | O usuário deve poder selecionar o satélite a ser rastreado/monitorado. | IN09 |
+| RF14 | O software deve listar os satélites disponíveis. |  EN02 |
+| RF15 | O software deve mostrar a trajetória do satélite. | IN19 |
+| RF16 | O software deve alertar se a antena está recebendo os dados do satélite selecionado. | IN16 |
+| RF17 | O software deve salvar os dados recebidos do satélite. | IN15, EN03 |
+| RF18 | O usuário deve poder baixar/exportar os dados salvos. | IN17, EN23 |
+| RF19 | O software deve mostrar a potência e a frequência do sinal recebido. | EN21, EN22 |
+| RF20 | O usuário deve poder salvar e deletar rotinas. | IN07, EN06 |
+| RF21 | O usuário deve poder realizar rotinas de calibração. | IN08 |
+| RF22 | O usuário deve poder interromper uma rotina. | IN22 |
+| RF23 | O software deve bloquear rotinas inválidas. | IN11 |
+| RF24 | O software deve calcular o posicionamento da antena conforme parâmetros fornecidos. | IN10 |
+| RF25 | O software deve calcular a trajetória da antena. | IEN01 |
+| RF26 | O usuário deve poder inserir manualmente dados de posicionamento. | EN04 |
+| RF27 | O software deve mostrar a evolução/histórico do posicionamento da antena. | IN14, EN05 |
+| RF28 | O software deve mostrar a última vez que a antena foi calibrada. | IN12, EN08 |
+| RF29 | O software deve alertar quando a antena precisar de calibração. | IN13 |
+| RF30 | O usuário deve poder verificar o clima onde as antenas estão localizadas. | EN17 |
+| RF31 | O banco deve limpar os dados coletados periodicamente. | IN18 |
+| RF32 | O usuário deve poder selecionar entre dark mode e light mode. | IN20 |
+| RF33 | O usuário deve poder escolher entre português e inglês. | IN21, EN13 |
 
 <center>
     <figcaption>Tabela 1 - Requisitos funcionais e suas rastreabilidades. Fonte: Autor.</figcaption>
@@ -48,10 +62,14 @@ Os requisitos são listados nas tabelas 1 e 2, as quais possuem 3 colunas: uma p
 
 | Identificador | Requisito | Rastreabilidade |
 |---------------|-----------|-----------------|
-| RN01 | O software deve ser acessível via web e compatível com os principais navegadores (ex: Chrome, Firefox). | EN17, IN28, IN29 |
-| RN02 | Os fluxos para a realização de tarefas devem ser curtos. | EN19 |
-| RN03 | O software deve seguir a identidade visual do laboratório. | EN23 |
-| RN04 | O software deve ter uma boa documentação. | EN28 |
+| NF01 | O software deve seguir a identidade visual do laboratório. | EN20 |
+| NF02 | Os fluxos para realização de tarefas devem ser curtos. | EN16 |
+| NF03 | O software deve rodar na web. | EN14 |
+| NF04 | O software deve ser compatível com Chrome. | IN24 |
+| NF05 | O software deve ser compatível com Firefox. | IN25 |
+| NF06 | O software deve rodar nos principais navegadores. | EN15 |
+| NF07 | O software deve ter documentação adequada. | EN25 |
+
 
 
 <center>

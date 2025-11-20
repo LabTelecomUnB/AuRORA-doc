@@ -347,7 +347,7 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
       <td>Depedência</td>
       <td>
         <ul>
-          <li>Cálculo de posicionamento.</li>
+          <li>[RF09] - Cálculo de posicionamento.</li>
           <li>Entrada contínua dos dados do hardware.</li>
         </ul>
       </td>
@@ -723,7 +723,7 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
     </tr>
     <!-- Critérios de aceitação -->
     <tr>
-      <td rowspan="3">Critérios de aceitação</td>
+      <td rowspan="4">Critérios de aceitação</td>
       <td>
         <b>Envio do link de recuperação</b>
         <ul>
@@ -782,7 +782,11 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
     </tr>
     <tr>
       <td>Depedência</td>
-      <td>Depende da existência do sistea de login.</td>
+      <td>
+          <ul>
+            <li>[RF04]  –  Sistema de login</li>
+          </ul>
+      </td>
     </tr>
   </tbody>
 </table>
@@ -807,32 +811,32 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
     <!-- Id do requisito -->
     <tr>
       <td>ID do requisito</td>
-      <td><a href="./requisitos_elicitados.md">[RF05]</td>
+      <td><a href="./requisitos_elicitados.md">[RF06]</td>
     </tr>
     <!-- História -->
     <tr>
       <td>História</td>
       <td>  
-        Como usuário da plataforma,
-        eu quero redefinir minha senha quando esquecer ou desejar alterá-la,
-        para garantir que eu consiga recuperar o acesso ao sistema com segurança e sem depender de suporte técnico.
+        Como operador responsável pela manutenção das antenas,
+        eu quero receber um alerta quando a antena precisar ser calibrada,
+        para evitar erros de posicionamento e garantir que o sistema opere com precisão.
       </td>
     </tr>
     <!-- Descrição -->
     <tr>
       <td>Descrição</td>
       <td>
-          O sistema deve oferecer um fluxo seguro para redefinição de senha. A partir da tela de login, o usuário poderá solicitar a recuperação informando seu e-mail registrado. O sistema enviará um link de redefinição contendo um token temporário e exclusivo. Ao acessar esse link, o usuário poderá cadastrar uma nova senha que esteja em conformidade com as regras de segurança definidas pela organização. Após concluir o processo, a senha antiga deixa de ser válida.
+          O sistema deve monitorar continuamente os parâmetros de operação da antena e identificar quando ela ultrapassar o limite permitido de desvio, tempo de uso ou critérios técnicos definidos pelo laboratório. Quando uma antena atingir o ponto em que a calibração se torna necessária, o sistema deve exibir um alerta claro na interface de monitoramento e registrar a situação no status geral da antena. O objetivo é garantir que operadores não utilizem a antena em condições inadequadas.
       </td>
     </tr>
     <!-- Regras de negócio -->
     <tr>
-      <td rowspan="5">Regras de negócio</td>
+      <td rowspan="4">Regras de negócio</td>
       <td>
         <ul>
-        <b>Token de redefinição</b>
+        <b>Critério técnico de necessidade de calibração</b>
             <li>
-            O sistema deve gerar um token único, criptografado e com tempo de expiração (ex.: 15 minutos). Esse token deve ser associado ao usuário que iniciou o processo e só pode ser utilizado uma única vez.
+            A necessidade de calibração deve ser determinada com base em parâmetros definidos: limite de erro de posicionamento, horas de operação acumuladas ou últimos registros de manutenção. Esses parâmetros devem ser configuráveis pelo administrador do sistema.
             </li>
         </ul>
       </td>
@@ -840,9 +844,9 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
     <tr>
       <td>
         <ul>
-            <b>Validação de segurança da nova senha</b>
+            <b>Geração automática do alerta</b>
             <li>
-            A nova senha deve seguir todas as diretrizes de segurança definidas pela política interna (tamanho mínimo, caracteres especiais, complexidade, etc.). O sistema não deve permitir o uso de senhas fracas.
+            O sistema deve identificar automaticamente quando qualquer um dos critérios de calibração for violado e exibir o aviso imediatamente ao operador, sem necessidade de ação manual.
             </li>
         </ul>
       </td>
@@ -850,9 +854,9 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
     <tr>
       <td>
         <ul>
-            <b>Invalidação automática de tokens</b>
+            <b>Registro de status</b>
             <li>
-            Tokens expirados, já utilizados ou inválidos não devem permitir redefinição. Caso o token seja inválido, o sistema deve exibir uma mensagem genérica: “Link inválido ou expirado”.
+            Além da exibição visual, o sistema deve registrar internamente a data e o motivo da necessidade de calibração, permitindo auditoria futura.
             </li>
         </ul>
       </td>
@@ -860,62 +864,52 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
     <tr>
       <td>
         <ul>
-            <b>Confirmação de nova senha</b>
+            <b>Remoção do alerta</b>
             <li>
-            O sistema deve exigir que o usuário insira a senha duas vezes, garantindo que ambas coincidam. Caso os campos não correspondam, deve ser exibida uma mensagem de erro adequada.
-            </li>
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <ul>
-            <b>Cancelamento de sessões anteriores</b>
-            <li>
-            Após a redefinição bem-sucedida, todas as sessões ativas daquela conta devem ser encerradas automaticamente, exigindo novo login com a senha atualizada.
+            O alerta só deve ser removido quando a antena for calibrada e o operador registrar manualmente a conclusão ou quando o sistema receber essa informação de forma automatizada (caso exista integração futura).
             </li>
         </ul>
       </td>
     </tr>
     <!-- Critérios de aceitação -->
     <tr>
-      <td rowspan="3">Critérios de aceitação</td>
+      <td rowspan="4">Detecção automática</td>
       <td>
         <b>Envio do link de recuperação</b>
         <ul>
-            <li><b>Dado</b> que estou na tela de login,</li>
-            <li><b>Quando</b> clico em “Esqueci minha senha” e informo meu e-mail válido,</li>
-            <li><b>Então</b> devo receber um link de redefinição no e-mail cadastrado.</li>
+            <li><b>Dado</b> que a antena ultrapassou os limites técnicos definidos,</li>
+            <li><b>Quando</b> o sistema verificar essa condição,</li>
+            <li><b>Então</b> deve exibir o aviso “Calibração necessária”.</li>
         </ul>
       </td>
     </tr>
     <tr>
       <td>
-        <b>Token inválido ou expirado</b>
+        <b>Exibição visível ao operador</b>
         <ul>
-            <li><b>Dado</b> que o token é inválido ou expirou,</li>
-            <li><b>Quando</b> tento acessar o link de redefinição,</li>
-            <li><b>Então</b> o sistema deve informar “Link inválido ou expirado” e oferecer opção de solicitar um novo.</li>
+            <li><b>Dado</b> que o alerta foi gerado,</li>
+            <li><b>Quando</b> o operador acessar a tela da antena,</li>
+            <li><b>Então</b> o alerta deve estar visível de forma destacada.</li>
         </ul>
       </td>
     </tr>
     <tr>
       <td>
-        <b>Redefinição bem-sucedida</b>
+        <b>Registro da ocorrência</b>
         <ul>
-            <li><b>Dado</b> que acessei o link válido,</li>
-            <li><b>Quando</b> preencho a nova senha respeitando as regras e confirmo,</li>
-            <li><b>Então</b> devo ver uma mensagem de sucesso e ser redirecionado para a tela de login.</li>
+            <li><b>Dado</b> que o alerta foi disparado,</li>
+            <li><b>Quando</b> o evento for registrado,</li>
+            <li><b>Então</b> o sistema deve armazenar data, hora e motivo.</li>
         </ul>
       </td>
     </tr>
     <tr>
-    <td>
-        <b>Senha fraca ou fora do padrão</b>
+      <td>
+        <b>Persistência do alerta</b>
         <ul>
-            <li><b>Dado</b> que estou na página de redefinição,</li>
-            <li><b>Quando</b> digito uma senha que não está em conformidade com as regras,</li>
-            <li><b>Então</b> o sistema deve impedir a conclusão e exibir a razão (ex.: “A senha deve conter no mínimo 8 caracteres”).</li>
+            <li><b>Dado</b> que a antena ainda não foi calibrada,</li>
+            <li><b>Quando</b> o operador retornar à tela em outro momento,</li>
+            <li><b>Então</b> o alerta deve continuar sendo exibido.</li>
         </ul>
       </td>
     </tr>
@@ -925,9 +919,8 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
       <td> 
           > 4
           <ul>
-            <li>Envolve fluxo de segurança mais complexo que o login.</li>
-            <li>Exige geração e validação de tokens temporários.</li>
-            <li>Possui mais ramificações e verificações de segurança do que uma tela comum.</li>
+            <li>Complexidade moderada, pois envolve análise de parâmetros técnicos.</li>
+            <li>Tem baixa incerteza técnica, mas exige configuração de parâmetros e persistência do status.</li>
           </ul>
       </td>
     </tr>
@@ -938,7 +931,487 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
     </tr>
     <tr>
       <td>Depedência</td>
-      <td>Depende da existência do sistea de login.</td>
+      <td>
+          <ul>
+            <li>RF08 – Mostrar a última vez que a antena foi calibrada</li>
+            <li>RF27 – Mostrar o posicionamento da antena em tempo real</li>
+          </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<center>
+    <figcaption>Tabela 7 - História do usuário: requisito RF06. Fonte: Autor.</figcaption>
+</center>
+
+---
+
+### RF07 - Seleção entre dark mode e light mode
+
+<table>
+  <thead>
+    <tr>
+      <th>Identificador</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Id do requisito -->
+    <tr>
+      <td>ID do requisito</td>
+      <td><a href="./requisitos_elicitados.md">[RF07]</td>
+    </tr>
+    <!-- História -->
+    <tr>
+      <td>História</td>
+      <td>  
+        Como usuário da plataforma,
+        eu quero escolher entre o modo claro (light mode) e o modo escuro (dark mode),
+        para utilizar a interface de maneira mais confortável e adequada às minhas preferências e condições de iluminação.
+      </td>
+    </tr>
+    <!-- Descrição -->
+    <tr>
+      <td>Descrição</td>
+      <td>
+          O sistema deve permitir que o usuário alterne entre o modo escuro e o modo claro, aplicando automaticamente o tema correspondente em toda a interface da plataforma. A escolha visual deve ser persistida, garantindo que, ao retornar ao sistema, o usuário continue utilizando o mesmo modo selecionado anteriormente. A funcionalidade deve estar disponível em uma área de configurações ou no próprio cabeçalho da interface, de acordo com o padrão de design adotado.
+      </td>
+    </tr>
+    <!-- Regras de negócio -->
+    <tr>
+      <td rowspan="4">Regras de negócio</td>
+      <td>
+        <ul>
+        <b>Persistência da preferência</b>
+            <li>
+            A escolha entre dark mode e light mode deve ser salva localmente (ex.: localStorage) ou associada ao perfil do usuário no backend. O sistema deve recuperar e aplicar essa configuração automaticamente ao carregar a interface.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Aplicação global do tema</b>
+            <li>
+           Ao alternar o modo, todas as telas, componentes, ícones, textos e elementos visuais devem ser atualizados para refletir o tema selecionado, sem exceções ou inconsistências.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Compatibilidade com identidade visual</b>
+            <li>
+            Ambos os modos devem seguir a identidade visual do laboratório/sistema, além de manter acessibilidade de contraste e legibilidade adequada.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Alteração imediata</b>
+            <li>
+            Ao selecionar a opção desejada, o tema deve ser atualizado imediatamente, sem recarregar a página.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <!-- Critérios de aceitação -->
+    <tr>
+      <td rowspan="4">Critérios de aceitação</td>
+      <td>
+        <b>Seleção do modo</b>
+        <ul>
+            <li><b>Dado</b> que o usuário deseja alterar o tema,</li>
+            <li><b>Quando</b> selecionar “Light Mode” ou “Dark Mode”,</li>
+            <li><b>Então</b> o sistema deve aplicar o tema correspondente instantaneamente.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Persistência da preferência</b>
+        <ul>
+            <li><b>Dado</b> que o usuário já escolheu um tema,</li>
+            <li><b>Quando</b> fizer login novamente ou retornar à página,</li>
+            <li><b>Então</b> a interface deve carregar automaticamente com o tema previamente selecionado.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Aplicação consistente</b>
+        <ul>
+            <li><b>Dado</b> que o tema foi alterado,</li>
+            <li><b>Quando</b> o usuário navegar entre telas da plataforma,</li>
+            <li><b>Então</b> todas as telas devem exibir o mesmo tema sem falhas.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Acessibilidade mínima</b>
+        <ul>
+            <li><b>Dado</b> que o usuário alterou o tema,</li>
+            <li><b>Quando</b> o tema for aplicado,</li>
+            <li><b>Então</b> textos e elementos devem permanecer legíveis, respeitando contraste adequado.</li>
+        </ul>
+      </td>
+    </tr>
+    <!-- PONTUAÇÃO -->
+    <tr>
+      <td>Pontuação</td>
+      <td> 
+          > 2
+          <ul>
+            <li>Implementação majoritariamente visual e simples.</li>
+            <li>Baixa complexidade técnica (uso de classes CSS, Tailwind, contextos ou estados globais).</li>
+          </ul>
+      </td>
+    </tr>
+    <!--  -->
+   <tr>
+      <td>Prioridade</td>
+      <td>Would</td>
+    </tr>
+    <tr>
+      <td>Depedência</td>
+      <td>
+          <ul>
+            <li>RF23 – Identidade visual do sistema</li>
+          </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<center>
+    <figcaption>Tabela 8 - História do usuário: requisito RF07. Fonte: Autor.</figcaption>
+</center>
+
+---
+
+### RF08 - Interrupção de rotina
+
+<table>
+  <thead>
+    <tr>
+      <th>Identificador</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Id do requisito -->
+    <tr>
+      <td>ID do requisito</td>
+      <td><a href="./requisitos_elicitados.md">[RF08]</td>
+    </tr>
+    <!-- História -->
+    <tr>
+      <td>História</td>
+      <td>  
+        Como operador,
+        eu quero ser capaz de interromper uma rotina em execução na antena,
+        para impedir erros, evitar danos ao equipamento ou ajustar rapidamente o procedimento quando necessário.
+      </td>
+    </tr>
+    <!-- Descrição -->
+    <tr>
+      <td>Descrição</td>
+      <td>
+          O sistema deve oferecer ao usuário a capacidade de interromper qualquer rotina ativa em uma antena. Essa ação deve parar imediatamente a execução dos comandos e garantir que nenhuma instrução pendente continue sendo executada. A funcionalidade deve estar disponível somente enquanto uma rotina estiver em andamento e deve aparecer de forma destacada na interface para garantir resposta rápida em situações emergenciais.
+      </td>
+    </tr>
+    <!-- Regras de negócio -->
+    <tr>
+      <td rowspan="4">Regras de negócio</td>
+      <td>
+        <ul>
+        <b>Disponibilidade apenas durante execução</b>
+            <li>
+            O botão ou comando de interrupção deve estar visível e habilitado somente enquanto a antena estiver executando uma rotina. Caso não haja rotina ativa, a opção deve estar indisponível.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Confirmação opcional da ação</b>
+            <li>
+           Dependendo da criticidade do sistema, pode ser exigido que o usuário confirme a interrupção para evitar cancelamentos acidentais — exceto em modo emergencial, onde a interrupção deve ser imediata.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Registro do cancelamento</b>
+            <li>
+            Toda interrupção deve ser registrada, incluindo:
+              <li>horário da interrupção,</li>
+              <li>usuário que interrompeu,</li>
+              <li>rotina interrompida,</li>
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Cancelamento de comandos pendentes</b>
+            <li>
+            Ao interromper, nenhum comando posterior deve ser enviado à antena. Todos os passos não executados da rotina devem ser descartados.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <!-- Critérios de aceitação -->
+    <tr>
+      <td rowspan="4">Critérios de aceitação</td>
+      <td>
+        <b>Interrupção disponível durante a execução</b>
+        <ul>
+            <li><b>Dado</b> que há uma rotina em execução,</li>
+            <li><b>Quando</b> o usuário visualizar a interface da antena,</li>
+            <li><b>Então</b> deve existir a opção de “Interromper rotina”.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Parada imediata</b>
+        <ul>
+            <li><b>Dado</b> que o usuário decidiu interromper a rotina,</li>
+            <li><b>Quando</b> clicar no botão de interrupção,</li>
+            <li><b>Então</b> a antena deve parar imediatamente suas atividades.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Registro da ação</b>
+        <ul>
+            <li><b>Dado</b> Dado que houve uma interrupção de rotina,</li>
+            <li><b>Quando</b> o sistema enviar o comando de parada,</li>
+            <li><b>Então</b> a antena deve retornar ao estado seguro configurado.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Acessibilidade mínima</b>
+        <ul>
+            <li><b>Dado</b> que o usuário alterou o tema,</li>
+            <li><b>Quando</b> o tema for aplicado,</li>
+            <li><b>Então</b> textos e elementos devem permanecer legíveis, respeitando contraste adequado.</li>
+        </ul>
+      </td>
+    </tr>
+    <!-- PONTUAÇÃO -->
+    <tr>
+      <td>Pontuação</td>
+      <td> 
+          > 5
+          <ul>
+            <li>Necessidade de comunicação com hardware ou camada de controle para parar a antena.</li>
+            <li>Processo envolve risco operacional, portanto maior precisão e cuidado.</li>
+          </ul>
+      </td>
+    </tr>
+    <!--  -->
+   <tr>
+      <td>Prioridade</td>
+      <td>Must</td>
+    </tr>
+    <tr>
+      <td>Depedência</td>
+      <td>
+          <ul>
+            <li>
+            RF19 – Status das antenas.
+            </li>
+            <li>
+            RF11 – Evolução do posicionamento da antena.
+            </li>
+          </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<center>
+    <figcaption>Tabela 9 - História do usuário: requisito RF08. Fonte: Autor.</figcaption>
+</center>
+
+---
+
+### RF09 - Cálculo e envio dos ângulos de posicionamento da antena
+
+<table>
+  <thead>
+    <tr>
+      <th>Identificador</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Id do requisito -->
+    <tr>
+      <td>ID do requisito</td>
+      <td><a href="./requisitos_elicitados.md">[RF09]</td>
+    </tr>
+    <!-- História -->
+    <tr>
+      <td>História</td>
+      <td>  
+        Como operador do sistema,
+        eu quero que o software calcule automaticamente os ângulos de posicionamento (azimute e elevação) e os envie para a antena,
+        para garantir que ela se mova corretamente até a posição desejada sem que eu precise realizar cálculos manuais.
+      </td>
+    </tr>
+    <!-- Descrição -->
+    <tr>
+      <td>Descrição</td>
+      <td>
+          O software deve ser capaz de calcular os ângulos necessários para o posicionamento da antena com base nos parâmetros fornecidos pelo usuário, pelo satélite selecionado ou pela rotina configurada. Após o cálculo, o sistema deve enviar esses valores para a antena por meio da interface de comunicação especificada (serial, rede, API interna etc.).
+          A funcionalidade deve garantir precisão adequada, obedecer aos limites de movimentação da antena e assegurar que os comandos sejam enviados de forma segura e confiável, respeitando o tempo e a ordem esperada pelo hardware.
+      </td>
+    </tr>
+    <!-- Regras de negócio -->
+    <tr>
+      <td rowspan="4">Regras de negócio</td>
+      <td>
+        <ul>
+        <b>Cálculo baseado em parâmetros válidos</b>
+            <li>
+            Os ângulos só podem ser calculados se todos os dados necessários estiverem disponíveis (como posição do satélite, localização da antena e horário). Parâmetros incompletos ou inválidos devem impedir o cálculo.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Respeito aos limites físicos da antena</b>
+            <li>
+            O cálculo e o envio devem garantir que os ângulos nunca ultrapassem os limites físicos da antena:
+            <li>Azimute: 0° a 360°</li>
+            <li>Elevação: 0° a 180°</li>
+            Comandos fora desse intervalo devem ser automaticamente bloqueados e registrados.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Precisão mínima</b>
+            <li>
+            O cálculo deve respeitar padrões de precisão definidos pelo sistema (ex.: erro máximo de 0,5°). Valores fora da precisão aceitável devem ser recalculados ou gerar aviso.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Envio seguro para o hardware</b>
+            <li>
+            A transmissão dos ângulos deve usar o protocolo de comunicação definido pelo projeto, incluindo:
+            <li>confirmação de recebimento,</li>
+            <li>tratamento de falhas de comunicação,</li>
+            <li>repetição de envio em caso de perda.</li>
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Registro das operações</b>
+            <li>Cada cálculo e envio realizado deve ser registrado com horário e parâmetros utilizados, permitindo auditoria e rastreabilidade das operações da antena.</li>
+        </ul>
+      </td>
+    </tr>
+    <!-- Critérios de aceitação -->
+    <tr>
+      <td rowspan="4">Critérios de aceitação</td>
+      <td>
+        <b>Cálculo correto</b>
+        <ul>
+            <li><b>Dado</b> que o usuário selecionou um satélite ou configurou uma rotina,</li>
+            <li><b>Quando</b> o software processar os dados,</li>
+            <li><b>Então</b> deve gerar ângulos de azimute e elevação respeitando a precisão definida.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Envio bem-sucedido</b>
+        <ul>
+            <li><b>Dado</b> que os ângulos foram calculados,</li>
+            <li><b>Quando</b> o software enviar os valores para a antena,</li>
+            <li><b>Então</b> a antena deve receber e aplicar o comando corretamente.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Bloqueio de ângulos inválidos</b>
+        <ul>
+            <li><b>Dado</b> que o cálculo gerar um ângulo fora dos limites físicos,</li>
+            <li><b>Quando</b> o operador tentar executar a rotina,</li>
+            <li><b>Então</b> o sistema deve impedir o envio e exibir um aviso ao usuário.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Registro da operação</b>
+        <ul>
+            <li><b>Dado</b> que uma operação de cálculo e envio foi realizada,</li>
+            <li><b>Quando</b> o processo terminar,</li>
+            <li><b>Então</b> o sistema deve armazenar o registro da ação para consulta futura.</li>
+        </ul>
+      </td>
+    </tr>
+    <!-- PONTUAÇÃO -->
+    <tr>
+      <td>Pontuação</td>
+      <td> 
+          > 8
+          <ul>
+            <li>Exige implementação matemática com alto nível de precisão.</li>
+            <li>Requer integração direta com hardware ou um subsistema de simulação/controle.</li>
+            <li>Contém risco técnico moderado-alto dependendo do protocolo da antena.</li>
+            <li>Deve ser altamente confiável para evitar erros críticos.</li>
+            <li>Inclui cálculos, validações, tratamento de falhas e registro, aumentando a complexidade geral.</li>
+          </ul>
+      </td>
+    </tr>
+    <!--  -->
+   <tr>
+      <td>Prioridade</td>
+      <td>Must</td>
+    </tr>
+    <tr>
+      <td>Depedência</td>
+      <td>
+          <ul>
+            <li>
+            RF19 – Status das antenas.
+            </li>
+            <li>
+            RF11 – Evolução do posicionamento da antena.
+            </li>
+          </ul>
+      </td>
     </tr>
   </tbody>
 </table>
@@ -947,9 +1420,6 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
 
 | Identificador | Requisito | Priorização |
 |---------------|-----------|-----------------|
-| RF06 | O software deve alertar quando a antena precisa de calibração. | Must |
-| RF07 | O usuário deve poder selecionar entre dark mode e light mode. | Would |
-| RF08 | O usuário deve ser capaz de interromper uma rotina. | Must |
 | RF09 | O software deve calcular e enviar os ângulos de posicionamento da antena. | Must |
 | RF10 | O software deve ser capaz de salvar os dados recebidos pelo satélite monitorado. | Must |
 | RF11 | O software deve mostrar a evolução do posicionamento da antena. | Could |
