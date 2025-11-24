@@ -360,7 +360,339 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
 </center>
 ---
 
-### RF03 - Verificar clima no local da antena
+### RF03 - Gestão de Perfis de Usuário
+
+<table>
+  <thead>
+    <tr>
+      <th>Identificador</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Id do requisito -->
+    <tr>
+      <td>ID do requisito</td>
+      <td><a href="./requisitos_elicitados.md">[RF03]</td>
+    </tr>
+    <!-- História -->
+    <tr>
+      <td>História</td>
+      <td>  
+        Como administrador da plataforma,
+eu quero que o sistema possua perfis de usuário distintos (administrador e usuário normal),
+para garantir que apenas pessoas autorizadas possam realizar ações críticas, enquanto usuários comuns tenham acesso apenas às funcionalidades necessárias para operação diária.</td>
+    </tr>
+    <!-- Descrição -->
+    <tr>
+      <td>Descrição</td>
+      <td>
+          O sistema deve implementar dois tipos de perfis: administrador e usuário normal (operador). Cada perfil deve possuir permissões específicas, limitando ou permitindo determinadas funcionalidades. O administrador deve ter acesso completo, incluindo cadastro, controle e remoção de usuários, além de visualização de dados sensíveis do sistema. O usuário normal deve possuir acesso restrito, limitado ao uso operacional das antenas e ferramentas de monitoramento. A definição do perfil deve ocorrer no momento do cadastro e deve influenciar imediatamente todas as telas, botões e ações disponíveis ao usuário. O sistema deve garantir que ações críticas só possam ser executadas por administradores, impedindo acessos indevidos ou operações perigosas.
+      </td>
+    </tr>
+    <!-- Regras de negócio -->
+    <tr>
+      <td rowspan="5">Regras de negócio</td>
+      <td>
+        <ul>
+        <b>Níveis distintos de permissão</b>
+            <li>
+            A plataforma deve fornecer permissões separadas: administradores têm acesso total e usuários normais têm acesso apenas às funcionalidades operacionais.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Bloqueio de ações restritas</b>
+            <li>
+            Qualquer funcionalidade que altere configurações sensíveis, modifique usuários, acesse logs confidenciais ou atue diretamente na estrutura do sistema deve ser permitida somente para perfis administrativos.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Associação fixa ao perfil</b>
+            <li>
+            Cada usuário deve ser vinculado a um perfil no momento do cadastro, e esse perfil deve definir todas as permissões. A mudança de perfil só pode ser executada por administradores.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Controle visual na interface</b>
+            <li>
+            Funcionalidades restritas devem aparecer desabilitadas ou ocultas para usuários normais, evitando tentativas de acesso e reduzindo erros de operação.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Registro de ações administrativas</b>
+            <li>
+            Toda ação crítica realizada por um administrador (ex.: criação ou remoção de usuários, alteração de configurações) deve ser registrada em log para auditoria.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <!-- Critérios de aceitação -->
+    <tr>
+      <td rowspan="4">Acesso restrito por perfil</td>
+      <td>
+        <b>Exibir clima atual</b>
+        <ul>
+            <li><b>Dado</b> que estou logado como usuário normal,</li>
+            <li><b>Quando</b> tentar acessar uma funcionalidade administrativa,</li>
+            <li><b>Então</b> o sistema deve negar acesso ou ocultar a funcionalidade.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Acesso completo para administradores</b>
+        <ul>
+            <li><b>Dado</b> que estou logado como administrador,</li>
+            <li><b>Quando</b> acesso qualquer módulo do sistema,</li>
+            <li><b>Então</b> todas as funcionalidades administrativas devem estar disponíveis.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Interface dinâmica conforme perfil</b>
+        <ul>
+            <li><b>Dado</b> que o usuário realizou login,</li>
+            <li><b>Quando</b> o sistema carregar a interface,</li>
+            <li><b>Então</b> deve exibir apenas as opções referentes ao perfil do usuário.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Registro de ação crítica</b>
+        <ul>
+            <li><b>Dado</b> que um administrador executou uma ação sensível,</li>
+            <li><b>Quando</b> a operação for concluída,</li>
+            <li><b>Então</b> o sistema deve registrar o evento em log com usuário, data e tipo de ação.</li>
+        </ul>
+      </td>
+    </tr>
+    <!-- PONTUAÇÃO -->
+    <tr>
+      <td>Pontuação</td>
+      <td> 
+          > 5
+          <ul>
+            <li>Envolve implementação de controle de permissões entre dois perfis distintos (administrador e usuário normal).</li>
+            <li>Necessita adaptação da interface (frontend) para exibir/ocultar funcionalidades conforme o perfil.</li>
+            <li>Impacta diversas áreas do sistema (interface, rotas, segurança, controle de sessão).</li>
+          </ul>
+      </td>
+    </tr>
+    <!--  -->
+   <tr>
+      <td>Prioridade</td>
+      <td>Must</td>
+    </tr>
+    <tr>
+      <td>Depedência</td>
+      <td>
+        <li>[RF01]  –  Sistema de login</li>
+        <li>[RF04]  –  Gerenciamento de usuários.</li>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<center>
+    <figcaption>Tabela 4 - História do usuário: requisito RF03. Fonte: Autor.</figcaption>
+</center>
+
+---
+
+### RF04 - Administração de usuários
+
+<table>
+  <thead>
+    <tr>
+      <th>Identificador</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Id do requisito -->
+    <tr>
+      <td>ID do requisito</td>
+      <td><a href="./requisitos_elicitados.md">[RF04]</td>
+    </tr>
+    <!-- História -->
+    <tr>
+      <td>História</td>
+      <td>  
+        Como administrador,
+        eu quero cadastrar, editar e remover usuários da plataforma,
+        para garantir que somente pessoas autorizadas tenham acesso e que suas permissões estejam sempre atualizadas.
+      </td>
+    </tr>
+    <!-- Descrição -->
+    <tr>
+      <td>Descrição</td>
+      <td>
+        O sistema deve permitir que administradores gerenciem os usuários cadastrados na plataforma. Isso inclui criar novos usuários, ajustar seus dados (nome, e-mail, perfil de acesso), ativar ou desativar contas e remover usuários quando necessário. A funcionalidade deve estar disponível apenas para administradores autenticados, garantindo a segurança e integridade do sistema. Todas as alterações executadas devem ser registradas para auditoria.
+      </td>
+    </tr>
+    <!-- Regras de negócio -->
+    <tr>
+      <td rowspan="5">Regras de negócio</td>
+      <td>
+        <ul>
+        <b>Controle de acesso exclusivo</b>
+            <li>
+            Apenas usuários com perfil Administrador podem acessar a área de gestão de usuários.
+            </li>
+            <li>
+            Usuários comuns não devem visualizar nem acessar essa funcionalidade.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Cadastro de novos usuários</b>
+            <li>
+              O administrador deve fornecer: nome, e-mail e tipo de perfil (administrador ou usuário normal).
+            </li>
+            <li>
+            O sistema deve validar se o e-mail já está em uso.
+            </li>
+            <li>
+            O usuário criado deve receber um estado inicial (ativo).
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Edição de usuários</b>
+            <li>
+            O administrador deve ser capaz de alterar os dados de um usuário, exceto o ID interno.
+            </li>
+            <li>
+            Trocas de perfil exigem registro de auditoria.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Desativação de usuários</b>
+            <li>
+            Uma conta desativada não pode acessar a plataforma.
+            </li>
+            <li>
+            Desativar não exclui histórico nem logs vinculados ao usuário.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Exclusão</b>
+            <li>
+            Exclusão só pode ocorrer caso não comprometa registros essenciais (ex.: logs críticos).
+            </li>
+            </li>
+            <li>
+            Caso não seja possível excluir, o sistema deve sugerir desativação.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <!-- Critérios de aceitação -->
+    <tr>
+      <td rowspan="4">Critérios de aceitação</td>
+      <td>
+        <b>Acesso restrito à gestão</b>
+        <ul>
+            <li><b>Dado</b> que estou autenticado como administrador,</li>
+            <li><b>Quando</b> acesso o menu de administração,</li>
+            <li><b>Então</b> devo visualizar a área de gerenciamento de usuários.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Cadastro de novos usuários</b>
+        <ul>
+            <li><b>Dado</b> que estou na tela de criação,</li>
+            <li><b>Quando</b> insiro dados válidos e confirmo,</li>
+            <li><b>Então</b> o sistema deve criar o usuário e registrá-lo como ativo.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Edição de usuário</b>
+        <ul>
+            <li><b>Dado</b> que um usuário já está cadastrado,</li>
+            <li><b>Quando</b> altero seus dados,</li>
+            <li><b>Então</b> o sistema salva as mudanças.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Desativação de usuário</b>
+        <ul>
+            <li><b>Dado</b> que o administrador optou por desativar uma conta,</li>
+            <li><b>Quando</b> confirmar a ação,</li>
+            <li><b>Então</b> o sistema impede novos logins daquela conta.</li>
+        </ul>
+      </td>
+    </tr>
+    <!-- PONTUAÇÃO -->
+    <tr>
+      <td>Pontuação</td>
+      <td> 
+          > 5
+          <ul>
+            <li>Integração externa com API de clima</li>
+            <li>Múltiplos dados para exibir</li>
+            <li>Maior incerteza técnica (API, limites, erros, formato de resposta)</li>
+          </ul>
+      </td>
+    </tr>
+    <!--  -->
+   <tr>
+      <td>Prioridade</td>
+      <td>Could</td>
+    </tr>
+    <tr>
+      <td>Depedência</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+
+<center>
+    <figcaption>Tabela 4 - História do usuário: requisito RF03. Fonte: Autor.</figcaption>
+</center>
+
+---
+
+
+### RF - Verificar clima no local da antena
 
 <table>
   <thead>
@@ -407,7 +739,7 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
         <ul>
             <b>Fonte oficial de dados climáticos</b>
             <li>
-            consulta deve ser feita utilizando uma API confiável previamente configurada (OpenWeather, NOAA, etc.).
+            A consulta deve ser feita utilizando uma API confiável previamente configurada (OpenWeather, NOAA, etc.).
             </li>
         </ul>
       </td>
@@ -1285,7 +1617,7 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
     </tr>
     <!-- Regras de negócio -->
     <tr>
-      <td rowspan="4">Regras de negócio</td>
+      <td rowspan="5">Regras de negócio</td>
       <td>
         <ul>
         <b>Cálculo baseado em parâmetros válidos</b>
@@ -1418,23 +1750,46 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
 
 ---
 
-| Identificador | Requisito | Priorização |
-|---------------|-----------|-----------------|
-| RF09 | O software deve calcular e enviar os ângulos de posicionamento da antena. | Must |
-| RF10 | O software deve ser capaz de salvar os dados recebidos pelo satélite monitorado. | Must |
-| RF11 | O software deve mostrar a evolução do posicionamento da antena. | Could |
-| RF12 | O usuário deve ser capaz de salvar rotinas de posicionamento. | Should |
-| RF13 | O software deve mostrar a última vez que a antena foi calibrada. | Must |
-| RF14 | O software deve bloquear rotinas que ultrapassem limites físicos ou de velocidade da antena. | Must |
-| RF15 | O administrador deve poder gerenciar (cadastrar/controlar) usuários na plataforma. | Must |
-| RF16 | O software deve ter um perfil de usuário normal (Operador). | Must |
-| RF17 | O usuário deve poder selecionar entre os idiomas português e inglês. | Could |
-| RF18 | O usuário deve poder exportar/baixar dados (gráficos de posicionamento e dados da medição). | Must |
-| RF19 | O usuário deve poder verificar o status das antenas (ex: disponível, indisponível e ocupada). | Must |
-| RN01 | O software deve ser acessível via web e compatível com os principais navegadores (ex: Chrome, Firefox). | Must |
-| RN02 | Os fluxos para a realização de tarefas devem ser curtos. | Must |
-| RN03 | O software deve seguir a identidade visual do laboratório. | Should |
-| RN04 | O software deve ter uma boa documentação. | Must |
+
+
+| RF01 | O usuário deve poder realizar login na plataforma. | IN03 | x
+| RF02 | O usuário deve poder redefinir sua senha. | EN10 | x
+| RF03 | O software deve ter perfis de usuário (administrador e usuário normal). | EN11, EN12 | x
+| RF04 | O administrador deve poder administrar novos usuários na plataforma. | IN02 |
+| RF05 | O usuário deve poder visualizar o status das antenas. | IN04, EN19 |
+| RF06 | O usuário deve poder visualizar uma lista de todas as antenas. | IN05 |
+| RF07 | O usuário deve poder abrir múltiplas janelas, uma para cada antena. | EN18 |
+| RF08 | O software deve mostrar o posicionamento da antena em tempo real. | EN24 |
+| RF09 | O software deve mostrar falhas no posicionamento da antena. | EN10 | x
+| RF10 | O software deve mostrar a última pessoa que moveu a antena. | EN07 | x
+| RF11 | O software deve mostrar qual foi a última rotina realizada pela antena. | EN09 | 
+| RF12 | O administrador deve poder bloquear uma antena. | IN23 |
+| RF13 | O usuário deve poder selecionar o satélite a ser rastreado/monitorado. | IN09 |
+| RF14 | O software deve listar os satélites disponíveis. |  EN02 |
+| RF15 | O software deve mostrar a trajetória do satélite. | IN19 |
+| RF16 | O software deve alertar se a antena está recebendo os dados do satélite selecionado. | IN16 |
+| RF17 | O software deve salvar os dados recebidos do satélite. | IN15, EN03 |
+| RF18 | O usuário deve poder baixar/exportar os dados salvos. | IN17, EN23 |
+| RF19 | O software deve mostrar a potência e a frequência do sinal recebido. | EN21, EN22 |
+| RF20 | O usuário deve poder salvar e deletar rotinas. | IN07, EN06 |
+| RF21 | O usuário deve poder realizar rotinas de calibração. | IN08 | 
+| RF22 | O usuário deve poder interromper uma rotina. | IN22 | x
+| RF23 | O software deve bloquear rotinas inválidas. | IN11 |
+| RF24 | O software deve calcular o posicionamento da antena conforme parâmetros fornecidos. | IN10, EN01, EN04 | x
+| RF25 | O software deve mostrar a evolução/histórico do posicionamento da antena. | IN14, EN05 |
+| RF26 | O software deve mostrar a última vez que a antena foi calibrada. | IN12, EN08 |
+| RF27 | O software deve alertar quando a antena precisar de calibração. | IN13 | x
+| RF28 | O usuário deve poder verificar o clima onde as antenas estão localizadas. | EN17 | x
+| RF29 | O banco deve limpar os dados coletados periodicamente. | IN18 |
+| RF30 | O usuário deve poder selecionar entre dark mode e light mode. | IN20 | x
+| RF31 | O usuário deve poder escolher entre português e inglês. | IN21, EN13 |
+| NF01 | O software deve seguir a identidade visual do laboratório. | EN20 |
+| NF02 | Os fluxos para realização de tarefas devem ser curtos. | EN16 |
+| NF03 | O software deve rodar na web. | EN14 |
+| NF04 | O software deve ser compatível com Chrome. | IN24 |
+| NF05 | O software deve ser compatível com Firefox. | IN25 |
+| NF06 | O software deve rodar nos principais navegadores. | EN15 |
+| NF07 | O software deve ter documentação adequada. | EN25 |
 
 
 ## Referência

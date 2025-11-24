@@ -53,7 +53,7 @@ Os requisitos abaixo foram elicitados apartir dos cenários listados acima. Os r
 |  IN10           | O software deve fazer o cálculo de posicionamento de acordo com os parâmetros selecionados pelo usuário. | RF |
 |  IN11           | O software deve bloquear rotinas inválidas. | RF |
 |  IN12           | O software deve mostrar a última vez que a antena foi calibrada. | RF |
-|  IN13           | O software deve alertar quando a antena precisa de calibração. | RF |
+|  IN13           | O software deve possibilitar a execução de rotinas de calibração. | RF |
 |  IN14           | O software deve mostrar a evolução do posicionamento da antena. | RF |
 |  IN15           | O software deve salvar os dados recebidos pelo satélite selecionado. | RF |
 |  IN16           | O software deve alertar se a antena está recebendo os dados do satélite selecionado. | RF |
