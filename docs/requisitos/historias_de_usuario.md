@@ -50,9 +50,9 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
     <figcaption>Tabela 1 - Modelo de história do usuário. Fonte: Autor.</figcaption>
 </center>
 
-## Resultados
+## Requisitos funcionais
 
-### RF01 - Visualizar o último operador da antena
+### RF01 - O usuário deve poder realizar o login na plataforma.
 
 <table>
   <thead>
@@ -70,46 +70,58 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
     <!-- História -->
     <tr>
       <td>História</td>
-      <td>Como operador do sistema, eu quero visualizar quem foi a última pessoa que moveu a antena, para acompanhar o histórico de operações e identificar responsabilidades.</td>
+      <td>  
+        Como usuário da plataforma,
+        eu quero realizar login utilizando minhas credenciais de acesso,
+        para garantir que somente pessoas autorizadas possam entrar no sistema e visualizar ou operar as antenas.
+      </td>
     </tr>
     <!-- Descrição -->
     <tr>
       <td>Descrição</td>
-      <td>Ao acessar a tela de monitoramento da antena o usuário deve ser capaz de ter informações sobre o último usuário que realizou uma rotina na respectiva antena.</td>
+      <td>
+          Ao acessar o sistema, o usuário deve visualizar uma tela dedicada para autenticação. Nessa interface, ele deve inserir seu nome de usuário (ou e-mail) e sua senha. Após a validação bem-sucedida das credenciais, o usuário é direcionado para o painel principal de operações. Caso os dados estejam incorretos, o sistema deve informar o erro sem revelar detalhes sensíveis.
+      </td>
     </tr>
     <!-- Regras de negócio -->
     <tr>
       <td rowspan="4">Regras de negócio</td>
       <td>
         <ul>
-        <b>Toda movimentação da antena deve gerar um registro contendo:</b>
-            <li>usuário responsável,</li>
-            <li>data e hora da operação,</li>
-            <li>tipo de movimentação realizada.</li>
+        <b>Formato de credenciais</b>
+            <li>
+            O sistema deve exigir que o usuário informe um identificador válido registrado na base de dados (e-mail, matrícula ou username definido pela organização). A senha deve seguir as regras internas de segurança previamente estabelecidas (tamanho mínimo, caracteres especiais, etc.).
+            </li>
         </ul>
       </td>
     </tr>
     <tr>
       <td>
         <ul>
-            <b>Registro mais recente prevalece</b>
-            <li>Sempre que o sistema precisar exibir o último operador, deve selecionar o registro com data mais recente.</li>
+            <b>Validação segura</b>
+            <li>
+            O sistema deve validar todas as credenciais de forma criptografada, utilizando hashing seguro (ex.: bcrypt, Argon2). Nenhuma senha pode ser armazenada ou trafegar em texto puro.
+            </li>
         </ul>
       </td>
     </tr>
     <tr>
       <td>
         <ul>
-            <b>Impossibilidade de alterar logs</b>
-            <li>Nenhum usuário pode editar ou remover manualmente os registros de movimentação da antena.</li>
+            <b>Sessão autenticada</b>
+            <li>
+            Após o login bem-sucedido, o sistema deve gerar uma sessão autenticada com tempo de expiração definido. A sessão deve ser encerrada automaticamente após período de inatividade maior que o permitido.
+            </li>
         </ul>
       </td>
     </tr>
     <tr>
       <td>
         <ul>
-            <b>Logs devem ser persistentes</b>
-            <li>Os registros de movimentação devem ser armazenados de forma permanente e não podem ser perdidos após reinicialização do sistema.</li>
+            <b>Proibição de acesso não autenticado</b>
+            <li>
+            Nenhuma página interna sensível pode ser acessada sem uma sessão válida. Tentativas de acesso direto devem resultar em redirecionamento para a tela de login.
+            </li>
         </ul>
       </td>
     </tr>
@@ -117,50 +129,49 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
     <tr>
       <td rowspan="3">Critérios de aceitação</td>
       <td>
-        <b>Último operador exibido corretamente</b>
+        <b>Login bem-sucedido</b>
         <ul>
-            <li><b>Dado</b> que acesso a tela de monitoramento da antena,</li>
-            <li><b>Quando</b> o sistema carregar as informações,</li>
-            <li><b>Então</b> deve ser exibido o nome do último usuário que realizou o movimento.</li>
+            <li><b>Dado</b> que estou na tela de login,</li>
+            <li><b>Quando</b> informo usuário/e-mail e senha válidos,</li>
+            <li><b>Então</b> devo ser redirecionado ao painel principal do sistema.</li>
         </ul>
       </td>
     </tr>
     <tr>
       <td>
-        <b>Nenhum registro de movimentação</b>
+        <b>Erro ao realizar o login</b>
         <ul>
-            <li><b>Dado</b> que a antena ainda não teve movimentações,</li>
-            <li><b>Quando</b> o sistema procurar pelo operador,</li>
-            <li><b>Então</b> deve mostrar a mensagem “Nenhuma movimentação registrada”.</li>
+            <li><b>Dado</b> que informei credenciais incorretas,</li>
+            <li><b>Quando</b> tento acessar o sistema,</li>
+            <li><b>Então</b> deve aparecer uma mensagem “Usuário ou senha inválidos”, sem revelar qual dos dois está errado.</li>
         </ul>
       </td>
     </tr>
     <tr>
       <td>
-        <b>Falha ao consultar o log</b>
+        <b>Sessão expirada</b>
         <ul>
-            <li><b>Dado</b> que ocorre um erro na consulta dos dados,</li>
-            <li><b>Quando</b> a tela carregar,</li>
-            <li><b>Então</b> o sistema deve exibir uma mensagem de “Erro ao carregar histórico”.</li>
+            <li><b>Dado</b> que estou autenticado,</li>
+            <li><b>Quando</b> ocorrer um longo período de inatividade,</li>
+            <li><b>Então</b> a sessão deve expirar e devo ser direcionado para a tela de login ao tentar qualquer ação.</li>
         </ul>
       </td>
     </tr>
     <!-- PONTUAÇÃO -->
     <tr>
       <td>Pontuação</td>
-      <td>
-        > 3
-        <ul>
-          <li>Complexidade baixa.</li>
-          <li>Precisa apenas consultar e exibir um log.</li>
-          <li>Quase nenhuma incerteza técnica.</li>
-        </ul>
+      <td> 
+          > 2
+          <ul>
+            <li>Embora seja um requisito essencial, o login é uma funcionalidade tecnicamente bem conhecida.</li>
+            <li>Envolve validações, segurança e criação de sessão, mas não exige integrações externas complexas.</li>
+          </ul>
       </td>
     </tr>
     <!--  -->
    <tr>
       <td>Prioridade</td>
-      <td>Could</td>
+      <td>Must</td>
     </tr>
     <tr>
       <td>Depedência</td>
@@ -169,13 +180,15 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
   </tbody>
 </table>
 
-
 <center>
-    <figcaption>Tabela 2 - História do usuário: requisito RF01 . Fonte: Autor.</figcaption>
+    <figcaption>Tabela 2 - História do usuário: requisito RF01. Fonte: Autor.</figcaption>
 </center>
+
 ---
 
-### RF02 - Exibir falhas de posicionamento
+
+
+### RF02 - Redefinir senha
 
 <table>
   <thead>
@@ -189,6 +202,1162 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
     <tr>
       <td>ID do requisito</td>
       <td><a href="./requisitos_elicitados.md">[RF02]</td>
+    </tr>
+    <!-- História -->
+    <tr>
+      <td>História</td>
+      <td>  
+        Como usuário da plataforma,
+        eu quero redefinir minha senha quando esquecer ou desejar alterá-la,
+        para garantir que eu consiga recuperar o acesso ao sistema com segurança e sem depender de suporte técnico.
+      </td>
+    </tr>
+    <!-- Descrição -->
+    <tr>
+      <td>Descrição</td>
+      <td>
+          O sistema deve oferecer um fluxo seguro para redefinição de senha. A partir da tela de login, o usuário poderá solicitar a recuperação informando seu e-mail registrado. O sistema enviará um link de redefinição contendo um token temporário e exclusivo. Ao acessar esse link, o usuário poderá cadastrar uma nova senha que esteja em conformidade com as regras de segurança definidas pela organização. Após concluir o processo, a senha antiga deixa de ser válida.
+      </td>
+    </tr>
+    <!-- Regras de negócio -->
+    <tr>
+      <td rowspan="5">Regras de negócio</td>
+      <td>
+        <ul>
+        <b>Token de redefinição</b>
+            <li>
+            O sistema deve gerar um token único, criptografado e com tempo de expiração (ex.: 15 minutos). Esse token deve ser associado ao usuário que iniciou o processo e só pode ser utilizado uma única vez.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Validação de segurança da nova senha</b>
+            <li>
+            A nova senha deve seguir todas as diretrizes de segurança definidas pela política interna (tamanho mínimo, caracteres especiais, complexidade, etc.). O sistema não deve permitir o uso de senhas fracas.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Invalidação automática de tokens</b>
+            <li>
+            Tokens expirados, já utilizados ou inválidos não devem permitir redefinição. Caso o token seja inválido, o sistema deve exibir uma mensagem genérica: “Link inválido ou expirado”.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Confirmação de nova senha</b>
+            <li>
+            O sistema deve exigir que o usuário insira a senha duas vezes, garantindo que ambas coincidam. Caso os campos não correspondam, deve ser exibida uma mensagem de erro adequada.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Cancelamento de sessões anteriores</b>
+            <li>
+            Após a redefinição bem-sucedida, todas as sessões ativas daquela conta devem ser encerradas automaticamente, exigindo novo login com a senha atualizada.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <!-- Critérios de aceitação -->
+    <tr>
+      <td rowspan="4">Critérios de aceitação</td>
+      <td>
+        <b>Envio do link de recuperação</b>
+        <ul>
+            <li><b>Dado</b> que estou na tela de login,</li>
+            <li><b>Quando</b> clico em “Esqueci minha senha” e informo meu e-mail válido,</li>
+            <li><b>Então</b> devo receber um link de redefinição no e-mail cadastrado.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Token inválido ou expirado</b>
+        <ul>
+            <li><b>Dado</b> que o token é inválido ou expirou,</li>
+            <li><b>Quando</b> tento acessar o link de redefinição,</li>
+            <li><b>Então</b> o sistema deve informar “Link inválido ou expirado” e oferecer opção de solicitar um novo.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Redefinição bem-sucedida</b>
+        <ul>
+            <li><b>Dado</b> que acessei o link válido,</li>
+            <li><b>Quando</b> preencho a nova senha respeitando as regras e confirmo,</li>
+            <li><b>Então</b> devo ver uma mensagem de sucesso e ser redirecionado para a tela de login.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+    <td>
+        <b>Senha fraca ou fora do padrão</b>
+        <ul>
+            <li><b>Dado</b> que estou na página de redefinição,</li>
+            <li><b>Quando</b> digito uma senha que não está em conformidade com as regras,</li>
+            <li><b>Então</b> o sistema deve impedir a conclusão e exibir a razão (ex.: “A senha deve conter no mínimo 8 caracteres”).</li>
+        </ul>
+      </td>
+    </tr>
+    <!-- PONTUAÇÃO -->
+    <tr>
+      <td>Pontuação</td>
+      <td> 
+          > 4
+          <ul>
+            <li>Envolve fluxo de segurança mais complexo que o login.</li>
+            <li>Exige geração e validação de tokens temporários.</li>
+            <li>Possui mais ramificações e verificações de segurança do que uma tela comum.</li>
+          </ul>
+      </td>
+    </tr>
+    <!--  -->
+   <tr>
+      <td>Prioridade</td>
+      <td>Should</td>
+    </tr>
+    <tr>
+      <td>Depedência</td>
+      <td>
+          <ul>
+            <li>[RF01]  –  Sistema de login</li>
+          </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<center>
+    <figcaption>Tabela 3 - História do usuário: requisito RF02. Fonte: Autor.</figcaption>
+</center>
+
+---
+
+### RF03 - Gestão de Perfis de Usuário
+
+<table>
+  <thead>
+    <tr>
+      <th>Identificador</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Id do requisito -->
+    <tr>
+      <td>ID do requisito</td>
+      <td><a href="./requisitos_elicitados.md">[RF03]</td>
+    </tr>
+    <!-- História -->
+    <tr>
+      <td>História</td>
+      <td>  
+        Como administrador da plataforma,
+eu quero que o sistema possua perfis de usuário distintos (administrador e usuário normal),
+para garantir que apenas pessoas autorizadas possam realizar ações críticas, enquanto usuários comuns tenham acesso apenas às funcionalidades necessárias para operação diária.</td>
+    </tr>
+    <!-- Descrição -->
+    <tr>
+      <td>Descrição</td>
+      <td>
+          O sistema deve implementar dois tipos de perfis: administrador e usuário normal (operador). Cada perfil deve possuir permissões específicas, limitando ou permitindo determinadas funcionalidades. O administrador deve ter acesso completo, incluindo cadastro, controle e remoção de usuários, além de visualização de dados sensíveis do sistema. O usuário normal deve possuir acesso restrito, limitado ao uso operacional das antenas e ferramentas de monitoramento. A definição do perfil deve ocorrer no momento do cadastro e deve influenciar imediatamente todas as telas, botões e ações disponíveis ao usuário. O sistema deve garantir que ações críticas só possam ser executadas por administradores, impedindo acessos indevidos ou operações perigosas.
+      </td>
+    </tr>
+    <!-- Regras de negócio -->
+    <tr>
+      <td rowspan="5">Regras de negócio</td>
+      <td>
+        <ul>
+        <b>Níveis distintos de permissão</b>
+            <li>
+            A plataforma deve fornecer permissões separadas: administradores têm acesso total e usuários normais têm acesso apenas às funcionalidades operacionais.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Bloqueio de ações restritas</b>
+            <li>
+            Qualquer funcionalidade que altere configurações sensíveis, modifique usuários, acesse logs confidenciais ou atue diretamente na estrutura do sistema deve ser permitida somente para perfis administrativos.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Associação fixa ao perfil</b>
+            <li>
+            Cada usuário deve ser vinculado a um perfil no momento do cadastro, e esse perfil deve definir todas as permissões. A mudança de perfil só pode ser executada por administradores.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Controle visual na interface</b>
+            <li>
+            Funcionalidades restritas devem aparecer desabilitadas ou ocultas para usuários normais, evitando tentativas de acesso e reduzindo erros de operação.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Registro de ações administrativas</b>
+            <li>
+            Toda ação crítica realizada por um administrador (ex.: criação ou remoção de usuários, alteração de configurações) deve ser registrada em log para auditoria.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <!-- Critérios de aceitação -->
+    <tr>
+      <td rowspan="4">Acesso restrito por perfil</td>
+      <td>
+        <b>Restrição de acesso</b>
+        <ul>
+            <li><b>Dado</b> que estou logado como usuário normal,</li>
+            <li><b>Quando</b> tentar acessar uma funcionalidade administrativa,</li>
+            <li><b>Então</b> o sistema deve negar acesso ou ocultar a funcionalidade.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Acesso completo para administradores</b>
+        <ul>
+            <li><b>Dado</b> que estou logado como administrador,</li>
+            <li><b>Quando</b> acesso qualquer módulo do sistema,</li>
+            <li><b>Então</b> todas as funcionalidades administrativas devem estar disponíveis.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Interface dinâmica conforme perfil</b>
+        <ul>
+            <li><b>Dado</b> que o usuário realizou login,</li>
+            <li><b>Quando</b> o sistema carregar a interface,</li>
+            <li><b>Então</b> deve exibir apenas as opções referentes ao perfil do usuário.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Registro de ação crítica</b>
+        <ul>
+            <li><b>Dado</b> que um administrador executou uma ação sensível,</li>
+            <li><b>Quando</b> a operação for concluída,</li>
+            <li><b>Então</b> o sistema deve registrar o evento em log com usuário, data e tipo de ação.</li>
+        </ul>
+      </td>
+    </tr>
+    <!-- PONTUAÇÃO -->
+    <tr>
+      <td>Pontuação</td>
+      <td> 
+          > 5
+          <ul>
+            <li>Envolve implementação de controle de permissões entre dois perfis distintos (administrador e usuário normal).</li>
+            <li>Necessita adaptação da interface (frontend) para exibir/ocultar funcionalidades conforme o perfil.</li>
+            <li>Impacta diversas áreas do sistema (interface, rotas, segurança, controle de sessão).</li>
+          </ul>
+      </td>
+    </tr>
+    <!--  -->
+   <tr>
+      <td>Prioridade</td>
+      <td>Must</td>
+    </tr>
+    <tr>
+      <td>Depedência</td>
+      <td>
+        <li>[RF01]  –  Sistema de login</li>
+        <li>[RF04]  –  Gerenciamento de usuários.</li>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<center>
+    <figcaption>Tabela 4 - História do usuário: requisito RF03. Fonte: Autor.</figcaption>
+</center>
+
+---
+
+### RF04 - Administração de usuários
+
+<table>
+  <thead>
+    <tr>
+      <th>Identificador</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Id do requisito -->
+    <tr>
+      <td>ID do requisito</td>
+      <td><a href="./requisitos_elicitados.md">[RF04]</td>
+    </tr>
+    <!-- História -->
+    <tr>
+      <td>História</td>
+      <td>  
+        Como administrador,
+        eu quero cadastrar, editar e remover usuários da plataforma,
+        para garantir que somente pessoas autorizadas tenham acesso e que suas permissões estejam sempre atualizadas.
+      </td>
+    </tr>
+    <!-- Descrição -->
+    <tr>
+      <td>Descrição</td>
+      <td>
+        O sistema deve permitir que administradores gerenciem os usuários cadastrados na plataforma. Isso inclui criar novos usuários, ajustar seus dados (nome, e-mail, perfil de acesso), ativar ou desativar contas e remover usuários quando necessário. A funcionalidade deve estar disponível apenas para administradores autenticados, garantindo a segurança e integridade do sistema. Todas as alterações executadas devem ser registradas para auditoria.
+      </td>
+    </tr>
+    <!-- Regras de negócio -->
+    <tr>
+      <td rowspan="5">Regras de negócio</td>
+      <td>
+        <ul>
+        <b>Controle de acesso exclusivo</b>
+            <li>
+            Apenas usuários com perfil Administrador podem acessar a área de gestão de usuários.
+            </li>
+            <li>
+            Usuários comuns não devem visualizar nem acessar essa funcionalidade.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Cadastro de novos usuários</b>
+            <li>
+              O administrador deve fornecer: nome, e-mail e tipo de perfil (administrador ou usuário normal).
+            </li>
+            <li>
+            O sistema deve validar se o e-mail já está em uso.
+            </li>
+            <li>
+            O usuário criado deve receber um estado inicial (ativo).
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Edição de usuários</b>
+            <li>
+            O administrador deve ser capaz de alterar os dados de um usuário, exceto o ID interno.
+            </li>
+            <li>
+            Trocas de perfil exigem registro de auditoria.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Desativação de usuários</b>
+            <li>
+            Uma conta desativada não pode acessar a plataforma.
+            </li>
+            <li>
+            Desativar não exclui histórico nem logs vinculados ao usuário.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Exclusão</b>
+            <li>
+            Exclusão só pode ocorrer caso não comprometa registros essenciais (ex.: logs críticos).
+            </li>
+            <li>
+            Caso não seja possível excluir, o sistema deve sugerir desativação.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <!-- Critérios de aceitação -->
+    <tr>
+      <td rowspan="5">Critérios de aceitação</td>
+      <td>
+        <b>Acesso restrito à gestão</b>
+        <ul>
+            <li><b>Dado</b> que estou autenticado como administrador,</li>
+            <li><b>Quando</b> acesso o menu de administração,</li>
+            <li><b>Então</b> devo visualizar a área de gerenciamento de usuários.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Cadastro de novos usuários</b>
+        <ul>
+            <li><b>Dado</b> que estou na tela de criação,</li>
+            <li><b>Quando</b> insiro dados válidos e confirmo,</li>
+            <li><b>Então</b> o sistema deve criar o usuário e registrá-lo como ativo.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Edição de usuário</b>
+        <ul>
+            <li><b>Dado</b> que um usuário já está cadastrado,</li>
+            <li><b>Quando</b> altero seus dados,</li>
+            <li><b>Então</b> o sistema salva as mudanças.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Desativação de usuário</b>
+        <ul>
+            <li><b>Dado</b> que o administrador optou por desativar uma conta,</li>
+            <li><b>Quando</b> confirmar a ação,</li>
+            <li><b>Então</b> o sistema impede novos logins daquela conta.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Registro das ações</b>
+        <ul>
+            <li><b>Dado</b> que qualquer operação foi realizada,</li>
+            <li><b>Quando</b> consulto o log administrativo,</li>
+            <li><b>Então</b> devo ver o registro completo da ação.</li>
+        </ul>
+      </td>
+    </tr>
+    <!-- PONTUAÇÃO -->
+    <tr>
+      <td>Pontuação</td>
+      <td> 
+          > 5
+          <ul>
+            <li>Envolve múltiplas operações CRUD (criação, edição, ativação, desativação, exclusão).</li>
+            <li>Necessita de validação de dados sensíveis, como e-mail único.</li>
+            <li>Implica ajustes tanto no backend (lógica e segurança) quanto no frontend (telas e fluxos).</li>
+          </ul>
+      </td>
+    </tr>
+    <!--  -->
+   <tr>
+      <td>Prioridade</td>
+      <td>Must</td>
+    </tr>
+    <tr>
+      <td>Depedência</td>
+      <td>
+        <li>[RF01]  –  Sistema de login</li>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<center>
+    <figcaption>Tabela 5 - História do usuário: requisito RF04. Fonte: Autor.</figcaption>
+</center>
+
+---
+
+
+### RF05 - Visualização do status das antenas
+
+<table>
+  <thead>
+    <tr>
+      <th>Identificador</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Id do requisito -->
+    <tr>
+      <td>ID do requisito</td>
+      <td><a href="./requisitos_elicitados.md">[RF05]</td>
+    </tr>
+    <!-- História -->
+    <tr>
+      <td>História</td>
+      <td>  
+        Como usuário da plataforma,
+        eu quero visualizar o status atual das antenas,
+        para entender rapidamente se elas estão disponíveis, ocupadas, em operação ou indisponíveis, permitindo uma tomada de decisão eficiente antes de executar qualquer ação.
+      </td>
+    </tr>
+    <!-- Descrição -->
+    <tr>
+      <td>Descrição</td>
+      <td>
+        O sistema deve apresentar ao usuário o status operacional de cada antena monitorada. O status deve refletir a situação em tempo real (ou em intervalo configurado de atualização), indicando condições como disponibilidade, execução de rotina, falha operacional, indisponibilidade técnica ou manutenção. Essa informação deve ser mostrada de forma clara, utilizando texto, ícones, cores ou combinação desses elementos para facilitar identificação rápida.
+      </td>
+    </tr>
+    <!-- Regras de negócio -->
+    <tr>
+      <td rowspan="6">Regras de negócio</td>
+      <td>
+        <ul>
+        <b>Estados obrigatórios</b>
+            <li>
+            Cada antena deve possuir ao menos os seguintes estados:
+              <ul>
+                <li>Disponível (pronta para uso),</li>
+                <li>Ocupada / Executando rotina,</li>
+                <li>Indisponível,</li>
+                <li>Em falha (problema detectado),</li>
+                <li>Em manutenção (se aplicável).</li>
+              </ul>
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Atualização periódica</b>
+            <li>
+              O status deve ser atualizado automaticamente em intervalos definidos pelo sistema (ex.: a cada 5–10 segundos, ou conforme regra operacional).
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Padronização visual</b>
+            <li>
+            Cada estado deve ter uma representação visual padronizada (cores, ícones ou rótulos), obedecendo às diretrizes de design.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Precisão do status</b>
+            <li>
+            O sistema não deve exibir um status que não corresponda ao estado real da antena.
+            </li>
+            <li>
+            Dados desatualizados devem ser descartados ou sinalizados como “Status desatualizado”.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Erro na obtenção do status</b>
+            <li>
+            Se o sistema não conseguir buscar o status, deve exibir: “Status indisponível”.
+            </li>
+            <li>
+            Nesses casos, não deve apresentar informações parciais ou incoerentes.
+            </li>
+        </ul>
+      </td>
+    </tr>
+        <tr>
+      <td>
+        <ul>
+            <b>Sincronização com subsistemas</b>
+            <li>
+            O status deve ser obtido a partir das camadas responsáveis pelas antenas, garantindo integração confiável com serviços de hardware ou APIs internas.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <!-- Critérios de aceitação -->
+    <tr>
+      <td rowspan="4">Critérios de aceitação</td>
+      <td>
+        <b>Exibição de status</b>
+        <ul>
+            <li><b>Dado</b> que estou autenticado na plataforma,</li>
+            <li><b>Quando</b> acesso a tela de monitoramento,</li>
+            <li><b>Então</b> devo visualizar o status atual de cada antena.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Erro ao consultar status</b>
+        <ul>
+            <li><b>Dado</b> que estou acompanhando os status,</li>
+            <li><b>Quando</b> o sistema realizar nova consulta,</li>
+            <li><b>Então</b> os valores de status devem ser atualizados na interface.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Representação padronizada</b>
+        <ul>
+            <li><b>Dado</b> que houve falha na comunicação com o subsistema,</li>
+            <li><b>Quando</b> o sistema tentar obter o status,</li>
+            <li><b>Então</b> deve exibir “Status indisponível”.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Desativação de usuário</b>
+        <ul>
+            <li><b>Dado</b> que os estados das antenas existem,</li>
+            <li><b>Quando</b> o status for exibido,</li>
+            <li><b>Então</b> cada estado deve usar ícones/cores padronizados.</li>
+        </ul>
+      </td>
+    </tr>
+    <!-- PONTUAÇÃO -->
+    <tr>
+      <td>Pontuação</td>
+      <td> 
+          > 3
+          <ul>
+            <li>Complexidade média: depende de consulta periódica e atualização de interface.</li>
+            <li>Envolve integração com subsistema que fornece o status.</li>
+            <li>Exige criação de padrões visuais (UI/UX).</li>
+          </ul>
+      </td>
+    </tr>
+    <!--  -->
+   <tr>
+      <td>Prioridade</td>
+      <td>Must</td>
+    </tr>
+    <tr>
+      <td>Depedência</td>
+      <td>
+        <li>[RF01]  –  Sistema de login</li>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<center>
+    <figcaption>Tabela 6 - História do usuário: requisito RF05. Fonte: Autor.</figcaption>
+</center>
+
+---
+
+### RF06 - Listagem de Antenas
+
+<table>
+  <thead>
+    <tr>
+      <th>Identificador</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Id do requisito -->
+    <tr>
+      <td>ID do requisito</td>
+      <td><a href="./requisitos_elicitados.md">[RF06]</td>
+    </tr>
+    <!-- História -->
+    <tr>
+      <td>História</td>
+      <td>  
+        Como usuário da plataforma,
+        eu quero poder visualizar uma lista completa de todas as antenas cadastradas,
+        para que eu consiga identificar rapidamente cada antena disponível no sistema e acessar suas informações individuais.
+      </td>
+    </tr>
+    <!-- Descrição -->
+    <tr>
+      <td>Descrição</td>
+      <td>
+        O sistema deve apresentar ao usuário uma lista contendo todas as antenas registradas na plataforma.
+        A listagem deve exibir informações básicas de cada antena — como nome, identificação e status atual — e deve permitir que o usuário selecione qualquer antena para visualizar seus detalhes.
+      </td>
+    </tr>
+    <!-- Regras de negócio -->
+    <tr>
+      <td rowspan="4">Regras de negócio</td>
+      <td>
+        <ul>
+        <b>Exibição obrigatória das informações básicas</b>
+            <li>
+            A listagem deve mostrar, no mínimo:
+              <ul>
+                <li>nome ou identificação da antena,</li>
+                <li>status atual,</li>
+                <li>Indisponível,</li>
+                <li>qualquer indicador visual relevante (ex.: ativo/inativo).</li>
+              </ul>
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Atualização consistente</b>
+            <li>
+              A lista deve refletir em tempo quase real o status atual das antenas, seguindo o intervalo de atualização definido pelo sistema.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Acesso aos detalhes</b>
+            <li>
+            Ao clicar em uma antena da lista, o usuário deve ser direcionado à página individual de monitoramento daquela antena.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Consistência de dados</b>
+            <li>
+            Os dados apresentados devem ser sempre coerentes com a base de dados ou serviço de monitoramento em tempo real.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <!-- Critérios de aceitação -->
+    <tr>
+      <td rowspan="4">Critérios de aceitação</td>
+      <td>
+        <b>Visualização da lista</b>
+        <ul>
+            <li><b>Dado</b> que estou autenticado na plataforma,</li>
+            <li><b>Quando</b> acesso a tela de antenas,</li>
+            <li><b>Então</b> devo visualizar uma lista contendo todas as antenas cadastradas.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Exibição das informações básicas</b>
+        <ul>
+            <li><b>Dado</b> que a lista de antenas está carregada,</li>
+            <li><b>Quando</b> observo cada item,</li>
+            <li><b>Então</b> devo ver identificação, status e demais informações básicas definidas.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Acesso aos detalhes</b>
+        <ul>
+            <li><b>Dado</b> que estou na lista de antenas,</li>
+            <li><b>Quando</b> clico em uma antena,</li>
+            <li><b>Então</b> devo ser direcionado para sua página individual.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Atualização atualizada</b>
+        <ul>
+            <li><b>Dado</b> que o sistema está monitorando as antenas,</li>
+            <li><b>Quando</b> a lista estiver sendo exibida,</li>
+            <li><b>Então</b> ela deve refletir o status atualizado conforme o intervalo de atualização.</li>
+        </ul>
+      </td>
+    </tr>
+    <!-- PONTUAÇÃO -->
+    <tr>
+      <td>Pontuação</td>
+      <td> 
+          > 3
+          <ul>
+            <li>Exige integração com o serviço/banco de dados de antenas.</li>
+          </ul>
+      </td>
+    </tr>
+    <!--  -->
+   <tr>
+      <td>Prioridade</td>
+      <td>Must</td>
+    </tr>
+    <tr>
+      <td>Depedência</td>
+      <td>
+        <li>[RF01]  –  Sistema de login</li>
+        <li>[RF05]  –  Status das antenas</li>
+      </td>
+    </tr>
+    <tr>
+      <td>Prioridade</td>
+      <td>Should</td>
+    </tr>
+    <tr>
+      <td>Depedência</td>
+      <td>
+        <li>[RF01]  –  Sistema de login</li>
+        <li>[RF05]  –  Status das antenas</li>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<center>
+    <figcaption>Tabela 7 - História do usuário: requisito RF06. Fonte: Autor.</figcaption>
+</center>
+
+---
+
+### RF07 - Abertura de múltiplas janelas por antena
+
+<table>
+  <thead>
+    <tr>
+      <th>Identificador</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Id do requisito -->
+    <tr>
+      <td>ID do requisito</td>
+      <td><a href="./requisitos_elicitados.md">[RF07]</td>
+    </tr>
+    <!-- História -->
+    <tr>
+      <td>História</td>
+      <td>  
+        Como usuário da plataforma,
+        eu quero poder abrir múltiplas janelas simultaneamente, cada uma exibindo informações de uma antena específica,
+        para que eu consiga monitorar e acompanhar diversas antenas ao mesmo tempo sem perder dados importantes ou precisar alternar continuamente entre telas.
+      </td>
+    </tr>
+    <!-- Descrição -->
+    <tr>
+      <td>Descrição</td>
+      <td>
+        O sistema deve permitir que o usuário abra mais de uma janela ou aba de monitoramento, onde cada janela esteja vinculada a uma antena específica. Cada instância deve operar de forma independente, atualizando seus dados em tempo real e mantendo as funcionalidades essenciais (como status, clima, rotinas, logs e alertas).
+      </td>
+    </tr>
+    <!-- Regras de negócio -->
+    <tr>
+      <td rowspan="4">Regras de negócio</td>
+      <td>
+        <ul>
+        <b>Independência das janelas</b>
+            <li>
+              Cada janela deve operar de forma isolada: uma ação realizada em uma janela não deve interferir nas demais.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Identificação clara da antena</b>
+            <li>
+              Cada janela deve exibir de forma destacada qual antena está sendo monitorada para evitar erros operacionais.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Sincronização consistente</b>
+            <li>
+            As janelas devem ser atualizadas de acordo com os dados mais recentes da antena, respeitando o intervalo de atualização definido.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Evitar duplicidade não intencional</b>
+            <li>
+            Abrir novamente a mesma antena não deve ser permitido.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <!-- Critérios de aceitação -->
+    <tr>
+      <td rowspan="4">Critérios de aceitação</td>
+      <td>
+        <b>Abertura de múltiplas janelas</b>
+        <ul>
+            <li><b>Dado</b> que estou na tela da plataforma,</li>
+            <li><b>Quando</b> seleciono mais de uma antena para monitorar,</li>
+            <li><b>Então</b> o sistema deve abrir uma nova janela para cada antena selecionada.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Operação independente</b>
+        <ul>
+            <li><b>Dado</b> que estou com várias janelas abertas,</li>
+            <li><b>Quando</b> realizo uma ação em uma delas,</li>
+            <li><b>Então</b> essa ação não deve afetar as demais.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Atualizações paralelas</b>
+        <ul>
+            <li><b>Dado</b> que as antenas estão enviando dados,</li>
+            <li><b>Quando</b> visualizo múltiplas janelas,</li>
+            <li><b>Então</b> cada janela deve atualizar apenas os dados da antena correspondente.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Identificação da antena</b>
+        <ul>
+            <li><b>Dado</b> que abri diversas janelas,</li>
+            <li><b>Quando</b> observo qualquer uma delas,</li>
+            <li><b>Então</b> devo conseguir identificar claramente qual antena ela representa.</li>
+        </ul>
+      </td>
+    </tr>
+    <!-- PONTUAÇÃO -->
+    <tr>
+      <td>Pontuação</td>
+      <td> 
+          > 5
+          <ul>
+            <li>Exige gestão de múltiplas instâncias da interface.</li>
+            <li>Necessita garantir sincronização independente de dados.</li>
+            <li>Pode impactar desempenho, exigindo tratamento.</li>
+          </ul>
+      </td>
+    </tr>
+    <!--  -->
+   <tr>
+      <td>Prioridade</td>
+      <td>Could</td>
+    </tr>
+    <tr>
+      <td>Depedência</td>
+      <td>
+        <li>[RF01]  –  Sistema de login</li>
+        <li>[RF05]  –  Status das antenas</li>
+        <li>[RF06]  –  Listagem de Antenas</li>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<center>
+    <figcaption>Tabela 8 - História do usuário: requisito RF07. Fonte: Autor.</figcaption>
+</center>
+
+---
+
+### RF08 - Posicionamento da antena em tempo real
+
+<table>
+  <thead>
+    <tr>
+      <th>Identificador</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Id do requisito -->
+    <tr>
+      <td>ID do requisito</td>
+      <td><a href="./requisitos_elicitados.md">[RF08]</td>
+    </tr>
+    <!-- História -->
+    <tr>
+      <td>História</td>
+      <td>  
+        Como usuário da plataforma,
+        eu quero visualizar o posicionamento da antena em tempo real,
+        para que eu consiga acompanhar seus movimentos, identificar desvios, garantir que ela está operando corretamente e reagir rapidamente caso algo saia do esperado.
+      </td>
+    </tr>
+    <!-- Descrição -->
+    <tr>
+      <td>Descrição</td>
+      <td>
+        O sistema deve exibir ao usuário o posicionamento atual da antena, atualizando os dados continuamente em tempo real ou em intervalos muito curtos.
+        Essa visualização pode incluir ângulos de azimute e elevação, velocidade de movimento, estado atual do motor e qualquer outra métrica relevante para o controle da antena.
+      </td>
+    </tr>
+    <!-- Regras de negócio -->
+    <tr>
+      <td rowspan="4">Regras de negócio</td>
+      <td>
+        <ul>
+        <b>Atualização contínua (real time)</b>
+            <li>
+              O sistema deve atualizar o posicionamento da antena em tempo real ou com atraso mínimo definido pelo requisito EN24.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Coerência dos dados</b>
+            <li>
+              As informações apresentadas devem refletir o estado atual da antena conforme fornecido pelo hardware ou serviço de telemetria.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Representação visual clara</b>
+            <li>
+            O sistema deve apresentar o posicionamento de forma compreensível, podendo utilizar:
+            <ul>
+              <li>indicadores numéricos,</li>
+              <li>gráficos de movimento,</li>
+              <li>representações visuais animadas (se aplicável).</li>
+            </ul>
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Tratamento de perda de sinal</b>
+            <li>
+            Se a comunicação com a antena for interrompida, a interface deve:
+            <ul>
+              <li>exibir aviso ao usuário,</li>
+              <li>congelar o último estado conhecido ou apresentar indicador de erro.</li>
+            </ul>
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <!-- Critérios de aceitação -->
+    <tr>
+      <td rowspan="4">Critérios de aceitação</td>
+      <td>
+        <b>Abertura de múltiplas janelas</b>
+        <ul>
+            <li><b>Dado</b> que estou na tela da plataforma,</li>
+            <li><b>Quando</b> seleciono mais de uma antena para monitorar,</li>
+            <li><b>Então</b> o sistema deve abrir uma nova janela para cada antena selecionada.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Operação independente</b>
+        <ul>
+            <li><b>Dado</b> que estou com várias janelas abertas,</li>
+            <li><b>Quando</b> realizo uma ação em uma delas,</li>
+            <li><b>Então</b> essa ação não deve afetar as demais.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Atualizações paralelas</b>
+        <ul>
+            <li><b>Dado</b> que as antenas estão enviando dados,</li>
+            <li><b>Quando</b> visualizo múltiplas janelas,</li>
+            <li><b>Então</b> cada janela deve atualizar apenas os dados da antena correspondente.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Identificação da antena</b>
+        <ul>
+            <li><b>Dado</b> que abri diversas janelas,</li>
+            <li><b>Quando</b> observo qualquer uma delas,</li>
+            <li><b>Então</b> devo conseguir identificar claramente qual antena ela representa.</li>
+        </ul>
+      </td>
+    </tr>
+    <!-- PONTUAÇÃO -->
+    <tr>
+      <td>Pontuação</td>
+      <td> 
+          > 5
+          <ul>
+            <li>Exige gestão de múltiplas instâncias da interface.</li>
+            <li>Necessita garantir sincronização independente de dados.</li>
+            <li>Pode impactar desempenho, exigindo tratamento.</li>
+          </ul>
+      </td>
+    </tr>
+    <!--  -->
+   <tr>
+      <td>Prioridade</td>
+      <td>Must</td>
+    </tr>
+    <tr>
+      <td>Depedência</td>
+      <td>
+        <li>[RF01]  –  Sistema de login</li>
+        <li>[RF05]  –  Status das antenas AQUI!!!!</li> 
+        <li>[RF06]  –  Listagem de Antenas</li>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<center>
+    <figcaption>Tabela 9 - História do usuário: requisito RF08. Fonte: Autor.</figcaption>
+</center>
+
+---
+
+
+### RF09 - Exibir falhas de posicionamento
+
+<table>
+  <thead>
+    <tr>
+      <th>Identificador</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Id do requisito -->
+    <tr>
+      <td>ID do requisito</td>
+      <td><a href="./requisitos_elicitados.md">[RF09]</td>
     </tr>
     <!-- História -->
     <tr>
@@ -356,11 +1525,12 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
 </table>
 
 <center>
-    <figcaption>Tabela 3 - História do usuário: requisito RF02. Fonte: Autor.</figcaption>
+    <figcaption>Tabela 10 - História do usuário: requisito RF09. Fonte: Autor.</figcaption>
 </center>
 ---
 
-### RF03 - Gestão de Perfis de Usuário
+
+### RF10 - Visualizar o último operador da antena
 
 <table>
   <thead>
@@ -373,539 +1543,51 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
     <!-- Id do requisito -->
     <tr>
       <td>ID do requisito</td>
-      <td><a href="./requisitos_elicitados.md">[RF03]</td>
+      <td><a href="./requisitos_elicitados.md">[RF10]</td>
     </tr>
     <!-- História -->
     <tr>
       <td>História</td>
-      <td>  
-        Como administrador da plataforma,
-eu quero que o sistema possua perfis de usuário distintos (administrador e usuário normal),
-para garantir que apenas pessoas autorizadas possam realizar ações críticas, enquanto usuários comuns tenham acesso apenas às funcionalidades necessárias para operação diária.</td>
+      <td>Como operador do sistema, eu quero visualizar quem foi a última pessoa que moveu a antena, para acompanhar o histórico de operações e identificar responsabilidades.</td>
     </tr>
     <!-- Descrição -->
     <tr>
       <td>Descrição</td>
-      <td>
-          O sistema deve implementar dois tipos de perfis: administrador e usuário normal (operador). Cada perfil deve possuir permissões específicas, limitando ou permitindo determinadas funcionalidades. O administrador deve ter acesso completo, incluindo cadastro, controle e remoção de usuários, além de visualização de dados sensíveis do sistema. O usuário normal deve possuir acesso restrito, limitado ao uso operacional das antenas e ferramentas de monitoramento. A definição do perfil deve ocorrer no momento do cadastro e deve influenciar imediatamente todas as telas, botões e ações disponíveis ao usuário. O sistema deve garantir que ações críticas só possam ser executadas por administradores, impedindo acessos indevidos ou operações perigosas.
-      </td>
-    </tr>
-    <!-- Regras de negócio -->
-    <tr>
-      <td rowspan="5">Regras de negócio</td>
-      <td>
-        <ul>
-        <b>Níveis distintos de permissão</b>
-            <li>
-            A plataforma deve fornecer permissões separadas: administradores têm acesso total e usuários normais têm acesso apenas às funcionalidades operacionais.
-            </li>
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <ul>
-            <b>Bloqueio de ações restritas</b>
-            <li>
-            Qualquer funcionalidade que altere configurações sensíveis, modifique usuários, acesse logs confidenciais ou atue diretamente na estrutura do sistema deve ser permitida somente para perfis administrativos.
-            </li>
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <ul>
-            <b>Associação fixa ao perfil</b>
-            <li>
-            Cada usuário deve ser vinculado a um perfil no momento do cadastro, e esse perfil deve definir todas as permissões. A mudança de perfil só pode ser executada por administradores.
-            </li>
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <ul>
-            <b>Controle visual na interface</b>
-            <li>
-            Funcionalidades restritas devem aparecer desabilitadas ou ocultas para usuários normais, evitando tentativas de acesso e reduzindo erros de operação.
-            </li>
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <ul>
-            <b>Registro de ações administrativas</b>
-            <li>
-            Toda ação crítica realizada por um administrador (ex.: criação ou remoção de usuários, alteração de configurações) deve ser registrada em log para auditoria.
-            </li>
-        </ul>
-      </td>
-    </tr>
-    <!-- Critérios de aceitação -->
-    <tr>
-      <td rowspan="4">Acesso restrito por perfil</td>
-      <td>
-        <b>Exibir clima atual</b>
-        <ul>
-            <li><b>Dado</b> que estou logado como usuário normal,</li>
-            <li><b>Quando</b> tentar acessar uma funcionalidade administrativa,</li>
-            <li><b>Então</b> o sistema deve negar acesso ou ocultar a funcionalidade.</li>
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <b>Acesso completo para administradores</b>
-        <ul>
-            <li><b>Dado</b> que estou logado como administrador,</li>
-            <li><b>Quando</b> acesso qualquer módulo do sistema,</li>
-            <li><b>Então</b> todas as funcionalidades administrativas devem estar disponíveis.</li>
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <b>Interface dinâmica conforme perfil</b>
-        <ul>
-            <li><b>Dado</b> que o usuário realizou login,</li>
-            <li><b>Quando</b> o sistema carregar a interface,</li>
-            <li><b>Então</b> deve exibir apenas as opções referentes ao perfil do usuário.</li>
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <b>Registro de ação crítica</b>
-        <ul>
-            <li><b>Dado</b> que um administrador executou uma ação sensível,</li>
-            <li><b>Quando</b> a operação for concluída,</li>
-            <li><b>Então</b> o sistema deve registrar o evento em log com usuário, data e tipo de ação.</li>
-        </ul>
-      </td>
-    </tr>
-    <!-- PONTUAÇÃO -->
-    <tr>
-      <td>Pontuação</td>
-      <td> 
-          > 5
-          <ul>
-            <li>Envolve implementação de controle de permissões entre dois perfis distintos (administrador e usuário normal).</li>
-            <li>Necessita adaptação da interface (frontend) para exibir/ocultar funcionalidades conforme o perfil.</li>
-            <li>Impacta diversas áreas do sistema (interface, rotas, segurança, controle de sessão).</li>
-          </ul>
-      </td>
-    </tr>
-    <!--  -->
-   <tr>
-      <td>Prioridade</td>
-      <td>Must</td>
-    </tr>
-    <tr>
-      <td>Depedência</td>
-      <td>
-        <li>[RF01]  –  Sistema de login</li>
-        <li>[RF04]  –  Gerenciamento de usuários.</li>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-<center>
-    <figcaption>Tabela 4 - História do usuário: requisito RF03. Fonte: Autor.</figcaption>
-</center>
-
----
-
-### RF04 - Administração de usuários
-
-<table>
-  <thead>
-    <tr>
-      <th>Identificador</th>
-      <th>Descrição</th>
-    </tr>
-  </thead>
-  <tbody>
-    <!-- Id do requisito -->
-    <tr>
-      <td>ID do requisito</td>
-      <td><a href="./requisitos_elicitados.md">[RF04]</td>
-    </tr>
-    <!-- História -->
-    <tr>
-      <td>História</td>
-      <td>  
-        Como administrador,
-        eu quero cadastrar, editar e remover usuários da plataforma,
-        para garantir que somente pessoas autorizadas tenham acesso e que suas permissões estejam sempre atualizadas.
-      </td>
-    </tr>
-    <!-- Descrição -->
-    <tr>
-      <td>Descrição</td>
-      <td>
-        O sistema deve permitir que administradores gerenciem os usuários cadastrados na plataforma. Isso inclui criar novos usuários, ajustar seus dados (nome, e-mail, perfil de acesso), ativar ou desativar contas e remover usuários quando necessário. A funcionalidade deve estar disponível apenas para administradores autenticados, garantindo a segurança e integridade do sistema. Todas as alterações executadas devem ser registradas para auditoria.
-      </td>
-    </tr>
-    <!-- Regras de negócio -->
-    <tr>
-      <td rowspan="5">Regras de negócio</td>
-      <td>
-        <ul>
-        <b>Controle de acesso exclusivo</b>
-            <li>
-            Apenas usuários com perfil Administrador podem acessar a área de gestão de usuários.
-            </li>
-            <li>
-            Usuários comuns não devem visualizar nem acessar essa funcionalidade.
-            </li>
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <ul>
-            <b>Cadastro de novos usuários</b>
-            <li>
-              O administrador deve fornecer: nome, e-mail e tipo de perfil (administrador ou usuário normal).
-            </li>
-            <li>
-            O sistema deve validar se o e-mail já está em uso.
-            </li>
-            <li>
-            O usuário criado deve receber um estado inicial (ativo).
-            </li>
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <ul>
-            <b>Edição de usuários</b>
-            <li>
-            O administrador deve ser capaz de alterar os dados de um usuário, exceto o ID interno.
-            </li>
-            <li>
-            Trocas de perfil exigem registro de auditoria.
-            </li>
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <ul>
-            <b>Desativação de usuários</b>
-            <li>
-            Uma conta desativada não pode acessar a plataforma.
-            </li>
-            <li>
-            Desativar não exclui histórico nem logs vinculados ao usuário.
-            </li>
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <ul>
-            <b>Exclusão</b>
-            <li>
-            Exclusão só pode ocorrer caso não comprometa registros essenciais (ex.: logs críticos).
-            </li>
-            </li>
-            <li>
-            Caso não seja possível excluir, o sistema deve sugerir desativação.
-            </li>
-        </ul>
-      </td>
-    </tr>
-    <!-- Critérios de aceitação -->
-    <tr>
-      <td rowspan="4">Critérios de aceitação</td>
-      <td>
-        <b>Acesso restrito à gestão</b>
-        <ul>
-            <li><b>Dado</b> que estou autenticado como administrador,</li>
-            <li><b>Quando</b> acesso o menu de administração,</li>
-            <li><b>Então</b> devo visualizar a área de gerenciamento de usuários.</li>
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <b>Cadastro de novos usuários</b>
-        <ul>
-            <li><b>Dado</b> que estou na tela de criação,</li>
-            <li><b>Quando</b> insiro dados válidos e confirmo,</li>
-            <li><b>Então</b> o sistema deve criar o usuário e registrá-lo como ativo.</li>
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <b>Edição de usuário</b>
-        <ul>
-            <li><b>Dado</b> que um usuário já está cadastrado,</li>
-            <li><b>Quando</b> altero seus dados,</li>
-            <li><b>Então</b> o sistema salva as mudanças.</li>
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <b>Desativação de usuário</b>
-        <ul>
-            <li><b>Dado</b> que o administrador optou por desativar uma conta,</li>
-            <li><b>Quando</b> confirmar a ação,</li>
-            <li><b>Então</b> o sistema impede novos logins daquela conta.</li>
-        </ul>
-      </td>
-    </tr>
-    <!-- PONTUAÇÃO -->
-    <tr>
-      <td>Pontuação</td>
-      <td> 
-          > 5
-          <ul>
-            <li>Integração externa com API de clima</li>
-            <li>Múltiplos dados para exibir</li>
-            <li>Maior incerteza técnica (API, limites, erros, formato de resposta)</li>
-          </ul>
-      </td>
-    </tr>
-    <!--  -->
-   <tr>
-      <td>Prioridade</td>
-      <td>Could</td>
-    </tr>
-    <tr>
-      <td>Depedência</td>
-      <td>-</td>
-    </tr>
-  </tbody>
-</table>
-
-<center>
-    <figcaption>Tabela 4 - História do usuário: requisito RF03. Fonte: Autor.</figcaption>
-</center>
-
----
-
-
-### RF - Verificar clima no local da antena
-
-<table>
-  <thead>
-    <tr>
-      <th>Identificador</th>
-      <th>Descrição</th>
-    </tr>
-  </thead>
-  <tbody>
-    <!-- Id do requisito -->
-    <tr>
-      <td>ID do requisito</td>
-      <td><a href="./requisitos_elicitados.md">[RF03]</td>
-    </tr>
-    <!-- História -->
-    <tr>
-      <td>História</td>
-      <td>  
-        Como operador,
-        eu quero verificar o clima atual no local onde as antenas estão instaladas,
-        para entender se condições meteorológicas podem impactar o funcionamento.</td>
-    </tr>
-    <!-- Descrição -->
-    <tr>
-      <td>Descrição</td>
-      <td>
-          Ao acessar a tela de monitoramento da antena o usuário deve ser capaz de ter informações sobre o clima no local.
-      </td>
+      <td>Ao acessar a tela de monitoramento da antena o usuário deve ser capaz de ter informações sobre o último usuário que realizou uma rotina na respectiva antena.</td>
     </tr>
     <!-- Regras de negócio -->
     <tr>
       <td rowspan="4">Regras de negócio</td>
       <td>
         <ul>
-        <b>Atualização periódica</b>
-            <li>
-            O clima deve ser atualizado automaticamente em intervalos definidos pela regra do sistema (ex.: a cada 10 minutos).
-            </li>
+        <b>Toda movimentação da antena deve gerar um registro contendo:</b>
+            <li>usuário responsável,</li>
+            <li>data e hora da operação,</li>
+            <li>tipo de movimentação realizada.</li>
         </ul>
       </td>
     </tr>
     <tr>
       <td>
         <ul>
-            <b>Fonte oficial de dados climáticos</b>
-            <li>
-            A consulta deve ser feita utilizando uma API confiável previamente configurada (OpenWeather, NOAA, etc.).
-            </li>
+            <b>Registro mais recente prevalece</b>
+            <li>Sempre que o sistema precisar exibir o último operador, deve selecionar o registro com data mais recente.</li>
         </ul>
       </td>
     </tr>
     <tr>
       <td>
         <ul>
-            <b>Tratamento de indisponibilidade</b>
-            <li>
-            Quando o serviço de clima estiver offline ou inacessível, o sistema deve exibir “Clima indisponível”.
-            </li>
+            <b>Impossibilidade de alterar logs</b>
+            <li>Nenhum usuário pode editar ou remover manualmente os registros de movimentação da antena.</li>
         </ul>
       </td>
     </tr>
     <tr>
       <td>
         <ul>
-            <b>Proibição de dados desatualizados</b>
-            <li>
-            O sistema não deve exibir informações climáticas cujo timestamp seja maior que o limite aceito (por exemplo, mais de 30 minutos).
-            </li>
-        </ul>
-      </td>
-    </tr>
-    <!-- Critérios de aceitação -->
-    <tr>
-      <td rowspan="4">Critérios de aceitação</td>
-      <td>
-        <b>Exibir clima atual</b>
-        <ul>
-            <li><b>Dado</b> que estou na tela da antena,</li>
-            <li><b>Quando</b> o sistema identificar a localização,</li>
-            <li><b>Então</b> deve exibir o clima atual (temperatura, vento, chuva, etc.).</li>
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <b>Atualização periódica do clima</b>
-        <ul>
-            <li><b>Dado</b> que o clima pode mudar durante o uso do sistema,</li>
-            <li><b>Quando</b> o sistema realizar nova consulta,</li>
-            <li><b>Então</b> os dados meteorológicos devem ser atualizados.</li>
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <b>API de clima indisponível</b>
-        <ul>
-            <li><b>Dado</b> que a API externa falhou,</li>
-            <li><b>Quando</b> o usuário tentar visualizar o clima,</li>
-            <li><b>Então</b> deve aparecer “Clima indisponível no momento”.</li>
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <b>Falha ao obter localização da antena</b>
-        <ul>
-            <li><b>Dado</b> que o sistema não conseguiu determinar a localização,</li>
-            <li><b>Quando</b> tentar buscar o clima,</li>
-            <li><b>Então</b> deve informar “Localização não encontrada”.</li>
-        </ul>
-      </td>
-    </tr>
-    <!-- PONTUAÇÃO -->
-    <tr>
-      <td>Pontuação</td>
-      <td> 
-          > 5
-          <ul>
-            <li>Integração externa com API de clima</li>
-            <li>Múltiplos dados para exibir</li>
-            <li>Maior incerteza técnica (API, limites, erros, formato de resposta)</li>
-          </ul>
-      </td>
-    </tr>
-    <!--  -->
-   <tr>
-      <td>Prioridade</td>
-      <td>Could</td>
-    </tr>
-    <tr>
-      <td>Depedência</td>
-      <td>-</td>
-    </tr>
-  </tbody>
-</table>
-
-<center>
-    <figcaption>Tabela 4 - História do usuário: requisito RF03. Fonte: Autor.</figcaption>
-</center>
-
----
-
-### RF04 - O usuário deve poder realizar o login na plataforma.
-
-<table>
-  <thead>
-    <tr>
-      <th>Identificador</th>
-      <th>Descrição</th>
-    </tr>
-  </thead>
-  <tbody>
-    <!-- Id do requisito -->
-    <tr>
-      <td>ID do requisito</td>
-      <td><a href="./requisitos_elicitados.md">[RF04]</td>
-    </tr>
-    <!-- História -->
-    <tr>
-      <td>História</td>
-      <td>  
-        Como usuário da plataforma,
-        eu quero realizar login utilizando minhas credenciais de acesso,
-        para garantir que somente pessoas autorizadas possam entrar no sistema e visualizar ou operar as antenas.
-      </td>
-    </tr>
-    <!-- Descrição -->
-    <tr>
-      <td>Descrição</td>
-      <td>
-          Ao acessar o sistema, o usuário deve visualizar uma tela dedicada para autenticação. Nessa interface, ele deve inserir seu nome de usuário (ou e-mail) e sua senha. Após a validação bem-sucedida das credenciais, o usuário é direcionado para o painel principal de operações. Caso os dados estejam incorretos, o sistema deve informar o erro sem revelar detalhes sensíveis.
-      </td>
-    </tr>
-    <!-- Regras de negócio -->
-    <tr>
-      <td rowspan="4">Regras de negócio</td>
-      <td>
-        <ul>
-        <b>Formato de credenciais</b>
-            <li>
-            O sistema deve exigir que o usuário informe um identificador válido registrado na base de dados (e-mail, matrícula ou username definido pela organização). A senha deve seguir as regras internas de segurança previamente estabelecidas (tamanho mínimo, caracteres especiais, etc.).
-            </li>
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <ul>
-            <b>Validação segura</b>
-            <li>
-            O sistema deve validar todas as credenciais de forma criptografada, utilizando hashing seguro (ex.: bcrypt, Argon2). Nenhuma senha pode ser armazenada ou trafegar em texto puro.
-            </li>
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <ul>
-            <b>Sessão autenticada</b>
-            <li>
-            Após o login bem-sucedido, o sistema deve gerar uma sessão autenticada com tempo de expiração definido. A sessão deve ser encerrada automaticamente após período de inatividade maior que o permitido.
-            </li>
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <ul>
-            <b>Proibição de acesso não autenticado</b>
-            <li>
-            Nenhuma página interna sensível pode ser acessada sem uma sessão válida. Tentativas de acesso direto devem resultar em redirecionamento para a tela de login.
-            </li>
+            <b>Logs devem ser persistentes</b>
+            <li>Os registros de movimentação devem ser armazenados de forma permanente e não podem ser perdidos após reinicialização do sistema.</li>
         </ul>
       </td>
     </tr>
@@ -913,31 +1595,1749 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     <tr>
       <td rowspan="3">Critérios de aceitação</td>
       <td>
-        <b>Login bem-sucedido</b>
+        <b>Último operador exibido corretamente</b>
         <ul>
-            <li><b>Dado</b> que estou na tela de login,</li>
-            <li><b>Quando</b> informo usuário/e-mail e senha válidos,</li>
-            <li><b>Então</b> devo ser redirecionado ao painel principal do sistema.</li>
+            <li><b>Dado</b> que acesso a tela de monitoramento da antena,</li>
+            <li><b>Quando</b> o sistema carregar as informações,</li>
+            <li><b>Então</b> deve ser exibido o nome do último usuário que realizou o movimento.</li>
         </ul>
       </td>
     </tr>
     <tr>
       <td>
-        <b>Atualização periódica do clima</b>
+        <b>Nenhum registro de movimentação</b>
         <ul>
-            <li><b>Dado</b> que informei credenciais incorretas,</li>
-            <li><b>Quando</b> tento acessar o sistema,</li>
-            <li><b>Então</b> deve aparecer uma mensagem “Usuário ou senha inválidos”, sem revelar qual dos dois está errado.</li>
+            <li><b>Dado</b> que a antena ainda não teve movimentações,</li>
+            <li><b>Quando</b> o sistema procurar pelo operador,</li>
+            <li><b>Então</b> deve mostrar a mensagem “Nenhuma movimentação registrada”.</li>
         </ul>
       </td>
     </tr>
     <tr>
       <td>
-        <b>Sessão expirada</b>
+        <b>Falha ao consultar o log</b>
         <ul>
-            <li><b>Dado</b> que estou autenticado,</li>
-            <li><b>Quando</b> ocorrer um longo período de inatividade,</li>
-            <li><b>Então</b> a sessão deve expirar e devo ser direcionado para a tela de login ao tentar qualquer ação.</li>
+            <li><b>Dado</b> que ocorre um erro na consulta dos dados,</li>
+            <li><b>Quando</b> a tela carregar,</li>
+            <li><b>Então</b> o sistema deve exibir uma mensagem de “Erro ao carregar histórico”.</li>
+        </ul>
+      </td>
+    </tr>
+    <!-- PONTUAÇÃO -->
+    <tr>
+      <td>Pontuação</td>
+      <td>
+        > 3
+        <ul>
+          <li>Complexidade baixa.</li>
+          <li>Precisa apenas consultar e exibir um log.</li>
+          <li>Quase nenhuma incerteza técnica.</li>
+        </ul>
+      </td>
+    </tr>
+    <!--  -->
+   <tr>
+      <td>Prioridade</td>
+      <td>Could</td>
+    </tr>
+    <tr>
+      <td>Depedência</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<center>
+    <figcaption>Tabela 11 - História do usuário: requisito RF10 . Fonte: Autor.</figcaption>
+</center>
+---
+
+### RF11 - Visualizar o última rotina realizada pela antena
+
+<table>
+  <thead>
+    <tr>
+      <th>Identificador</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Id do requisito -->
+    <tr>
+      <td>ID do requisito</td>
+      <td><a href="./requisitos_elicitados.md">[RF11]</td>
+    </tr>
+    <!-- História -->
+    <tr>
+      <td>História</td>
+      <td>
+      Como usuário da plataforma,
+      eu quero visualizar qual foi a última rotina realizada pela antena,
+      para que eu possa entender o histórico recente de operações, verificar se a antena executou corretamente o procedimento anterior e tomar decisões baseadas no que já foi feito.
+      </td>
+    </tr>
+    <!-- Descrição -->
+    <tr>
+      <td>Descrição</td>
+      <td>
+      O sistema deve exibir ao usuário qual foi a última rotina executada pela antena selecionada.
+      Essas informações devem incluir pelo menos:
+      <ul>
+        <li>o nome ou identificador da rotina, </li>
+        <li>a data e hora em que ela foi iniciada, </li>
+        <li>a data e hora de término (se aplicável), </li>
+        <li>o status do encerramento (concluída com sucesso, interrompida, falha, etc.).</li>
+      </ul>
+      A informação deve estar disponível na interface de monitoramento da antena ou em sua seção de histórico.
+      </td>
+    </tr>
+    <!-- Regras de negócio -->
+    <tr>
+      <td rowspan="3">Regras de negócio</td>
+      <td>
+        <ul>
+        <b>Registro obrigatório</b>
+          <li>
+            Toda rotina realizada pela antena deve gerar um registro contendo:
+            <ul>
+              <li>nome/ID da rotina,</li>
+              <li>horário de início,</li>
+              <li>horário de fim,</li>
+              <li>status final,</li>
+              <li>operador responsável,</li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Atualização automática</b>
+            <li>Quando uma rotina é concluída, o registro da “última rotina executada” deve ser atualizado automaticamente.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Tratamento de rotina em andamento</b>
+            <li>Se houver uma rotina em execução, ela não deve substituir a última concluída até que termine.</li>
+        </ul>
+      </td>
+    </tr>
+    <!-- Critérios de aceitação -->
+    <tr>
+      <td rowspan="3">Critérios de aceitação</td>
+      <td>
+        <b>Exibição da última rotina</b>
+        <ul>
+            <li><b>Dado</b> que estou autenticado e selecionei uma antena,</li>
+            <li><b>Quando</b> abro sua página de monitoramento,</li>
+            <li><b>Então</b> devo visualizar a última rotina realizada pela antena.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Atualização após conclusão</b>
+        <ul>
+            <li><b>Dado</b> que uma rotina acabou de ser finalizada,</li>
+            <li><b>Quando</b> a operação é encerrada,</li>
+            <li><b>Então</b> o sistema deve atualizar imediatamente qual é a última rotina executada.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Status da execução</b>
+        <ul>
+            <li><b>Dado</b> que uma rotina foi concluída,</li>
+            <li><b>Quando</b> a visualizo na interface,</li>
+            <li><b>Então</b> devo ver o status final (sucesso, falha, interrupção).</li>
+        </ul>
+      </td>
+    </tr>
+    <!-- PONTUAÇÃO -->
+    <tr>
+      <td>Pontuação</td>
+      <td>
+        > 3
+        <ul>
+          <li>Requer integração com o sistema de rotinas e banco de dados.</li>
+          <li>Exige apenas formatação e apresentação dos dados.</li>
+        </ul>
+      </td>
+    </tr>
+    <!--  -->
+   <tr>
+      <td>Prioridade</td>
+      <td>Should</td>
+    </tr>
+    <tr>
+      <td>Depedência</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<center>
+    <figcaption>Tabela 12 - História do usuário: requisito RF11 . Fonte: Autor.</figcaption>
+</center>
+---
+
+### RF12 - Bloquear antena
+
+<table>
+  <thead>
+    <tr>
+      <th>Identificador</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Id do requisito -->
+    <tr>
+      <td>ID do requisito</td>
+      <td><a href="./requisitos_elicitados.md">[RF12]</td>
+    </tr>
+    <!-- História -->
+    <tr>
+      <td>História</td>
+      <td>
+      Como administrador da plataforma,
+      eu quero poder bloquear uma antena,
+      para impedir que usuários realizem operações nela enquanto estiver em manutenção, verificação técnica ou condições inadequadas de uso.
+      </td>
+    </tr>
+    <!-- Descrição -->
+    <tr>
+      <td>Descrição</td>
+      <td>
+      O sistema deve permitir que administradores bloqueiem uma antena de forma manual, impedindo que qualquer rotina, movimentação ou operação seja executada nela durante o período de bloqueio.
+      Ao bloquear uma antena, o sistema deve atualizar imediatamente seu status para “Bloqueada”, impedir qualquer tentativa de controle por operadores e fornecer mensagens claras para os usuários informando o motivo e o responsável pelo bloqueio.
+      </td>
+    </tr>
+    <!-- Regras de negócio -->
+    <tr>
+      <td rowspan="3">Regras de negócio</td>
+      <td>
+        <ul>
+        <b>Somente administradores podem bloquear</b>
+          <li>
+            A funcionalidade deve estar acessível exclusivamente a usuários com perfil administrador.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Status de bloqueio</b>
+            <li>Ao bloquear, a antena deve assumir o status “Bloqueada”, substituindo qualquer status anterior.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Bloqueio persistente</b>
+            <li>O bloqueio só pode ser removido por outro administrador.</li>
+        </ul>
+      </td>
+    </tr>
+    <!-- Critérios de aceitação -->
+    <tr>
+      <td rowspan="3">Critérios de aceitação</td>
+      <td>
+        <b>Bloqueio bem-sucedido</b>
+        <ul>
+            <li><b>Dado</b> que sou um administrador autenticado,</li>
+            <li><b>Quando</b> seleciono uma antena e aciono a função “Bloquear”,</li>
+            <li><b>Então</b> a antena deve imediatamente mudar para o status “Bloqueada”.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Impedimento de operações</b>
+        <ul>
+            <li><b>Dado</b> que uma antena está bloqueada,</li>
+            <li><b>Quando</b> um usuário tenta iniciar uma rotina ou mover a antena,</li>
+            <li><b>Então</b> o sistema deve impedir a ação e exibir uma mensagem de bloqueio.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Visibilidade do estado</b>
+        <ul>
+            <li><b>Dado</b> que uma antena está bloqueada,</li>
+            <li><b>Quando</b> um operador visualiza a interface,</li>
+            <li><b>Então</b> deve ser possível identificar claramente o status de bloqueio.</li>
+        </ul>
+      </td>
+    </tr>
+    <!-- PONTUAÇÃO -->
+    <tr>
+      <td>Pontuação</td>
+      <td>
+        > 5
+        <ul>
+          <li>Envolve controle de permissões e diferenças entre perfis de usuário.</li>
+          <li>Requer lógica de atualização de status e impacto em diversas funcionalidades dependentes (movimentação, rotinas, monitoramento).</li>
+          <li>Exige regras claras para cancelamento ou prevenção de operações.</li>
+        </ul>
+      </td>
+    </tr>
+    <!--  -->
+   <tr>
+      <td>Prioridade</td>
+      <td>Must</td>
+    </tr>
+    <tr>
+      <td>Depedência</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<center>
+    <figcaption>Tabela 13 - História do usuário: requisito RF12 . Fonte: Autor.</figcaption>
+</center>
+---
+
+
+### RF13 - Seleção de satélite
+
+<table>
+  <thead>
+    <tr>
+      <th>Identificador</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Id do requisito -->
+    <tr>
+      <td>ID do requisito</td>
+      <td><a href="./requisitos_elicitados.md">[RF13]</td>
+    </tr>
+    <!-- História -->
+    <tr>
+      <td>História</td>
+      <td>
+      Como usuário da plataforma,
+      eu quero poder selecionar o satélite que desejo rastrear ou monitorar,
+      para que eu possa acompanhar as posições, dados e comportamentos específicos daquele satélite em relação à antena.
+      </td>
+    </tr>
+    <!-- Descrição -->
+    <tr>
+      <td>Descrição</td>
+      <td>
+      O sistema deve permitir que o usuário visualize uma lista de satélites disponíveis e selecione qual deles deseja monitorar.
+      Após a seleção, a antena deve passar a receber e exibir dados referentes exclusivamente ao satélite escolhido, incluindo posição, trajetória, status de comunicação e parâmetros relevantes.
+      </td>
+    </tr>
+    <!-- Regras de negócio -->
+    <tr>
+      <td rowspan="5">Regras de negócio</td>
+      <td>
+        <ul>
+        <b>Lista de satélites disponíveis</b>
+          <li>
+            O usuário só pode escolher entre satélites previamente cadastrados e habilitados no sistema.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Atualização automática da antena</b>
+            <li>Após a seleção, a antena deve ajustar cálculos, ângulos e rotinas para o satélite escolhido.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Alteração de satélite</b>
+            <li>Se o usuário mudar de satélite durante um monitoramento:
+              <ul>
+                <li>o sistema deve encerrar ou ajustar automaticamente a rotina atual,</li>
+                <li>deve solicitar confirmação caso exista operação em andamento.</li>
+              </ul>
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Registro da seleção</b>
+            <li>
+              A escolha do satélite deve ser registrada para histórico e auditoria.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Informações básicas exibidas</b>
+            <li>
+              A lista deve exibir dados essenciais para auxiliar na identificação do satélite (nome, tipo, órbita, ID).
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <!-- Critérios de aceitação -->
+    <tr>
+      <td rowspan="5">Critérios de aceitação</td>
+      <td>
+        <b>Exibição da lista</b>
+        <ul>
+            <li><b>Dado</b> que estou na interface de monitoramento,</li>
+            <li><b>Quando</b> visualizo a área de seleção de satélites,</li>
+            <li><b>Então</b> devo ver uma lista contendo todos os satélites disponíveis no sistema.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Seleção bem-sucedida</b>
+        <ul>
+            <li><b>Dado</b> que selecionei um satélite,</li>
+            <li><b>Quando</b> confirmo a escolha,</li>
+            <li><b>Então</b> a antena deve passar imediatamente a monitorar o satélite escolhido.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Atualização dos cálculos</b>
+        <ul>
+            <li><b>Dado</b> que um satélite foi selecionado,</li>
+            <li><b>Quando</b> a antena iniciar ou atualizar sua rotina de rastreamento,</li>
+            <li><b>Então</b> ela deve utilizar os parâmetros orbitais e dados do satélite correspondente.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Mensagens claras ao usuário</b>
+        <ul>
+            <li><b>Dado</b> que existe uma rotina ativa,</li>
+            <li><b>Quando</b> tento trocar o satélite,</li>
+            <li><b>Então</b> o sistema deve solicitar confirmação, evitando trocas acidentais.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Registro da ação</b>
+        <ul>
+            <li><b>Dado</b> que selecionei ou alterei o satélite,</li>
+            <li><b>Quando</b> consulto o histórico de operações,</li>
+            <li><b>Então</b> devo encontrar um registro com data, hora e satélite selecionado.</li>
+        </ul>
+      </td>
+    </tr>
+    <!-- PONTUAÇÃO -->
+    <tr>
+      <td>Pontuação</td>
+      <td>
+        > 8
+        <ul>
+          <li>Requer integração com dados orbitais e cálculos de rastreamento.</li>
+          <li>Requer lógica de atualização de status e impacto em diversas funcionalidades dependentes (movimentação, rotinas, monitoramento).</li>
+          <li>Demanda consistência entre interface, backend e hardware.</li>
+        </ul>
+      </td>
+    </tr>
+    <!--  -->
+   <tr>
+      <td>Prioridade</td>
+      <td>Must</td>
+    </tr>
+    <tr>
+      <td>Depedência</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<center>
+    <figcaption>Tabela 14 - História do usuário: requisito RF13 . Fonte: Autor.</figcaption>
+</center>
+---
+
+### RF14 - Listagem de satélites disponíveis
+
+<table>
+  <thead>
+    <tr>
+      <th>Identificador</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Id do requisito -->
+    <tr>
+      <td>ID do requisito</td>
+      <td><a href="./requisitos_elicitados.md">[RF14]</td>
+    </tr>
+    <!-- História -->
+    <tr>
+      <td>História</td>
+      <td>
+      Como usuário da plataforma,
+      eu quero visualizar uma lista de todos os satélites disponíveis para monitoramento,
+      para que eu possa identificar rapidamente quais satélites podem ser rastreados e selecionar o mais adequado para minha operação.
+      </td>
+    </tr>
+    <!-- Descrição -->
+    <tr>
+      <td>Descrição</td>
+      <td>
+      O sistema deve exibir uma lista completa dos satélites cadastrados e disponíveis para monitoramento.
+      Cada item da lista deve apresentar informações básicas que facilitem a identificação do satélite, como nome, tipo, ID, categoria (ex.: geoestacionário, LEO), e outros dados relevantes definidos pelo sistema.A lista deve ser carregada automaticamente sempre que o usuário acessar a área correspondente.
+      </td>
+    </tr>
+    <!-- Regras de negócio -->
+    <tr>
+      <td rowspan="4">Regras de negócio</td>
+      <td>
+        <ul>
+        <b>Origem dos dados</b>
+          <li>
+            A lista deve ser composta apenas por satélites cadastrados e habilitados na base de dados interna.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Informações mínimas exibidas</b>
+            Cada satélite deve exibir:
+            <li>nome,</li>
+            <li>tipo/orbita,</li>
+            <li>identificação única,</li>
+            <li>disponibilidade para monitoramento.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Atualização automática</b>
+            <li>A lista deve ser atualizada sempre que houver alterações internas cadastradas.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Ordenação e filtragem</b>
+            <li>
+              O usuário pode ordenar ou filtrar por parâmetros como tipo de satélite, nome ou órbita.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <!-- Critérios de aceitação -->
+    <tr>
+      <td rowspan="2">Critérios de aceitação</td>
+      <td>
+        <b>Exibição da lista</b>
+        <ul>
+            <li><b>Dado</b> que estou autenticado na plataforma,</li>
+            <li><b>Quando</b> acesso a área de satélites disponíveis,</li>
+            <li><b>Então</b> devo visualizar uma lista com todos os satélites cadastrados e habilitados.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Seleção bem-sucedida</b>
+        <ul>
+            <li><b>Dado</b> um satélite listado,</li>
+            <li><b>Quando</b> observo sua entrada na lista,</li>
+            <li><b>Então</b> devo ver suas informações básicas (nome, tipo, ID e status de disponibilidade).</li>
+        </ul>
+      </td>
+    </tr>
+    <!-- PONTUAÇÃO -->
+    <tr>
+      <td>Pontuação</td>
+      <td>
+        > 3
+        <ul>
+          <li>É uma funcionalidade mais simples e principalmente de leitura.</li>
+          <li>Envolve apenas carregamento de dados e apresentação na interface.</li>
+          <li>Pode envolver filtros/ordenação, mas ainda é tecnicamente simples.</li>
+        </ul>
+      </td>
+    </tr>
+    <!--  -->
+   <tr>
+      <td>Prioridade</td>
+      <td>Should</td>
+    </tr>
+    <tr>
+      <td>Depedência</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<center>
+    <figcaption>Tabela 15 - História do usuário: requisito RF14 . Fonte: Autor.</figcaption>
+</center>
+---
+
+### RF15 - Visualizar trajetória do satélite
+
+<table>
+  <thead>
+    <tr>
+      <th>Identificador</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Id do requisito -->
+    <tr>
+      <td>ID do requisito</td>
+      <td><a href="./requisitos_elicitados.md">[RF15]</td>
+    </tr>
+    <!-- História -->
+    <tr>
+      <td>História</td>
+      <td>
+      Como usuário da plataforma,
+      eu quero visualizar a trajetória do satélite selecionado,
+      para que eu possa entender sua rota orbital, acompanhar seu movimento e tomar decisões mais precisas durante o monitoramento.
+      </td>
+    </tr>
+    <!-- Descrição -->
+    <tr>
+      <td>Descrição</td>
+      <td>
+      O sistema deve exibir a trajetória orbital do satélite escolhido pelo usuário, incluindo sua posição atual e o caminho previsto com base em dados orbitais atualizados. A trajetória deve ser apresentada de forma visual, preferencialmente em um mapa ou representação gráfica, permitindo ao usuário compreender o movimento do satélite ao longo do tempo. A posição do satélite deve ser atualizada dinamicamente conforme os dados recebidos, garantindo que o usuário tenha uma visualização em tempo real ou quase real.
+      </td>
+    </tr>
+    <!-- Regras de negócio -->
+    <tr>
+      <td rowspan="4">Regras de negócio</td>
+      <td>
+        <ul>
+        <b>Origem dos dados</b>
+          <li>
+            A trajetória deve ser calculada com base em dados orbitais válidos e atualizados segundo o padrão exigido.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Atualização em tempo real</b>
+            <li>A posição do satélite deve ser atualizada automaticamente, respeitando os intervalos definidos pelo sistema.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Visualização obrigatória</b>
+            <li>A trajetória só pode ser exibida se houver um satélite selecionado previamente.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Coerência de dados</b>
+            <li>
+              A trajetória exibida deve corresponder exclusivamente ao satélite escolhido, evitando sobreposição ou confusão com outros satélites.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <!-- Critérios de aceitação -->
+    <tr>
+      <td rowspan="4">Critérios de aceitação</td>
+      <td>
+        <b>Exibição da trajetória</b>
+        <ul>
+            <li><b>Dado</b> que selecionei um satélite,</li>
+            <li><b>Quando</b> acesso a visualização da trajetória,</li>
+            <li><b>Então</b> devo ver sua rota orbital completa (passada e prevista).</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Posição atual do satélite</b>
+        <ul>
+            <li><b>Dado</b> um satélite com dados orbitais válidos,</li>
+            <li><b>Quando</b> observo a visualização,</li>
+            <li><b>Então</b> devo ver sua posição atual atualizada dinamicamente.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Coerência dos dados exibidos</b>
+        <ul>
+            <li><b>Dado</b> que selecionei um satélite específico,</li>
+            <li><b>Quando</b> a trajetória for exibida,</li>
+            <li><b>Então</b> ela deve corresponder exclusivamente a esse satélite.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Atualização correta</b>
+        <ul>
+            <li><b>Dado</b> que os dados orbitais sejam atualizados,</li>
+            <li><b>Quando</b> retorno à visualização,</li>
+            <li><b>Então</b> a trajetória deve refletir essas alterações sem inconsistências.</li>
+        </ul>
+      </td>
+    </tr>
+    <!-- PONTUAÇÃO -->
+    <tr>
+      <td>Pontuação</td>
+      <td>
+        > 8
+        <ul>
+          <li>Envolve cálculos complexos e processamento de dados orbitais.</li>
+          <li>Necessita renderização gráfica em mapa ou interface visual especial.</li>
+          <li>Exige atualização periódica/contínua (quase real time).</li>
+        </ul>
+      </td>
+    </tr>
+    <!--  -->
+   <tr>
+      <td>Prioridade</td>
+      <td>Must</td>
+    </tr>
+    <tr>
+      <td>Depedência</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<tr>
+      <td>Prioridade</td>
+      <td>Should</td>
+    </tr>
+    <tr>
+      <td>Depedência</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+
+<center>
+    <figcaption>Tabela 16 - História do usuário: requisito RF15 . Fonte: Autor.</figcaption>
+</center>
+---
+
+### RF16 - Alerta de recepção de dados
+
+<table>
+  <thead>
+    <tr>
+      <th>Identificador</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Id do requisito -->
+    <tr>
+      <td>ID do requisito</td>
+      <td><a href="./requisitos_elicitados.md">[RF16]</td>
+    </tr>
+    <!-- História -->
+    <tr>
+      <td>História</td>
+      <td>
+      Como usuário da plataforma,
+      eu quero ser alertado quando a antena não estiver recebendo dados do satélite selecionado,
+      para que eu possa identificar rapidamente falhas de comunicação e tomar ações corretivas sem comprometer o monitoramento.
+      </td>
+    </tr>
+    <!-- Descrição -->
+    <tr>
+      <td>Descrição</td>
+      <td>
+      O sistema deve monitorar continuamente se a antena está recebendo corretamente os dados provenientes do satélite selecionado.
+      Quando houver qualquer interrupção, ausência de pacotes, perda de sinal ou inconsistência na transmissão, o software deve emitir um alerta visual e/ou sonoro ao usuário.
+      </td>
+    </tr>
+    <!-- Regras de negócio -->
+    <tr>
+      <td rowspan="5">Regras de negócio</td>
+      <td>
+        <ul>
+        <b>Base dos dados monitorados</b>
+          <li>
+            O alerta deve ser disparado com base nos parâmetros definidos, como ausência de pacotes por tempo X, perda de sinal ou inconsistência de telemetria.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Dependência do satélite selecionado</b>
+            <li>O sistema só deve gerar o alerta caso um satélite esteja previamente selecionado.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+            <b>Diferenciação de estado</b> </br>
+            O sistema deve distinguir falha de recepção de dados de:
+            <ul>
+              <li>antena bloqueada,</li>
+              <li>antena inativa,</li>
+              <li>antena desconectada ou em manutenção.</li>
+            </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Atualização contínua</b>
+            <li>
+              A verificação deve ocorrer em tempo real ou em intervalos definidos pelo sistema.
+            </li>
+        </ul>
+      </td>
+    </tr>
+      <tr>
+      <td>
+        <ul>
+            <b>Restauração de comunicação</b>
+            <li>
+              Quando os dados voltarem a ser recebidos, o sistema deve remover o alerta e retornar ao estado normal.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <!-- Critérios de aceitação -->
+    <tr>
+      <td rowspan="5">Critérios de aceitação</td>
+      <td>
+        <b>Alerta de falha de recepção</b>
+        <ul>
+            <li><b>Dado</b> que selecionei um satélite,</li>
+            <li><b>Quando</b> a antena deixar de receber seus dados,</li>
+            <li><b>Então</b> o sistema deve exibir um alerta claro indicando a falha.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Identificação da antena afetada</b>
+        <ul>
+            <li><b>Dado</b> que existem várias antenas,</li>
+            <li><b>Quando</b> ocorre falha em uma delas,</li>
+            <li><b>Então</b> o alerta deve indicar exatamente qual antena está com problema.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Retorno ao estado normal</b>
+        <ul>
+            <li><b>Dado</b> que a falha de recepção foi resolvida,</li>
+            <li><b>Quando</b> a antena voltar a receber dados,</li>
+            <li><b>Então</b> o alerta deve ser removido automaticamente.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Diferenciação de estados</b>
+        <ul>
+            <li><b>Dado</b> que a antena esteja bloqueada, desligada ou em manutenção,</li>
+            <li><b>Quando</b> consulto o status,</li>
+            <li><b>Então</b> o sistema não deve exibir alerta de falha de recepção, mas sim o estado correto.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Atualização contínua</b>
+        <ul>
+            <li><b>Dado</b> que os dados da antena são atualizados periodicamente,</li>
+            <li><b>Quando</b> ocorre uma interrupção,</li>
+            <li><b>Então</b> o sistema deve detectar e exibir o alerta no próximo ciclo de atualização.</li>
+        </ul>
+      </td>
+    </tr>
+    <!-- PONTUAÇÃO -->
+    <tr>
+      <td>Pontuação</td>
+      <td>
+        > 5
+        <ul>
+          <li>Exige monitoramento contínuo e análise de dados em tempo real.</li>
+          <li>Requer lógica de diferenciação entre múltiplos estados possíveis.</li>
+          <li>Tem impacto direto no fluxo operacional e requer alta confiabilidade.</li>
+        </ul>
+      </td>
+    </tr>
+    <!--  -->
+   <tr>
+      <td>Prioridade</td>
+      <td>Must</td>
+    </tr>
+    <tr>
+      <td>Depedência</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<center>
+    <figcaption>Tabela 17 - História do usuário: requisito RF16 . Fonte: Autor.</figcaption>
+</center>
+---
+
+### RF17 - Salvamento dos dados do satélite
+
+<table>
+  <thead>
+    <tr>
+      <th>Identificador</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Id do requisito -->
+    <tr>
+      <td>ID do requisito</td>
+      <td><a href="./requisitos_elicitados.md">[RF17]</td>
+    </tr>
+    <!-- História -->
+    <tr>
+      <td>História</td>
+      <td>
+      Como usuário da plataforma,
+      eu quero que o software salve automaticamente os dados recebidos do satélite,
+      para que eu possa acessá-los posteriormente, realizar análises, gerar relatórios e manter um histórico confiável das medições.
+      </td>
+    </tr>
+    <!-- Descrição -->
+    <tr>
+      <td>Descrição</td>
+      <td>
+      O sistema deve armazenar todos os dados recebidos do satélite de forma estruturada e contínua, conforme as diretrizes técnicas definidas em IN15 (parâmetros de captura e armazenamento) e EN03 (especificações de ambiente, infraestrutura ou requisitos de persistência).
+      Esses dados podem incluir telemetria, medições, posição orbital, intensidade de sinal, pacotes de comunicação ou qualquer outro conteúdo definido como relevante pelo software.
+      O processo deve ocorrer automaticamente, sem depender de ação manual do usuário, garantindo que nenhuma informação recebida em tempo real seja perdida.
+      O sistema deve ainda manter logs e registros organizados por antena, satélite e período, permitindo consultas posteriores.
+      O armazenamento deve ser resiliente, seguro e eficiente, garantindo integridade e disponibilidade dos dados, além de evitar duplicidades ou perdas de pacotes.
+      </td>
+    </tr>
+    <!-- Regras de negócio -->
+    <tr>
+      <td rowspan="7">Regras de negócio</td>
+      <td>
+        <ul>
+        <b>Captura automática</b>
+          <li>
+            Todos os dados recebidos devem ser salvos automaticamente, sem exigir ação manual do usuário.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Estruturação dos dados</b></br>
+            Os dados devem ser organizados por:
+            <li>antena,</li>
+            <li>satélite,</li>
+            <li>tipo de dado,</li>
+            <li>data e horário de recebimento.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Persistência confiável</b>
+            <li>Os dados devem ser salvos em repositório definido pelo sistema (ex.: banco de dados, armazenamento interno).</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Registro de falhas</b>
+            <li>
+              Caso o armazenamento falhe, o sistema deve registrar o erro e notificar (quando aplicável) o usuário ou administrador.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Integridade e não duplicidade</b>
+            <li>
+              Pacotes duplicados, corrompidos ou inconsistentes devem ser descartados ou tratados.
+            </li>
+        </ul>
+      </td>
+    </tr>
+        <tr>
+      <td>
+        <ul>
+            <b>Retenção de dados</b>
+            <li>
+              O sistema deve seguir a política de retenção definida internamente (tempo máximo de armazenamento, regras de limpeza etc.), caso exista.
+            </li>
+        </ul>
+      </td>
+    </tr>
+        <tr>
+      <td>
+        <ul>
+            <b>Associação ao satélite e antena</b>
+            <li>
+              Cada dado salvo deve estar claramente associado ao satélite de origem e à antena que o recebeu.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <!-- Critérios de aceitação -->
+    <tr>
+      <td rowspan="6">Critérios de aceitação</td>
+      <td>
+        <b>Armazenamento automático</b>
+        <ul>
+            <li><b>Dado</b> que estou recebendo dados de um satélite,</li>
+            <li><b>Quando</b> o sistema registrar novas informações,</li>
+            <li><b>Então</b> elas devem ser automaticamente salvas no repositório interno.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Organização correta</b>
+        <ul>
+            <li><b>Dado</b> um conjunto de dados salvos,</li>
+            <li><b>Quando</b> acesso o banco ou interface de consulta,</li>
+            <li><b>Então</b> devo ver que estão organizados por antena, satélite e horário.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Integridade do processo</b>
+        <ul>
+            <li><b>Dado</b> que um pacote de dados esteja corrompido ou duplicado,</li>
+            <li><b>Quando</b> ele chegar ao sistema,</li>
+            <li><b>Então</b> a aplicação deve descartá-lo conforme regras.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Diferenciação de estados</b>
+        <ul>
+            <li><b>Dado</b> que a antena esteja bloqueada, desligada ou em manutenção,</li>
+            <li><b>Quando</b> consulto o status,</li>
+            <li><b>Então</b> o sistema não deve exibir alerta de falha de recepção, mas sim o estado correto.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Registro de falhas</b>
+        <ul>
+            <li><b>Dado</b> que ocorrer um erro de persistência,</li>
+            <li><b>Quando</b> o sistema tentar salvar um dado,</li>
+            <li><b>Então</b> ele deve registrar a falha em log apropriado.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Registro de falhas</b>
+        <ul>
+            <li><b>Dado</b> que os dados ultrapassarem o período de retenção,</li>
+            <li><b>Quando</b> a política for aplicada,</li>
+            <li><b>Então</b> os dados antigos devem ser removidos ou arquivados.</li>
+        </ul>
+      </td>
+    </tr>
+    <!-- PONTUAÇÃO -->
+    <tr>
+      <td>Pontuação</td>
+      <td>
+        > 8
+        <ul>
+          <li>Precisa integrar informações do satélite selecionado e do status da antena.</li>
+          <li>Requer lógica de diferenciação entre múltiplos estados possíveis.</li>
+          <li>Exige monitoramento contínuo e análise de dados em tempo real.</li>
+        </ul>
+      </td>
+    </tr>
+    <!--  -->
+   <tr>
+      <td>Prioridade</td>
+      <td>Must</td>
+    </tr>
+    <tr>
+      <td>Depedência</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<center>
+    <figcaption>Tabela 18 - História do usuário: requisito RF17 . Fonte: Autor.</figcaption>
+</center>
+---
+
+### RF18 - Download de dados
+
+<table>
+  <thead>
+    <tr>
+      <th>Identificador</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Id do requisito -->
+    <tr>
+      <td>ID do requisito</td>
+      <td><a href="./requisitos_elicitados.md">[RF18]</td>
+    </tr>
+    <!-- História -->
+    <tr>
+      <td>História</td>
+      <td>
+      Como usuário da plataforma,
+      eu quero poder baixar ou exportar os dados salvos sobre o satélite e a antena,
+      para que eu possa analisá-los externamente, gerar relatórios, compartilhar informações ou integrar esses dados com outras ferramentas.
+      </td>
+    </tr>
+    <!-- Descrição -->
+    <tr>
+      <td>Descrição</td>
+      <td>
+      O sistema deve permitir que o usuário exporte ou baixe os dados armazenados relacionados à operação das antenas e ao satélite monitorado.
+      Essa funcionalidade deve seguir os padrões e especificações definidas.
+      Os dados podem incluir telemetria, histórico de posicionamento, rotinas executadas, trajetórias, intensidade de sinal, entre outros registros salvos pelo sistema.
+      A exportação deve estar disponível em pelo menos um formato de arquivo definido internamente (ex.: CSV, JSON, PDF), podendo existir múltiplas opções caso o sistema ofereça.
+      O usuário deve ser capaz de escolher um intervalo de tempo, satélite, antena ou categorias de dados, caso esses filtros sejam previstos no escopo do sistema.
+      O arquivo exportado deve refletir exatamente as informações salvas, sem perda ou alteração de integridade.
+      </td>
+    </tr>
+    <!-- Regras de negócio -->
+    <tr>
+      <td rowspan="5">Regras de negócio</td>
+      <td>
+        <ul>
+        <b>Formatos de exportação</b>
+          <li>
+          O sistema deve gerar arquivos conforme especificado.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Consistência da informação</b>
+            <li>Os dados exportados devem corresponder exatamente aos dados armazenados, sem omissões ou modificações indevidas.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Filtros de exportação</b></br>
+            Se previsto pelo sistema, o usuário pode filtrar por:
+            <li>período,</li>
+            <li>antena,</li>
+            <li>satélite,</li>
+            <li>tipo de dado,</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Integridade da exportação</b></br>
+            A exportação deve seguir as diretrizes de segurança e integridade definidas, garantindo:
+            <li>ausência de corrupção do arquivo,</li>
+            <li>completude dos dados.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Performance</b>
+            <li>
+              Exportações grandes devem ser processadas sem travar a aplicação e, se necessário, podem ocorrer de forma assíncrona.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <!-- Critérios de aceitação -->
+    <tr>
+      <td rowspan="4">Critérios de aceitação</td>
+      <td>
+        <b>Exportação disponível</b>
+        <ul>
+            <li><b>Dado</b> que estou autenticado na plataforma,</li>
+            <li><b>Quando</b> acesso a área de dados salvos,</li>
+            <li><b>Então</b> devo visualizar a opção de exportar/baixar os dados.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Geração do arquivo</b>
+        <ul>
+            <li><b>Dado</b> que selecionei filtros e formato (se aplicável),</li>
+            <li><b>Quando</b> confirmo a exportação,</li>
+            <li><b>Então</b> o sistema deve gerar um arquivo válido contendo os dados correspondentes.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Integridade e consistência</b>
+        <ul>
+            <li><b>Dado</b> que abro o arquivo baixado,</li>
+            <li><b>Quando</b> verifico seu conteúdo,</li>
+            <li><b>Então</b> os dados devem corresponder exatamente às informações salvas no sistema.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Tratamento de grandes volumes</b>
+        <ul>
+            <li><b>Dado</b> que seleciono uma exportação com grande quantidade de dados,</li>
+            <li><b>Quando</b> o sistema processa a requisição,</li>
+            <li><b>Então</b> ele deve fazê-lo sem travar a interface (ex.: execução assíncrona).</li>
+        </ul>
+      </td>
+    </tr>
+    <!-- PONTUAÇÃO -->
+    <tr>
+      <td>Pontuação</td>
+      <td>
+        > 5
+        <ul>
+          <li>Requer transformação e formatação de dados.</li>
+          <li>Pode envolver filtros, organização e padronização documentada.</li>
+          <li>Há necessidade de lidar com volumes variados de dados.</li>
+        </ul>
+      </td>
+    </tr>
+    <!--  -->
+   <tr>
+      <td>Prioridade</td>
+      <td>Should</td>
+    </tr>
+    <tr>
+      <td>Depedência</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<center>
+    <figcaption>Tabela 19 - História do usuário: requisito RF18 . Fonte: Autor.</figcaption>
+</center>
+---
+
+### RF19 - Dados do sinal
+
+<table>
+  <thead>
+    <tr>
+      <th>Identificador</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Id do requisito -->
+    <tr>
+      <td>ID do requisito</td>
+      <td><a href="./requisitos_elicitados.md">[RF19]</td>
+    </tr>
+    <!-- História -->
+    <tr>
+      <td>História</td>
+      <td>
+      Como usuário da plataforma,
+      eu quero visualizar a potência e a frequência do sinal recebido pela antena,
+      para que eu consiga avaliar a qualidade da comunicação, identificar problemas de recepção e garantir que a antena está operando corretamente dentro dos parâmetros esperados.
+      </td>
+    </tr>
+    <!-- Descrição -->
+    <tr>
+      <td>Descrição</td>
+      <td>
+      O sistema deve exibir, em tempo real ou em intervalos definidos, os valores de potência e frequência do sinal captado pela antena associada ao satélite monitorado.
+      Essas informações devem ser apresentadas de forma clara, destacada e compreensível, permitindo ao usuário avaliar rapidamente a saúde do enlace de comunicação.
+      Os valores devem ser atualizados conforme a taxa de transmissão recebida pelo sistema e devem refletir fielmente o status do sinal transmitido pelo satélite ou obtido pelo hardware da antena.
+      </td>
+    </tr>
+    <!-- Regras de negócio -->
+    <tr>
+      <td rowspan="6">Regras de negócio</td>
+      <td>
+        <ul>
+        <b>Origem dos dados</b>
+          <li>
+          Os valores de potência e frequência devem ser obtidos diretamente do hardware da antena
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Precisão obrigatória</b>
+            <li>Os números exibidos devem corresponder exatamente aos valores recebidos pelo sistema, sem arredondamentos indevidos que prejudiquem a análise técnica.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Atualização contínua</b>
+            <li>Os dados devem ser atualizados automaticamente conforme chegarem.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Apresentação clara</b>
+            <li>A interface deve mostrar a potência (ex.: dBm) e frequência (ex.: MHz) com seus respectivos rótulos e unidades padronizadas.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Indicação de anomalias</b></br>
+            Se os valores estiverem fora do intervalo esperado ou não estiverem sendo recebidos, o sistema deve indicar:
+            <li>sinal fraco,</li>
+            <li>ausência de sinal,</li>
+            <li>ou falha na comunicação da antena.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Compatibilidade com múltiplas antenas</b>
+            <li>Se houver mais de uma antena monitorada, cada uma deve exibir seus valores de potência e frequência de forma independente.</li>
+        </ul>
+      </td>
+    </tr>
+    <!-- Critérios de aceitação -->
+    <tr>
+      <td rowspan="4">Critérios de aceitação</td>
+      <td>
+        <b>Exibição dos dados</b>
+        <ul>
+            <li><b>Dado</b> que estou autenticado na plataforma,</li>
+            <li><b>Quando</b> acesso a tela da antena,</li>
+            <li><b>Então</b> devo visualizar os valores de potência e frequência do sinal recebido.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Atualização automática</b>
+        <ul>
+            <li><b>Dado</b> que a antena está enviando dados,</li>
+            <li><b>Quando</b> permaneço na tela de monitoramento,</li>
+            <li><b>Então</b> os valores devem ser atualizados automaticamente conforme novas leituras chegarem.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Indicação de problemas no sinal</b>
+        <ul>
+            <li><b>Dado</b> que o hardware envia um valor específico,</li>
+            <li><b>Quando</b> ele é exibido na tela,</li>
+            <li><b>Então</b> deve aparecer exatamente o mesmo valor (com formatação correta).</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Separação por antena</b>
+        <ul>
+            <li><b>Dado</b> que tenho múltiplas antenas abertas em diferentes janelas,</li>
+            <li><b>Quando</b> visualizo a potência e frequência de cada uma,</li>
+            <li><b>Então</b> cada janela deve mostrar somente os dados referentes à antena correspondente.</li>
+        </ul>
+      </td>
+    </tr>
+    <!-- PONTUAÇÃO -->
+    <tr>
+      <td>Pontuação</td>
+      <td>
+        > 5
+        <ul>
+          <li>Envolve leitura contínua de dados técnicos.</li>
+          <li>Requer integração com hardware.</li>
+          <li>Demanda atualização em tempo real ou quase real.</li>
+        </ul>
+      </td>
+    </tr>
+    <!--  -->
+   <tr>
+      <td>Prioridade</td>
+      <td>Should</td>
+    </tr>
+    <tr>
+      <td>Depedência</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<center>
+    <figcaption>Tabela 20 - História do usuário: requisito RF19 . Fonte: Autor.</figcaption>
+</center>
+---
+
+### RF20 - Gerenciar rotinas de operação
+
+<table>
+  <thead>
+    <tr>
+      <th>Identificador</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Id do requisito -->
+    <tr>
+      <td>ID do requisito</td>
+      <td><a href="./requisitos_elicitados.md">[RF20]</td>
+    </tr>
+    <!-- História -->
+    <tr>
+      <td>História</td>
+      <td>
+      Como usuário da plataforma,
+      Eu quero salvar e deletar rotinas de operação da antena,
+      Para que eu possa reutilizar procedimentos importantes e manter apenas aqueles que ainda são relevantes.
+      </td>
+    </tr>
+    <!-- Descrição -->
+    <tr>
+      <td>Descrição</td>
+      <td>
+      O sistema deve permitir que o usuário crie, salve e delete rotinas relacionadas ao funcionamento da antena ou aos processos de monitoramento.
+      Uma rotina consiste em um conjunto de parâmetros, comandos e configurações que o usuário deseja reutilizar posteriormente.
+      O sistema deve possibilitar:
+      <ul>
+      <li>salvar uma nova rotina com nome, descrição e parâmetros definidos,</li>
+      <li>visualizar as rotinas já cadastradas,</li>
+      <li>deletar rotinas existentes conforme a necessidade do usuário.</li>
+      </ul>
+      As rotinas salvas devem ficar acessíveis na interface correspondente, permitindo ao usuário selecioná-las, reutilizá-las ou removê-las de forma simples e organizada.
+      </td>
+    </tr>
+    <!-- Regras de negócio -->
+    <tr>
+      <td rowspan="5">Regras de negócio</td>
+      <td>
+        <ul>
+        <b>Origem e armazenamento</b>
+          <li>
+          Todas as rotinas devem ser salvas na base interna
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Campos obrigatórios ao salvar uma rotina</b>
+            Cada rotina deve conter no mínimo:
+            <li>nome da rotina,</li>
+            <li>descrição,</li>
+            <li>parâmetros ou ações associadas.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Integridade dos dados</b>
+            <li>O sistema deve impedir a criação de rotinas com nomes duplicados.</li>
+            <li>Não deve permitir salvamento de rotinas incompletas ou inválidas.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Exclusão de rotina</b>
+            <li>A exclusão deve ser permanente.</li>
+            <li>O usuário deve confirmar a ação antes de deletar.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Indicação de sucesso</b>
+            <li>O sistema deve informar claramente quando uma rotina é salva ou deletada com sucesso.</li>
+        </ul>
+      </td>
+    </tr>
+    <!-- Critérios de aceitação -->
+    <tr>
+      <td rowspan="5">Critérios de aceitação</td>
+      <td>
+        <b>Salvar rotina</b>
+        <ul>
+            <li><b>Dado</b> que estou autenticado na plataforma,</li>
+            <li><b>Quando</b> preencho os dados obrigatórios de uma nova rotina e clico para salvar,</li>
+            <li><b>Então</b> a rotina deve ser registrada e exibida na lista de rotinas disponíveis.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Validação de nomes duplicados</b>
+        <ul>
+            <li><b>Dado</b> que já existe uma rotina cadastrada com o mesmo nome,</li>
+            <li><b>Quando</b> tento salvar outra rotina com esse nome,</li>
+            <li><b>Então</b> o sistema deve impedir o salvamento e exibir uma mensagem de erro.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Listar rotinas</b>
+        <ul>
+            <li><b>Dado</b> que tenho rotinas cadastradas,</li>
+            <li><b>Quando</b> acesso a área de rotinas,</li>
+            <li><b>Então</b> devo visualizar todas as rotinas previamente salvas.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Deletar rotina</b>
+        <ul>
+            <li><b>Dado</b> que desejo remover uma rotina,</li>
+            <li><b>Quando</b> clico para deletá-la e confirmo a ação,</li>
+            <li><b>Então</b> ela deve ser removida permanentemente da lista.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Exibir confirmação</b>
+        <ul>
+            <li><b>Dado</b> que salvei ou deletei uma rotina,</li>
+            <li><b>Quando</b> a operação é concluída,</li>
+            <li><b>Então</b> devo visualizar uma confirmação clara do sucesso da ação.</li>
+        </ul>
+      </td>
+    </tr>
+    <!-- PONTUAÇÃO -->
+    <tr>
+      <td>Pontuação</td>
+      <td>
+        > 5
+        <ul>
+          <li>Envolve criação, validação, listagem e exclusão de dados (CRUD).</li>
+          <li>Exige regras de integridade e confirmação de ações.</li>
+          <li>Tem dependências de armazenamento interno.</li>
+        </ul>
+      </td>
+    </tr>
+    <!--  -->
+   <tr>
+      <td>Prioridade</td>
+      <td>Must</td>
+    </tr>
+    <tr>
+      <td>Depedência</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<center>
+    <figcaption>Tabela 21 - História do usuário: requisito RF20 . Fonte: Autor.</figcaption>
+</center>
+---
+
+
+### RF21 - Execução de rotinas de calibração
+
+<table>
+  <thead>
+    <tr>
+      <th>Identificador</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Id do requisito -->
+    <tr>
+      <td>ID do requisito</td>
+      <td><a href="./requisitos_elicitados.md">[RF21]</td>
+    </tr>
+    <!-- História -->
+    <tr>
+      <td>História</td>
+      <td>  
+        Como usuário da plataforma,
+        eu quero poder realizar rotinas de calibração na antena,
+        para que eu consiga garantir que o equipamento esteja corretamente ajustado, alinhado e operando dentro dos parâmetros ideais.
+      </td>
+    </tr>
+    <!-- Descrição -->
+    <tr>
+      <td>Descrição</td>
+      <td>
+          O sistema deve permitir que o usuário execute rotinas de calibração definidas.
+          Essas rotinas podem incluir ajustes automáticos ou assistidos, voltados para alinhar a antena, corrigir desvios, validar sensores e otimizar a recepção de sinal.
+          A plataforma deve exibir:
+          <li>o status da rotina durante a execução, </li>
+          <li>resultado final da calibração (sucesso, falha, alertas). </li>
+          O sistema também deve impedir a execução simultânea de calibrações se houver limitações internas ou restrições do hardware.
+          As rotinas devem ser executadas apenas quando a antena estiver disponível e não estiver em operação crítica que impeça o procedimento.
+      </td>
+    </tr>
+    <!-- Regras de negócio -->
+    <tr>
+      <td rowspan="6">Regras de negócio</td>
+      <td>
+        <ul>
+        <b>Conformidade com padrões</b>
+            <li>
+            Toda rotina de calibração deve seguir os parâmetros e especificações detalhadas.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Execução controlada</b>
+            <li>
+            A antena não pode executar outra rotina simultaneamente que conflite com a calibração.
+            </li>
+            <li>
+            O sistema deve validar se a antena está apta para ser calibrada antes de iniciar o procedimento.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Feedback ao usuário</b></br>
+            Durante a calibração, o sistema deve apresentar indicadores como:
+            <li>progresso,</li>
+            <li>avisos de erro ou interrupção.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Resultados obrigatórios</b></br>
+            Ao final da rotina, o sistema deve registrar e exibir o resultado:
+            <li>concluída com sucesso,</li>
+            <li>falha na calibração.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Resultados obrigatórios</b>
+            <li>O sistema deve permitir interromper a rotina somente se IN08 permitir interrupção segura durante o processo.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Disponibilidade da antena</b>
+            <li>A calibração só pode ser realizada quando a antena estiver operacional e sem bloqueios internos.</li>
+        </ul>
+      </td>
+    </tr>
+    <!-- Critérios de aceitação -->
+    <tr>
+      <td rowspan="3">Critérios de aceitação</td>
+      <td>
+        <b>Iniciar calibração</b>
+        <ul>
+            <li><b>Dado</b> que estou autenticado e a antena está disponível,</li>
+            <li><b>Quando</b> seleciono a opção de calibrar,</li>
+            <li><b>Então</b> o sistema deve iniciar a rotina conforme os padrões definidos.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Resultado final</b>
+        <ul>
+            <li><b>Dado</b> que a rotina é concluída,</li>
+            <li><b>Quando</b> a calibração termina,</li>
+            <li><b>Então</b> devo visualizar o resultado (sucesso, alerta ou falha).</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Interrupção</b>
+        <ul>
+            <li><b>Dado</b> que a rotina suporta interrupção</li>
+            <li><b>Quando</b> clico em interromper,</li>
+            <li><b>Então</b> o sistema deve parar a calibração e indicar que a rotina foi interrompida.</li>
         </ul>
       </td>
     </tr>
@@ -945,10 +3345,11 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     <tr>
       <td>Pontuação</td>
       <td> 
-          > 2
+          > 5
           <ul>
-            <li>Embora seja um requisito essencial, o login é uma funcionalidade tecnicamente bem conhecida.</li>
-            <li>Envolve validações, segurança e criação de sessão, mas não exige integrações externas complexas.</li>
+            <li>Envolve interação direta com hardware e execução de processos técnicos.</li>
+            <li>Apresenta risco médio-alto por envolver procedimentos sensíveis.</li>
+            <li>Requer feedback contínuo e tratamento de erros.</li>
           </ul>
       </td>
     </tr>
@@ -965,12 +3366,169 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
 </table>
 
 <center>
-    <figcaption>Tabela 5 - História do usuário: requisito RF04. Fonte: Autor.</figcaption>
+    <figcaption>Tabela 22 - História do usuário: requisito RF21. Fonte: Autor.</figcaption>
 </center>
 
 ---
 
-### RF05 - Redefinir senha
+### RF22 - Interrupção de rotinas
+
+<!-- História -->
+<table>
+  <thead>
+    <tr>
+      <th>Identificador</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+  <td>História</td>
+  <td>
+    Como usuário da plataforma,  
+    eu quero poder interromper uma rotina em andamento,  
+    para que eu mantenha o controle total das operações e consiga evitar procedimentos indevidos, riscos ao equipamento ou execuções acidentais.
+  </td>
+</tr>
+
+<!-- Descrição -->
+<tr>
+  <td>Descrição</td>
+  <td>
+    O sistema deve permitir que o usuário interrompa qualquer rotina em execução, desde que essa interrupção não cause risco à integridade da antena ou deixe o equipamento em estado crítico.  
+    Ao solicitar a interrupção, o sistema deve:
+    <li>pausar imediatamente a execução da rotina,</li>
+    <li>verificar se a interrupção é segura naquele momento,</li>
+    <li>emitir aviso claro ao usuário caso a interrupção possa causar instabilidade,</li>
+    <li>registrar o evento em log,</li>
+    <li>retornar a antena para um estado operacional seguro sempre que possível.</li>
+    A interrupção deve ser bloqueada caso:
+    <li>o processo esteja em etapa crítica e não seja seguro parar,</li>
+    <li>a antena esteja realizando uma operação que não permite cancelamento imediato (ex.: calibração final, alinhamento de precisão).</li>
+    Caso o cancelamento não seja permitido, o sistema deve informar o motivo e sugerir quando o cancelamento poderá ser feito.
+  </td>
+</tr>
+
+<!-- Regras de negócio -->
+<tr>
+  <td rowspan="4">Regras de negócio</td>
+  <td>
+    <ul>
+      <b>Interrupção controlada</b>
+      <li>
+        A rotina só pode ser interrompida se estiver em um estágio seguro para cancelamento.
+      </li>
+    </ul>
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <ul>
+      <b>Aviso de risco</b>
+      <li>
+        Se a interrupção tiver risco potencial, o sistema deve alertar o usuário antes de concluir a ação.
+      </li>
+    </ul>
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <ul>
+      <b>Retorno ao estado seguro</b>
+      <li>
+        Após a interrupção, a antena deve ser colocada automaticamente em estado seguro, quando possível.
+      </li>
+    </ul>
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <ul>
+      <b>Registro da interrupção</b>
+      <li>
+        Toda interrupção deve ser registrada internamente para auditoria.
+      </li>
+    </ul>
+  </td>
+</tr>
+
+<!-- Critérios de aceitação -->
+<tr>
+  <td rowspan="4">Critérios de aceitação</td>
+  <td>
+    <b>Interrupção bem-sucedida</b>
+    <ul>
+      <li><b>Dado</b> que uma rotina está em execução,</li>
+      <li><b>Quando</b> o usuário solicita sua interrupção,</li>
+      <li><b>Então</b> o sistema deve interromper a rotina se a operação for segura.</li>
+    </ul>
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <b>Mensagem de impossibilidade</b>
+    <ul>
+      <li><b>Dado</b> que a rotina está em uma fase crítica,</li>
+      <li><b>Quando</b> o usuário tenta interromper,</li>
+      <li><b>Então</b> o sistema deve informar que o cancelamento não é permitido naquele momento.</li>
+    </ul>
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <b>Retorno ao estado seguro</b>
+    <ul>
+      <li><b>Dado</b> que a rotina foi interrompida,</li>
+      <li><b>Quando</b> o processo é encerrado,</li>
+      <li><b>Então</b> a antena deve retornar automaticamente a um estado operacional seguro.</li>
+    </ul>
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <b>Registro em log</b>
+    <ul>
+      <li><b>Dado</b> que a rotina foi interrompida,</li>
+      <li><b>Quando</b> o sistema efetivar o cancelamento,</li>
+      <li><b>Então</b> ele deve registrar o evento internamente.</li>
+    </ul>
+  </td>
+</tr>
+
+<!-- Pontuação -->
+<tr>
+  <td>Pontuação</td>
+  <td>
+    > 5
+    <ul>
+      <li>Envolve lógica de controle e segurança.</li>
+      <li>Não exige processamento intensivo, mas tem impacto operacional.</li>
+    </ul>
+  </td>
+</tr>
+
+<!-- Prioridade -->
+<tr>
+  <td>Prioridade</td>
+  <td>Must</td>
+</tr>
+
+<!-- Dependência -->
+<tr>
+  <td>Dependência</td>
+  <td>-</td>
+</tr>
+</tbody> </table> <center> <figcaption>Tabela 23 - História do usuário: requisito RF22. Fonte: Autor.</figcaption> </center>
+
+---
+
+### RF23 - Bloqueio de rotinas invalidas
 
 <table>
   <thead>
@@ -983,22 +3541,227 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     <!-- Id do requisito -->
     <tr>
       <td>ID do requisito</td>
-      <td><a href="./requisitos_elicitados.md">[RF05]</td>
+      <td><a href="./requisitos_elicitados.md">[RF23]</td>
     </tr>
     <!-- História -->
     <tr>
       <td>História</td>
       <td>  
         Como usuário da plataforma,
-        eu quero redefinir minha senha quando esquecer ou desejar alterá-la,
-        para garantir que eu consiga recuperar o acesso ao sistema com segurança e sem depender de suporte técnico.
+        eu quero que o sistema bloqueie rotinas inválidas antes que elas sejam executadas,
+        para que eu evite erros operacionais, não comprometa a integridade da antena e garanta que apenas rotinas seguras, permitidas e coerentes sejam realizadas.
       </td>
     </tr>
     <!-- Descrição -->
     <tr>
       <td>Descrição</td>
       <td>
-          O sistema deve oferecer um fluxo seguro para redefinição de senha. A partir da tela de login, o usuário poderá solicitar a recuperação informando seu e-mail registrado. O sistema enviará um link de redefinição contendo um token temporário e exclusivo. Ao acessar esse link, o usuário poderá cadastrar uma nova senha que esteja em conformidade com as regras de segurança definidas pela organização. Após concluir o processo, a senha antiga deixa de ser válida.
+          O sistema deve impedir a execução de qualquer rotina considerada inválida conforme as regras definidas.
+          Uma rotina é considerada inválida quando:
+          <li>viola parâmetros técnicos definidos,</li>
+          <li>contém configurações incompatíveis com o estado atual da antena,</li>
+          <li>está fora dos padrões operacionais permitidos,</li>
+          <li>representa risco ao hardware,</li>
+          <li>depende de condições que não foram atendidas (ex.: ausência de calibração, bloqueios ativos, configurações incompletas),</li>
+          </li>ou foi configurada com valores fora dos limites permitidos.</li>
+          Ao detectar uma rotina inválida, o sistema deve:
+          <li>impedir sua execução,</li>
+          <li>informar claramente o motivo do bloqueio,</li>
+          <li>orientar o usuário sobre o que deve ser corrigido,</li>
+          <li>registrar o evento para auditoria ou análise técnica.</li>
+          O bloqueio deve ocorrer antes da execução, nunca durante, exceto se a rotina perder a validade por mudança de estado da antena (ex.: falha de hardware).
+          O sistema também deve impedir que rotinas inválidas sejam salvas como válidas no banco de dados.
+      </td>
+    </tr>
+    <!-- Regras de negócio -->
+    <tr>
+      <td rowspan="7">Regras de negócio</td>
+      <td>
+        <ul>
+        <b>Validação obrigatória antes da execução</b>
+            <li>
+            Toda rotina deve ser validada pelo sistema antes de ser executada.
+            Rotinas inválidas devem ser bloqueadas.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Avaliação do estado da antena</b></br>
+           Dependendo da criticidade do sistema, pode ser exigido que o usuário confirme a interrupção para evitar cancelamentos acidentais — exceto em modo emergencial, onde a interrupção deve ser imediaA rotina deve ser compatível com o estado atual da antena:
+            <li>calibrada,</li>
+            <li>desbloqueada,</li>
+            <li>monitorando o satélite correto,</li>
+            <li>com status operacional estável.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Parâmetros técnicos</b></br>
+            <li>Os valores configurados devem respeitar todos os limites definidos.
+            Valores fora de faixa tornam a rotina inválida.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Bloqueio total</b>
+            <li>
+            Uma rotina inválida deve ser completamente impedida de avançar.
+            Nenhuma parte da execução deve começar.
+            </li>
+        </ul>
+      </td>
+    </tr>
+        <tr>
+      <td>
+        <ul>
+            <b>Mensagem explicativa</b>
+            <li>
+            O sistema deve exibir uma mensagem clara informando o erro, destacando qual condição tornou a rotina inválida.
+            </li>
+        </ul>
+      </td>
+    </tr>
+        <tr>
+      <td>
+        <ul>
+            <b>Registro do evento</b>
+            <li>
+            O bloqueio deve ser registrado em log interno para auditoria.
+            </li>
+        </ul>
+      </td>
+    </tr>
+        <tr>
+      <td>
+        <ul>
+            <b>Prevenção de salvamento</b>
+            <li>
+            Rotinas inválidas não podem ser salvas ou marcadas como finalizadas no sistema.
+            </li>
+        </ul>
+      </td>
+    </tr>
+    <!-- Critérios de aceitação -->
+    <tr>
+      <td rowspan="5">Critérios de aceitação</td>
+      <td>
+        <b>Bloqueio de execução</b>
+        <ul>
+            <li><b>Dado</b> que o usuário tenta executar uma rotina,</li>
+            <li><b>Quando</b> a rotina apresenta qualquer condição inválida,</li>
+            <li><b>Então</b> o sistema deve impedir sua execução e exibir o motivo do bloqueio..</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Mensagem clara de erro</b>
+        <ul>
+            <li><b>Dado</b> que a rotina foi considerada inválida,</li>
+            <li><b>Quando</b> o sistema bloqueia sua execução,</li>
+            <li><b>Então</b> ele deve apresentar uma explicação objetiva e compreensível.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Prevenção de salvamento</b>
+        <ul>
+            <li><b>Dado</b> que o usuário tenta salvar uma rotina com valores inválidos,,</li>
+            <li><b>Quando</b> os dados são validados,</li>
+            <li><b>Então</b> o sistema deve impedir o salvamento e informar o erro.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Estado necessário da antena</b>
+        <ul>
+            <li><b>Dado</b> que a antena não está calibrada ou está em condição incompatível,</li>
+            <li><b>Quando</b> o usuário tenta iniciar uma rotina,</li>
+            <li><b>Então</b> ela deve ser automaticamente marcada como inválida.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Registro em log</b>
+        <ul>
+            <li><b>Dado</b> que uma rotina inválida foi detectada,</li>
+            <li><b>Quando</b> o bloqueio acontece,</li>
+            <li><b>Então</b> o sistema deve registrar o evento internamente.</li>
+        </ul>
+      </td>
+    </tr>
+    <!-- PONTUAÇÃO -->
+    <tr>
+      <td>Pontuação</td>
+      <td> 
+          > 8
+          <ul>
+            <li>Envolve validações estruturais e técnicas.</li>
+            <li>Impacta diretamente rotinas críticas do sistema.</li>
+            <li>Não envolve processamento pesado, mas tem dependência lógica importante.</li>
+          </ul>
+      </td>
+    </tr>
+    <!--  -->
+   <tr>
+      <td>Prioridade</td>
+      <td>Must</td>
+    </tr>
+    <tr>
+      <td>Depedência</td>
+      <td>
+          -
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<center>
+    <figcaption>Tabela 24 - História do usuário: requisito RF23. Fonte: Autor.</figcaption>
+</center>
+
+---
+
+### RF24 - Cálculo e envio dos ângulos de posicionamento da antena
+
+<table>
+  <thead>
+    <tr>
+      <th>Identificador</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Id do requisito -->
+    <tr>
+      <td>ID do requisito</td>
+      <td><a href="./requisitos_elicitados.md">[RF24]</td>
+    </tr>
+    <!-- História -->
+    <tr>
+      <td>História</td>
+      <td>  
+        Como operador do sistema,
+        eu quero que o software calcule automaticamente os ângulos de posicionamento (azimute e elevação) e os envie para a antena,
+        para garantir que ela se mova corretamente até a posição desejada sem que eu precise realizar cálculos manuais.
+      </td>
+    </tr>
+    <!-- Descrição -->
+    <tr>
+      <td>Descrição</td>
+      <td>
+          O software deve ser capaz de calcular os ângulos necessários para o posicionamento da antena com base nos parâmetros fornecidos pelo usuário, pelo satélite selecionado ou pela rotina configurada. Após o cálculo, o sistema deve enviar esses valores para a antena por meio da interface de comunicação especificada (serial, rede, API interna etc.).
+          A funcionalidade deve garantir precisão adequada, obedecer aos limites de movimentação da antena e assegurar que os comandos sejam enviados de forma segura e confiável, respeitando o tempo e a ordem esperada pelo hardware.
       </td>
     </tr>
     <!-- Regras de negócio -->
@@ -1006,9 +3769,9 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
       <td rowspan="5">Regras de negócio</td>
       <td>
         <ul>
-        <b>Token de redefinição</b>
+        <b>Cálculo baseado em parâmetros válidos</b>
             <li>
-            O sistema deve gerar um token único, criptografado e com tempo de expiração (ex.: 15 minutos). Esse token deve ser associado ao usuário que iniciou o processo e só pode ser utilizado uma única vez.
+            Os ângulos só podem ser calculados se todos os dados necessários estiverem disponíveis (como posição do satélite, localização da antena e horário). Parâmetros incompletos ou inválidos devem impedir o cálculo.
             </li>
         </ul>
       </td>
@@ -1016,9 +3779,20 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     <tr>
       <td>
         <ul>
-            <b>Validação de segurança da nova senha</b>
+            <b>Respeito aos limites físicos da antena</b></br>
+            O cálculo e o envio devem garantir que os ângulos nunca ultrapassem os limites físicos da antena:
+            <li>Azimute: 0° a 360°</li>
+            <li>Elevação: 0° a 180°</li>
+            Comandos fora desse intervalo devem ser automaticamente bloqueados e registrados.
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+            <b>Precisão mínima</b>
             <li>
-            A nova senha deve seguir todas as diretrizes de segurança definidas pela política interna (tamanho mínimo, caracteres especiais, complexidade, etc.). O sistema não deve permitir o uso de senhas fracas.
+            O cálculo deve respeitar padrões de precisão definidos pelo sistema (ex.: erro máximo de 0,5°). Valores fora da precisão aceitável devem ser recalculados ou gerar aviso.
             </li>
         </ul>
       </td>
@@ -1026,30 +3800,19 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     <tr>
       <td>
         <ul>
-            <b>Invalidação automática de tokens</b>
-            <li>
-            Tokens expirados, já utilizados ou inválidos não devem permitir redefinição. Caso o token seja inválido, o sistema deve exibir uma mensagem genérica: “Link inválido ou expirado”.
-            </li>
+            <b>Envio seguro para o hardware</b></br>
+            A transmissão dos ângulos deve usar o protocolo de comunicação definido pelo projeto, incluindo:
+            <li>confirmação de recebimento,</li>
+            <li>tratamento de falhas de comunicação,</li>
+            <li>repetição de envio em caso de perda.</li>
         </ul>
       </td>
     </tr>
     <tr>
       <td>
         <ul>
-            <b>Confirmação de nova senha</b>
-            <li>
-            O sistema deve exigir que o usuário insira a senha duas vezes, garantindo que ambas coincidam. Caso os campos não correspondam, deve ser exibida uma mensagem de erro adequada.
-            </li>
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <ul>
-            <b>Cancelamento de sessões anteriores</b>
-            <li>
-            Após a redefinição bem-sucedida, todas as sessões ativas daquela conta devem ser encerradas automaticamente, exigindo novo login com a senha atualizada.
-            </li>
+            <b>Registro das operações</b>
+            <li>Cada cálculo e envio realizado deve ser registrado com horário e parâmetros utilizados, permitindo auditoria e rastreabilidade das operações da antena.</li>
         </ul>
       </td>
     </tr>
@@ -1057,41 +3820,41 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     <tr>
       <td rowspan="4">Critérios de aceitação</td>
       <td>
-        <b>Envio do link de recuperação</b>
+        <b>Cálculo correto</b>
         <ul>
-            <li><b>Dado</b> que estou na tela de login,</li>
-            <li><b>Quando</b> clico em “Esqueci minha senha” e informo meu e-mail válido,</li>
-            <li><b>Então</b> devo receber um link de redefinição no e-mail cadastrado.</li>
+            <li><b>Dado</b> que o usuário selecionou um satélite ou configurou uma rotina,</li>
+            <li><b>Quando</b> o software processar os dados,</li>
+            <li><b>Então</b> deve gerar ângulos de azimute e elevação respeitando a precisão definida.</li>
         </ul>
       </td>
     </tr>
     <tr>
       <td>
-        <b>Token inválido ou expirado</b>
+        <b>Envio bem-sucedido</b>
         <ul>
-            <li><b>Dado</b> que o token é inválido ou expirou,</li>
-            <li><b>Quando</b> tento acessar o link de redefinição,</li>
-            <li><b>Então</b> o sistema deve informar “Link inválido ou expirado” e oferecer opção de solicitar um novo.</li>
+            <li><b>Dado</b> que os ângulos foram calculados,</li>
+            <li><b>Quando</b> o software enviar os valores para a antena,</li>
+            <li><b>Então</b> a antena deve receber e aplicar o comando corretamente.</li>
         </ul>
       </td>
     </tr>
     <tr>
       <td>
-        <b>Redefinição bem-sucedida</b>
+        <b>Bloqueio de ângulos inválidos</b>
         <ul>
-            <li><b>Dado</b> que acessei o link válido,</li>
-            <li><b>Quando</b> preencho a nova senha respeitando as regras e confirmo,</li>
-            <li><b>Então</b> devo ver uma mensagem de sucesso e ser redirecionado para a tela de login.</li>
+            <li><b>Dado</b> que o cálculo gerar um ângulo fora dos limites físicos,</li>
+            <li><b>Quando</b> o operador tentar executar a rotina,</li>
+            <li><b>Então</b> o sistema deve impedir o envio e exibir um aviso ao usuário.</li>
         </ul>
       </td>
     </tr>
     <tr>
-    <td>
-        <b>Senha fraca ou fora do padrão</b>
+      <td>
+        <b>Registro da operação</b>
         <ul>
-            <li><b>Dado</b> que estou na página de redefinição,</li>
-            <li><b>Quando</b> digito uma senha que não está em conformidade com as regras,</li>
-            <li><b>Então</b> o sistema deve impedir a conclusão e exibir a razão (ex.: “A senha deve conter no mínimo 8 caracteres”).</li>
+            <li><b>Dado</b> que uma operação de cálculo e envio foi realizada,</li>
+            <li><b>Quando</b> o processo terminar,</li>
+            <li><b>Então</b> o sistema deve armazenar o registro da ação para consulta futura.</li>
         </ul>
       </td>
     </tr>
@@ -1099,11 +3862,13 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     <tr>
       <td>Pontuação</td>
       <td> 
-          > 4
+          > 8
           <ul>
-            <li>Envolve fluxo de segurança mais complexo que o login.</li>
-            <li>Exige geração e validação de tokens temporários.</li>
-            <li>Possui mais ramificações e verificações de segurança do que uma tela comum.</li>
+            <li>Exige implementação matemática com alto nível de precisão.</li>
+            <li>Requer integração direta com hardware ou um subsistema de simulação/controle.</li>
+            <li>Contém risco técnico moderado-alto dependendo do protocolo da antena.</li>
+            <li>Deve ser altamente confiável para evitar erros críticos.</li>
+            <li>Inclui cálculos, validações, tratamento de falhas e registro, aumentando a complexidade geral.</li>
           </ul>
       </td>
     </tr>
@@ -1116,21 +3881,484 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
       <td>Depedência</td>
       <td>
           <ul>
-            <li>[RF04]  –  Sistema de login</li>
+            <li>
+            RF19 – Status das antenas.
+            </li>
+            <li>
+            RF11 – Evolução do posicionamento da antena.
+            </li>
           </ul>
       </td>
     </tr>
   </tbody>
 </table>
 
-
 <center>
-    <figcaption>Tabela 6 - História do usuário: requisito RF05. Fonte: Autor.</figcaption>
+    <figcaption>Tabela 25 - História do usuário: requisito RF24. Fonte: Autor.</figcaption>
 </center>
+
+--- 
+
+### RF025 - Visualização do posicionamento da antena
+
+<table> <thead> <tr> <th>Identificador</th> <th>Descrição</th> </tr> </thead> <tbody> <!-- Id do requisito --> <tr> <td>ID do requisito</td> <td><a href="./requisitos_elicitados.md">[RF25]</a></td> </tr>
+<!-- História -->
+<tr>
+  <td>História</td>
+  <td>
+    Como usuário da plataforma,  
+    eu quero visualizar a evolução e o histórico completo do posicionamento da antena,  
+    para que eu compreenda o comportamento operacional ao longo do tempo, identifique padrões, verifique desvios e possa auditar mudanças realizadas.
+  </td>
+</tr>
+
+<!-- Descrição -->
+<tr>
+  <td>Descrição</td>
+  <td>
+    O sistema deve registrar, armazenar e exibir o histórico de posicionamento da antena, incluindo:
+    <li>orientação (azimute e elevação),</li>
+    <li>timestamps de cada atualização,</li>
+    <li>eventos críticos (ex.: realinhamentos, correções automáticas),</li>
+    <li>posicionamentos decorrentes de rotinas manuais ou automáticas,</li>
+    <li>erros, perdas de sinal ou variações abruptas.</li>
+
+    A visualização deve permitir:
+    <li>listar registros em uma tabela,</li>
+    <li>visualizar evolução em formato gráfico opcional,</li>
+    <li>filtrar por período, evento, tipo de rotina ou movimentação da antena,</li>
+    <li>exportar o histórico quando permitido.</li>
+
+    O histórico deve ser consistente, contínuo e não editável, garantindo integridade para auditoria.  
+    O sistema também deve registrar variações pequenas (quando relevantes), mas pode aplicar filtros para evitar excesso de informação irrelevante.
+  </td>
+</tr>
+
+<!-- Regras de negócio -->
+<tr>
+  <td rowspan="4">Regras de negócio</td>
+  <td>
+    <ul>
+      <b>Registro contínuo</b>
+      <li>Todo movimento significativo da antena deve ser registrado automaticamente.</li>
+    </ul>
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <ul>
+      <b>Integridade dos dados</b>
+      <li>O histórico não pode ser editado ou removido manualmente pelo usuário.</li>
+    </ul>
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <ul>
+      <b>Correlação de eventos</b>
+      <li>
+        Cada mudança no posicionamento deve estar associada ao evento que a originou (ex.: rotina X, intervenção manual, ajuste automático).
+      </li>
+    </ul>
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <ul>
+      <b>Filtros operacionais</b>
+      <li>O usuário deve conseguir filtrar o histórico por tempo, evento ou tipo de movimentação.</li>
+    </ul>
+  </td>
+</tr>
+
+<!-- Critérios de aceitação -->
+<tr>
+  <td rowspan="4">Critérios de aceitação</td>
+  <td>
+    <b>Exibição do histórico</b>
+    <ul>
+      <li><b>Dado</b> que o usuário acessa a tela de histórico,</li>
+      <li><b>Quando</b> há registros armazenados,</li>
+      <li><b>Então</b> o sistema deve exibir todos os posicionamentos registrados, em ordem cronológica.</li>
+    </ul>
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <b>Registro automático</b>
+    <ul>
+      <li><b>Dado</b> que a antena altera sua posição,</li>
+      <li><b>Quando</b> o movimento ultrapassa o limiar configurado,</li>
+      <li><b>Então</b> o sistema deve criar um registro no histórico com timestamp.</li>
+    </ul>
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <b>Filtros de histórico</b>
+    <ul>
+      <li><b>Dado</b> que o usuário aplica um filtro (ex.: período),</li>
+      <li><b>Quando</b> o filtro é aplicado,</li>
+      <li><b>Então</b> o sistema deve atualizar a visualização exibindo apenas registros correspondentes.</li>
+    </ul>
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <b>Dados não-editáveis</b>
+    <ul>
+      <li><b>Dado</b> que o usuário acessa um registro de histórico,</li>
+      <li><b>Quando</b> tenta modificá-lo,</li>
+      <li><b>Então</b> o sistema deve impedir qualquer edição.</li>
+    </ul>
+  </td>
+</tr>
+
+<!-- PONTUAÇÃO -->
+<tr>
+  <td>Pontuação</td>
+  <td>
+    > 8
+    <ul>
+      <li>Exige gerenciamento de dados históricos.</li>
+      <li>Requer integração com sensores ou rotinas internas.</li>
+      <li>Possui impacto em auditoria e análises operacionais.</li>
+    </ul>
+  </td>
+</tr>
+
+<!-- Prioridade -->
+<tr>
+  <td>Prioridade</td>
+  <td>Must</td>
+</tr>
+
+<!-- Dependência -->
+<tr>
+  <td>Dependência</td>
+  <td>IN14, EN05</td>
+</tr>
+
+</tbody> </table> <center> <figcaption>Tabela 26 - História do usuário: requisito RF25. Fonte: Autor.</figcaption> </center>
+
+---
+### RF26 - Exibição da última calibração da antena
+
+<table> <thead> <tr> <th>Identificador</th> <th>Descrição</th> </tr> </thead> <tbody>
+<!-- Id do requisito -->
+<tr>
+  <td>ID do requisito</td>
+  <td><a href="./requisitos_elicitados.md">[RF26]</a></td>
+</tr>
+
+<!-- História -->
+<tr>
+  <td>História</td>
+  <td>
+    Como usuário da plataforma,<br/>
+    eu quero visualizar a data e hora da última calibração realizada na antena,<br/>
+    para que eu saiba se a antena está atualizada, dentro das condições operacionais exigidas e apta para executar rotinas e monitoramento com precisão.
+  </td>
+</tr>
+
+<!-- Descrição -->
+<tr>
+  <td>Descrição</td>
+  <td>
+    O sistema deve exibir claramente a informação da última calibração da antena, incluindo:
+    <li>data completa (dia/mês/ano),</li>
+    <li>horário exato (hh:mm:ss),</li>
+    <li>tipo de calibração realizada (quando aplicável),</li>
+    <li>responsável pela calibração ou origem (manual, automática ou rotina).</li>
+
+    Essa informação deve ser exibida em locais estratégicos da interface, como:
+    <li>a tela principal da antena,</li>
+    <li>a seção de status operacional,</li>
+    <li>a área de detalhes do equipamento.</li>
+
+    O dado deve ser atualizado automaticamente sempre que uma rotina de calibração for concluída (RF21).  
+    O sistema deve garantir a integridade desse registro, impedindo alterações manuais.
+
+    A funcionalidade deve obedecer aos requisitos definidos em:
+    <li>IN12 — regras internas sobre registros operacionais,</li>
+    <li>EN08 — normas de monitoramento e exibição de estado operacional.</li>
+  </td>
+</tr>
+
+<!-- Regras de negócio -->
+<tr>
+  <td rowspan="4">Regras de negócio</td>
+  <td>
+    <ul>
+      <b>Atualização automática</b>
+      <li>A data/hora da última calibração deve ser atualizada automaticamente após a finalização de uma rotina de calibração (RF21).</li>
+    </ul>
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <ul>
+      <b>Registro imutável</b>
+      <li>A informação da última calibração não pode ser editada manualmente por nenhum usuário.</li>
+    </ul>
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <ul>
+      <b>Dependência operacional</b>
+      <li>Muitas rotinas só podem ser executadas se a antena tiver sido calibrada recentemente.  
+      O sistema deve expor claramente essa informação para apoiar as validações.</li>
+    </ul>
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <ul>
+      <b>Formato padronizado</b>
+      <li>A apresentação da data e hora deve seguir o padrão EN08 (formato, precisão e timezone).</li>
+    </ul>
+  </td>
+</tr>
+
+<!-- Critérios de aceitação -->
+<tr>
+  <td rowspan="4">Critérios de aceitação</td>
+  <td>
+    <b>Exibição da última calibração</b>
+    <ul>
+      <li><b>Dado</b> que a antena possui ao menos uma calibração registrada,</li>
+      <li><b>Quando</b> o usuário acessa a tela da antena,</li>
+      <li><b>Então</b> o sistema deve exibir a data e hora da última calibração.</li>
+    </ul>
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <b>Atualização após nova calibração</b>
+    <ul>
+      <li><b>Dado</b> que uma rotina de calibração foi concluída,</li>
+      <li><b>Quando</b> o processo termina,</li>
+      <li><b>Então</b> o sistema deve atualizar o registro imediatamente.</li>
+    </ul>
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <b>Dado não alterável</b>
+    <ul>
+      <li><b>Dado</b> que o usuário visualiza o campo “Última calibração”,</li>
+      <li><b>Quando</b> tenta editá-lo ou manipulá-lo,</li>
+      <li><b>Então</b> o sistema deve impedir a ação.</li>
+    </ul>
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <b>Indicação de ausência de calibração</b>
+    <ul>
+      <li><b>Dado</b> que a antena nunca foi calibrada,</li>
+      <li><b>Quando</b> o usuário acessa sua tela,</li>
+      <li><b>Então</b> o sistema deve exibir uma mensagem como “Nenhuma calibração registrada”.</li>
+    </ul>
+  </td>
+</tr>
+
+<!-- PONTUAÇÃO -->
+<tr>
+  <td>Pontuação</td>
+  <td>
+    > 5
+    <ul>
+      <li>Cenário simples, mas fundamental para diversas validações e rotinas.</li>
+      <li>Envolve leitura e atualização automática de dados críticos.</li>
+      <li>Baixo risco técnico, alta importância operacional.</li>
+    </ul>
+  </td>
+</tr>
+
+<!-- Prioridade -->
+<tr>
+  <td>Prioridade</td>
+  <td>Must</td>
+</tr>
+
+<!-- Dependência -->
+<tr>
+  <td>Dependência</td>
+  <td>IN12, EN08, RF21</td>
+</tr>
+
+</tbody> </table> <center> <figcaption>Tabela 27 - História do usuário: requisito RF26. Fonte: Autor.</figcaption> </center>
+---
+
+### RF27 - Alerta de necessidade de calibração da antena
+
+<table> <thead> <tr> <th>Identificador</th> <th>Descrição</th> </tr> </thead> <tbody>
+<!-- Id do requisito -->
+<tr>
+  <td>ID do requisito</td>
+  <td><a href="./requisitos_elicitados.md">[RF27]</a></td>
+</tr>
+
+<!-- História -->
+<tr>
+  <td>História</td>
+  <td>
+    Como usuário da plataforma,<br/>
+    eu quero ser alertado quando a antena precisar ser calibrada,<br/>
+    para que eu possa realizar a calibração no momento adequado, evitar perda de precisão no rastreamento e garantir que as rotinas dependentes de calibração funcionem corretamente.
+  </td>
+</tr>
+
+<!-- Descrição -->
+<tr>
+  <td>Descrição</td>
+  <td>
+    O sistema deve identificar automaticamente quando uma antena necessita de calibração e emitir avisos claros ao usuário.  
+    A necessidade de calibração pode ser determinada por diversos fatores definidos em <b>IN13</b>, como:
+    <li>tempo máximo desde a última calibração,</li>
+    <li>perda de precisão nos sensores,</li>
+    <li>detecção de deriva nos eixos,</li>
+    <li>alterações bruscas no comportamento da antena,</li>
+    <li>execução prévia de rotinas que exigem recalibração posterior.</li>
+
+    O sistema deve:
+    <li>exibir alertas visuais (ex.: banners, ícones, indicadores de atenção),</li>
+    <li>impedir a execução de rotinas que exigem calibração recente (quando aplicável),</li>
+    <li>notificar o usuário em tempo real na interface,</li>
+    <li>registrar o alerta em log interno.</li>
+
+    O alerta deve permanecer ativo até que a antena seja calibrada novamente (RF21).  
+  </td>
+</tr>
+
+<!-- Regras de negócio -->
+<tr>
+  <td rowspan="4">Regras de negócio</td>
+  <td>
+    <ul>
+      <b>Critérios definidos em IN13</b>
+      <li>Os limites e condições que determinam a necessidade de calibração devem seguir rigorosamente o que está definido em IN13.</li>
+    </ul>
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <ul>
+      <b>Alerta contínuo</b>
+      <li>O alerta deve permanecer visível enquanto a antena está fora dos padrões de calibração.</li>
+    </ul>
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <ul>
+      <b>Bloqueio de rotinas dependentes</b>
+      <li>Rotinas que exigem calibração recente devem ser automaticamente bloqueadas (RF23) quando a antena estiver em estado não calibrado.</li>
+    </ul>
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <ul>
+      <b>Registro do evento</b>
+      <li>O sistema deve registrar internamente a ativação e desativação do alerta para fins de auditoria.</li>
+    </ul>
+  </td>
+</tr>
+
+<!-- Critérios de aceitação -->
+<tr>
+  <td rowspan="4">Critérios de aceitação</td>
+  <td>
+    <b>Exibição do alerta</b>
+    <ul>
+      <li><b>Dado</b> que a antena atingiu uma condição definida em IN13,</li>
+      <li><b>Quando</b> o usuário acessa a tela da antena,</li>
+      <li><b>Então</b> o sistema deve exibir um alerta indicando “Calibração necessária”.</li>
+    </ul>
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <b>Atualização automática</b>
+    <ul>
+      <li><b>Dado</b> que o estado da antena mudou,</li>
+      <li><b>Quando</b> a condição de calibração necessária for detectada,</li>
+      <li><b>Então</b> o alerta deve surgir automaticamente na interface, sem recarregar a página.</li>
+    </ul>
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <b>Remoção do alerta após calibração</b>
+    <ul>
+      <li><b>Dado</b> que uma calibração foi concluída,</li>
+      <li><b>Quando</b> o sistema registra a nova calibração,</li>
+      <li><b>Então</b> o alerta deve desaparecer imediatamente.</li>
+    </ul>
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <b>Bloqueio de rotinas dependentes</b>
+    <ul>
+      <li><b>Dado</b> que a antena precisa de calibração,</li>
+      <li><b>Quando</b> o usuário tenta iniciar uma rotina que dependa de calibração,</li>
+      <li><b>Então</b> o sistema deve impedir a execução e informar o motivo.</li>
+    </ul>
+  </td>
+</tr>
+
+<!-- PONTUAÇÃO -->
+<tr>
+  <td>Pontuação</td>
+  <td>
+    > 6
+    <ul>
+      <li>Exige monitoramento contínuo da antena.</li>
+      <li>Envolve regras internas e dependências com calibração (RF21, RF26).</li>
+      <li>Impacta diretamente a segurança operacional.</li>
+    </ul>
+  </td>
+</tr>
+
+<!-- Prioridade -->
+<tr>
+  <td>Prioridade</td>
+  <td>Must</td>
+</tr>
+
+<!-- Dependência -->
+<tr>
+  <td>Dependência</td>
+  <td>IN13, RF21, RF26, RF23</td>
+</tr>
+
+</tbody> </table> <center> <figcaption>Tabela 28 - História do usuário: requisito RF27. Fonte: Autor.</figcaption> </center>
 
 ---
 
-### RF06 - Alerta de necessidade de calibração
+### RF28 - Verificar clima das antenas
 
 <table>
   <thead>
@@ -1139,26 +4367,41 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
       <th>Descrição</th>
     </tr>
   </thead>
+
   <tbody>
     <!-- Id do requisito -->
     <tr>
       <td>ID do requisito</td>
-      <td><a href="./requisitos_elicitados.md">[RF06]</td>
+      <td><a href="./requisitos_elicitados.md">[RF28]</a></td>
     </tr>
     <!-- História -->
     <tr>
       <td>História</td>
-      <td>  
-        Como operador responsável pela manutenção das antenas,
-        eu quero receber um alerta quando a antena precisar ser calibrada,
-        para evitar erros de posicionamento e garantir que o sistema opere com precisão.
+      <td>
+        Como usuário da plataforma,<br/>
+        eu quero visualizar as condições climáticas nos locais onde as antenas estão instaladas,<br/>
+        para que eu possa avaliar se fatores ambientais podem afetar a precisão, estabilidade ou desempenho das rotinas de rastreamento e monitoramento.
       </td>
     </tr>
     <!-- Descrição -->
     <tr>
       <td>Descrição</td>
       <td>
-          O sistema deve monitorar continuamente os parâmetros de operação da antena e identificar quando ela ultrapassar o limite permitido de desvio, tempo de uso ou critérios técnicos definidos pelo laboratório. Quando uma antena atingir o ponto em que a calibração se torna necessária, o sistema deve exibir um alerta claro na interface de monitoramento e registrar a situação no status geral da antena. O objetivo é garantir que operadores não utilizem a antena em condições inadequadas.
+        Os dados climáticos devem seguir padrões definidos em <b>EN17</b>, contemplando variáveis como:
+        <ul>
+          <li>temperatura ambiente,</li>
+          <li>umidade relativa do ar,</li>
+          <li>pressão atmosférica,</li>
+          <li>velocidade e direção do vento,</li>
+          <li>condição geral (ensolarado, nublado, chuva, etc.).</li>
+        </ul>
+        O sistema deve:
+        <ul>
+          <li>exibir as informações de forma clara e organizada dentro da interface da antena,</li>
+          <li>atualizar automaticamente os dados em intervalos definidos,</li>
+          <li>notificar o usuário caso não seja possível recuperar os dados,</li>
+          <li>realizar consultas a serviços meteorológicos externos conforme especificado em EN17.</li>
+        </ul>
       </td>
     </tr>
     <!-- Regras de negócio -->
@@ -1166,120 +4409,258 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
       <td rowspan="4">Regras de negócio</td>
       <td>
         <ul>
-        <b>Critério técnico de necessidade de calibração</b>
-            <li>
-            A necessidade de calibração deve ser determinada com base em parâmetros definidos: limite de erro de posicionamento, horas de operação acumuladas ou últimos registros de manutenção. Esses parâmetros devem ser configuráveis pelo administrador do sistema.
-            </li>
+          <b>Fonte dos dados climáticos</b>
+          <li>Os dados devem ser obtidos exclusivamente de provedores confiáveis definidos em EN17.</li>
         </ul>
       </td>
     </tr>
     <tr>
       <td>
         <ul>
-            <b>Geração automática do alerta</b>
-            <li>
-            O sistema deve identificar automaticamente quando qualquer um dos critérios de calibração for violado e exibir o aviso imediatamente ao operador, sem necessidade de ação manual.
-            </li>
+          <b>Atualização periódica</b>
+          <li>As informações devem ser atualizadas automaticamente com base no intervalo sugerido por EN17.</li>
         </ul>
       </td>
     </tr>
     <tr>
       <td>
         <ul>
-            <b>Registro de status</b>
-            <li>
-            Além da exibição visual, o sistema deve registrar internamente a data e o motivo da necessidade de calibração, permitindo auditoria futura.
-            </li>
+          <b>Apresentação adequada</b>
+          <li>Os valores devem ser acompanhados de unidades padronizadas (°C, %, km/h, etc.).</li>
         </ul>
       </td>
     </tr>
     <tr>
       <td>
         <ul>
-            <b>Remoção do alerta</b>
-            <li>
-            O alerta só deve ser removido quando a antena for calibrada e o operador registrar manualmente a conclusão ou quando o sistema receber essa informação de forma automatizada (caso exista integração futura).
-            </li>
+          <b>Tratamento de falhas</b>
+          <li>Em caso de falha na consulta meteorológica, o sistema deve informar o usuário e registrar o evento internamente.</li>
         </ul>
       </td>
     </tr>
     <!-- Critérios de aceitação -->
     <tr>
-      <td rowspan="4">Detecção automática</td>
+      <td rowspan="3">Critérios de aceitação</td>
       <td>
-        <b>Envio do link de recuperação</b>
+        <b>Exibição dos dados climáticos</b>
         <ul>
-            <li><b>Dado</b> que a antena ultrapassou os limites técnicos definidos,</li>
-            <li><b>Quando</b> o sistema verificar essa condição,</li>
-            <li><b>Então</b> deve exibir o aviso “Calibração necessária”.</li>
+          <li><b>Dado</b> que a antena possui localização registrada,</li>
+          <li><b>Quando</b> o usuário acessa a interface da antena,</li>
+          <li><b>Então</b> o sistema deve mostrar as informações climáticas correspondentes ao local.</li>
         </ul>
       </td>
     </tr>
     <tr>
       <td>
-        <b>Exibição visível ao operador</b>
+        <b>Atualização contínua</b>
         <ul>
-            <li><b>Dado</b> que o alerta foi gerado,</li>
-            <li><b>Quando</b> o operador acessar a tela da antena,</li>
-            <li><b>Então</b> o alerta deve estar visível de forma destacada.</li>
+          <li><b>Dado</b> que o usuário está visualizando as informações,</li>
+          <li><b>Quando</b> o intervalo de atualização é atingido,</li>
+          <li><b>Então</b> os dados devem ser atualizados automaticamente.</li>
         </ul>
       </td>
     </tr>
     <tr>
       <td>
-        <b>Registro da ocorrência</b>
+        <b>Falha na obtenção de dados</b>
         <ul>
-            <li><b>Dado</b> que o alerta foi disparado,</li>
-            <li><b>Quando</b> o evento for registrado,</li>
-            <li><b>Então</b> o sistema deve armazenar data, hora e motivo.</li>
+          <li><b>Dado</b> que o serviço climático esteja indisponível,</li>
+          <li><b>Quando</b> o sistema tenta buscar os dados,</li>
+          <li><b>Então</b> uma mensagem de aviso deve ser exibida ao usuário.</li>
         </ul>
       </td>
     </tr>
-    <tr>
-      <td>
-        <b>Persistência do alerta</b>
-        <ul>
-            <li><b>Dado</b> que a antena ainda não foi calibrada,</li>
-            <li><b>Quando</b> o operador retornar à tela em outro momento,</li>
-            <li><b>Então</b> o alerta deve continuar sendo exibido.</li>
-        </ul>
-      </td>
-    </tr>
-    <!-- PONTUAÇÃO -->
+    <!-- Pontuação -->
     <tr>
       <td>Pontuação</td>
-      <td> 
-          > 4
-          <ul>
-            <li>Complexidade moderada, pois envolve análise de parâmetros técnicos.</li>
-            <li>Tem baixa incerteza técnica, mas exige configuração de parâmetros e persistência do status.</li>
-          </ul>
-      </td>
-    </tr>
-    <!--  -->
-   <tr>
-      <td>Prioridade</td>
-      <td>Must</td>
-    </tr>
-    <tr>
-      <td>Depedência</td>
       <td>
-          <ul>
-            <li>RF08 – Mostrar a última vez que a antena foi calibrada</li>
-            <li>RF27 – Mostrar o posicionamento da antena em tempo real</li>
-          </ul>
+        &gt; 5
+        <ul>
+          <li>Depende de integração com serviço meteorológico externo.</li>
+          <li>Exige atualização periódica e tratamento de falhas externas.</li>
+          <li>Envolve múltiplas antenas e diferentes localizações.</li>
+        </ul>
       </td>
     </tr>
+    <!-- Prioridade -->
+    <tr>
+      <td>Prioridade</td>
+      <td>Should</td>
+    </tr>
+    <!-- Dependência -->
+    <tr>
+      <td>Dependência</td>
+      <td>EN17, RF06</td>
+    </tr>
+
   </tbody>
 </table>
 
 <center>
-    <figcaption>Tabela 7 - História do usuário: requisito RF06. Fonte: Autor.</figcaption>
+  <figcaption>Tabela 29 - História do usuário: requisito RF28. Fonte: Autor.</figcaption>
 </center>
 
 ---
 
-### RF07 - Seleção entre dark mode e light mode
+### RF29 - Limpeza periódica dos dados coletados pelo banco
+
+<table>
+  <thead>
+    <tr>
+      <th>Identificador</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+    <!-- Id do requisito -->
+    <tr>
+      <td>ID do requisito</td>
+      <td><a href="./requisitos_elicitados.md">[RF29]</a></td>
+    </tr>
+
+    <!-- História -->
+    <tr>
+      <td>História</td>
+      <td>
+        Como administrador do sistema,<br/>
+        eu quero que os dados coletados pelas antenas sejam limpos periodicamente do banco de dados,<br/>
+        para que o sistema mantenha desempenho adequado, evite acúmulo excessivo de informações e reduza custos de armazenamento a longo prazo.
+      </td>
+    </tr>
+
+    <!-- Descrição -->
+    <tr>
+      <td>Descrição</td>
+      <td>
+        O sistema deve remover automaticamente do banco de dados os dados coletados que ultrapassarem o período máximo de retenção definido em <b>IN18</b>.<br/><br/>
+
+        A limpeza deve ocorrer de forma programada, sem necessidade de intervenção manual e sem impactar a operação das antenas ou dos usuários ativos.<br/><br/>
+
+        A funcionalidade deve:
+        <ul>
+          <li>executar rotinas automatizadas de exclusão com base em critérios definidos por tempo (ex.: dias, semanas ou meses),</li>
+          <li>respeitar limites mínimos de retenção que garantam que dados essenciais não sejam perdidos antecipadamente,</li>
+          <li>registrar logs das remoções realizadas,</li>
+          <li>evitar indisponibilidade do sistema durante o processo de limpeza,</li>
+          <li>ser configurável pelo administrador (período de retenção, janela de execução, etc.).</li>
+        </ul>
+
+        A limpeza periódica garante estabilidade, previsibilidade no tamanho do banco e evita degradação por excesso de dados.
+      </td>
+    </tr>
+
+    <!-- Regras de negócio -->
+    <tr>
+      <td rowspan="4">Regras de negócio</td>
+
+      <td>
+        <ul>
+          <b>Parâmetros definidos em IN18</b>
+          <li>A retenção dos dados deve seguir exatamente os intervalos e diretrizes de eliminação estabelecidas em IN18.</li>
+        </ul>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <ul>
+          <b>Execução automática</b>
+          <li>A limpeza deve ocorrer sem intervenção humana, em horários previamente configurados ou recomendados pelo sistema.</li>
+        </ul>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <ul>
+          <b>Preservação de dados essenciais</b>
+          <li>Dados ainda dentro do período de retenção não podem ser removidos em hipótese alguma.</li>
+        </ul>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <ul>
+          <b>Registro da operação</b>
+          <li>Toda limpeza deve gerar logs contendo quantidade de dados removidos, horário e antenas envolvidas.</li>
+        </ul>
+      </td>
+    </tr>
+
+    <!-- Critérios de aceitação -->
+    <tr>
+      <td rowspan="3">Critérios de aceitação</td>
+
+      <td>
+        <b>Remoção de dados antigos</b>
+        <ul>
+          <li><b>Dado</b> que existem dados mais antigos do que o período permitido por IN18,</li>
+          <li><b>Quando</b> a rotina de limpeza é executada,</li>
+          <li><b>Então</b> esses dados devem ser removidos automaticamente do banco de dados.</li>
+        </ul>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <b>Registro em log</b>
+        <ul>
+          <li><b>Dado</b> que a limpeza periódica ocorreu,</li>
+          <li><b>Quando</b> o administrador consulta os logs,</li>
+          <li><b>Então</b> ele deve ver o registro contendo detalhes da operação.</li>
+        </ul>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <b>Sem impacto na operação</b>
+        <ul>
+          <li><b>Dado</b> que existem usuários ativos,</li>
+          <li><b>Quando</b> a limpeza é executada,</li>
+          <li><b>Então</b> o sistema não deve apresentar lentidão ou indisponibilidade.</li>
+        </ul>
+      </td>
+    </tr>
+
+    <!-- Pontuação -->
+    <tr>
+      <td>Pontuação</td>
+      <td>
+        > 4
+        <ul>
+          <li>Requer manipulação interna do banco de dados.</li>
+          <li>Inclui lógica automatizada e configuração de agendamentos.</li>
+          <li>Impacta diretamente na performance do sistema.</li>
+        </ul>
+      </td>
+    </tr>
+
+    <!-- Prioridade -->
+    <tr>
+      <td>Prioridade</td>
+      <td>Should</td>
+    </tr>
+
+    <!-- Dependência -->
+    <tr>
+      <td>Dependência</td>
+      <td>IN18</td>
+    </tr>
+
+  </tbody>
+</table>
+
+<center>
+  <figcaption>Tabela 30 - História do usuário: requisito RF29. Fonte: Autor.</figcaption>
+</center>
+
+---
+
+### RF30 - Seleção entre dark mode e light mode
 
 <table>
   <thead>
@@ -1292,7 +4673,7 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     <!-- Id do requisito -->
     <tr>
       <td>ID do requisito</td>
-      <td><a href="./requisitos_elicitados.md">[RF07]</td>
+      <td><a href="./requisitos_elicitados.md">[RF30]</td>
     </tr>
     <!-- História -->
     <tr>
@@ -1422,12 +4803,12 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
 </table>
 
 <center>
-    <figcaption>Tabela 8 - História do usuário: requisito RF07. Fonte: Autor.</figcaption>
+    <figcaption>Tabela 31 - História do usuário: requisito RF30. Fonte: Autor.</figcaption>
 </center>
 
 ---
 
-### RF08 - Interrupção de rotina
+### RF31 - Seleção de idioma (português/inglês)
 
 <table>
   <thead>
@@ -1440,22 +4821,22 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     <!-- Id do requisito -->
     <tr>
       <td>ID do requisito</td>
-      <td><a href="./requisitos_elicitados.md">[RF08]</td>
+      <td><a href="./requisitos_elicitados.md">[RF31]</td>
     </tr>
     <!-- História -->
     <tr>
       <td>História</td>
-      <td>  
-        Como operador,
-        eu quero ser capaz de interromper uma rotina em execução na antena,
-        para impedir erros, evitar danos ao equipamento ou ajustar rapidamente o procedimento quando necessário.
+      <td>
+        Como usuário da plataforma,
+        eu quero escolher entre português e inglês,
+        para utilizar o sistema no idioma que eu compreendo melhor e tornar minha experiência mais eficiente.
       </td>
     </tr>
     <!-- Descrição -->
     <tr>
       <td>Descrição</td>
       <td>
-          O sistema deve oferecer ao usuário a capacidade de interromper qualquer rotina ativa em uma antena. Essa ação deve parar imediatamente a execução dos comandos e garantir que nenhuma instrução pendente continue sendo executada. A funcionalidade deve estar disponível somente enquanto uma rotina estiver em andamento e deve aparecer de forma destacada na interface para garantir resposta rápida em situações emergenciais.
+        O sistema deve permitir que o usuário alterne entre os idiomas português e inglês. Ao selecionar o idioma, toda a interface — incluindo menus, botões, mensagens, labels e notificações — deve ser traduzida imediatamente. A escolha deve ser persistida, garantindo que o idioma selecionado seja mantido quando o usuário retornar ao sistema. A opção de alteração deve estar acessível em uma área de configurações ou no cabeçalho, conforme o design da plataforma.
       </td>
     </tr>
     <!-- Regras de negócio -->
@@ -1463,43 +4844,40 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
       <td rowspan="4">Regras de negócio</td>
       <td>
         <ul>
-        <b>Disponibilidade apenas durante execução</b>
-            <li>
-            O botão ou comando de interrupção deve estar visível e habilitado somente enquanto a antena estiver executando uma rotina. Caso não haja rotina ativa, a opção deve estar indisponível.
-            </li>
+          <b>Persistência da preferência</b>
+          <li>
+            A escolha de idioma deve ser armazenada localmente (ex.: localStorage) ou associada ao perfil do usuário no backend, garantindo que a seleção seja mantida entre sessões.
+          </li>
         </ul>
       </td>
     </tr>
     <tr>
       <td>
         <ul>
-            <b>Confirmação opcional da ação</b>
-            <li>
-           Dependendo da criticidade do sistema, pode ser exigido que o usuário confirme a interrupção para evitar cancelamentos acidentais — exceto em modo emergencial, onde a interrupção deve ser imediata.
-            </li>
+          <b>Tradução completa da interface</b>
+          <li>
+            Todos os textos exibidos ao usuário devem acompanhar o idioma selecionado, incluindo mensagens de erro, títulos, tooltips, placeholders e avisos.
+          </li>
         </ul>
       </td>
     </tr>
     <tr>
       <td>
         <ul>
-            <b>Registro do cancelamento</b>
-            <li>
-            Toda interrupção deve ser registrada, incluindo:
-              <li>horário da interrupção,</li>
-              <li>usuário que interrompeu,</li>
-              <li>rotina interrompida,</li>
-            </li>
+          <b>Compatibilidade com padrões de internacionalização</b>
+          <li>
+            A implementação deve seguir boas práticas de i18n, garantindo que o conteúdo seja mantido em arquivos de tradução adequados (ex.: JSON, YAML ou padrão adotado pelo framework).
+          </li>
         </ul>
       </td>
     </tr>
     <tr>
       <td>
         <ul>
-            <b>Cancelamento de comandos pendentes</b>
-            <li>
-            Ao interromper, nenhum comando posterior deve ser enviado à antena. Todos os passos não executados da rotina devem ser descartados.
-            </li>
+          <b>Alteração imediata</b>
+          <li>
+            Ao selecionar o idioma, a interface deve ser atualizada instantaneamente, sem recarregar a página.
+          </li>
         </ul>
       </td>
     </tr>
@@ -1507,41 +4885,41 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     <tr>
       <td rowspan="4">Critérios de aceitação</td>
       <td>
-        <b>Interrupção disponível durante a execução</b>
+        <b>Seleção de idioma</b>
         <ul>
-            <li><b>Dado</b> que há uma rotina em execução,</li>
-            <li><b>Quando</b> o usuário visualizar a interface da antena,</li>
-            <li><b>Então</b> deve existir a opção de “Interromper rotina”.</li>
+            <li><b>Dado</b> que o usuário deseja alterar o idioma,</li>
+            <li><b>Quando</b> selecionar “Português” ou “English”,</li>
+            <li><b>Então</b> o sistema deve traduzir toda a interface para o idioma escolhido.</li>
         </ul>
       </td>
     </tr>
     <tr>
       <td>
-        <b>Parada imediata</b>
+        <b>Persistência da preferência</b>
         <ul>
-            <li><b>Dado</b> que o usuário decidiu interromper a rotina,</li>
-            <li><b>Quando</b> clicar no botão de interrupção,</li>
-            <li><b>Então</b> a antena deve parar imediatamente suas atividades.</li>
+            <li><b>Dado</b> que o usuário já selecionou um idioma,</li>
+            <li><b>Quando</b> retornar ao sistema ou fizer login novamente,</li>
+            <li><b>Então</b> a interface deve carregar automaticamente no idioma previamente escolhido.</li>
         </ul>
       </td>
     </tr>
     <tr>
       <td>
-        <b>Registro da ação</b>
+        <b>Tradução consistente</b>
         <ul>
-            <li><b>Dado</b> Dado que houve uma interrupção de rotina,</li>
-            <li><b>Quando</b> o sistema enviar o comando de parada,</li>
-            <li><b>Então</b> a antena deve retornar ao estado seguro configurado.</li>
+            <li><b>Dado</b> que o idioma foi alterado,</li>
+            <li><b>Quando</b> o usuário navegar entre telas,</li>
+            <li><b>Então</b> todas as telas devem apresentar o idioma selecionado, sem trechos não traduzidos.</li>
         </ul>
       </td>
     </tr>
     <tr>
       <td>
-        <b>Acessibilidade mínima</b>
+        <b>Mensagens e notificações traduzidas</b>
         <ul>
-            <li><b>Dado</b> que o usuário alterou o tema,</li>
-            <li><b>Quando</b> o tema for aplicado,</li>
-            <li><b>Então</b> textos e elementos devem permanecer legíveis, respeitando contraste adequado.</li>
+            <li><b>Dado</b> que o usuário alterou o idioma,</li>
+            <li><b>Quando</b> o sistema exibir mensagens, erros ou alertas,</li>
+            <li><b>Então</b> todas essas mensagens devem estar no idioma escolhido.</li>
         </ul>
       </td>
     </tr>
@@ -1549,28 +4927,22 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     <tr>
       <td>Pontuação</td>
       <td> 
-          > 5
+          > 3  
           <ul>
-            <li>Necessidade de comunicação com hardware ou camada de controle para parar a antena.</li>
-            <li>Processo envolve risco operacional, portanto maior precisão e cuidado.</li>
+            <li>Envolve estrutura de internacionalização e múltiplos arquivos de tradução.</li>
+            <li>Requer adaptação da interface e integração com mecanismos de i18n.</li>
           </ul>
       </td>
     </tr>
-    <!--  -->
-   <tr>
+    <tr>
       <td>Prioridade</td>
-      <td>Must</td>
+      <td>Should</td>
     </tr>
     <tr>
-      <td>Depedência</td>
+      <td>Dependência</td>
       <td>
           <ul>
-            <li>
-            RF19 – Status das antenas.
-            </li>
-            <li>
-            RF11 – Evolução do posicionamento da antena.
-            </li>
+            <li>EN13 – Suporte à internacionalização</li>
           </ul>
       </td>
     </tr>
@@ -1578,12 +4950,13 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
 </table>
 
 <center>
-    <figcaption>Tabela 9 - História do usuário: requisito RF08. Fonte: Autor.</figcaption>
+    <figcaption>Tabela 32 - História do usuário: requisito RF31. Fonte: Autor.</figcaption>
 </center>
 
----
 
-### RF09 - Cálculo e envio dos ângulos de posicionamento da antena
+## Requisitos não funcionais
+
+### NF01 - Adoção da identidade visual do laboratório
 
 <table>
   <thead>
@@ -1596,200 +4969,836 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     <!-- Id do requisito -->
     <tr>
       <td>ID do requisito</td>
-      <td><a href="./requisitos_elicitados.md">[RF09]</td>
+      <td><a href="./requisitos_elicitados.md">[NF01]</td>
     </tr>
     <!-- História -->
     <tr>
       <td>História</td>
-      <td>  
-        Como operador do sistema,
-        eu quero que o software calcule automaticamente os ângulos de posicionamento (azimute e elevação) e os envie para a antena,
-        para garantir que ela se mova corretamente até a posição desejada sem que eu precise realizar cálculos manuais.
+      <td>
+        Como usuário da plataforma,
+        eu quero utilizar um sistema visualmente consistente com a identidade visual do laboratório,
+        para ter uma experiência uniforme, intuitiva e alinhada com o padrão institucional.
       </td>
     </tr>
     <!-- Descrição -->
     <tr>
       <td>Descrição</td>
       <td>
-          O software deve ser capaz de calcular os ângulos necessários para o posicionamento da antena com base nos parâmetros fornecidos pelo usuário, pelo satélite selecionado ou pela rotina configurada. Após o cálculo, o sistema deve enviar esses valores para a antena por meio da interface de comunicação especificada (serial, rede, API interna etc.).
-          A funcionalidade deve garantir precisão adequada, obedecer aos limites de movimentação da antena e assegurar que os comandos sejam enviados de forma segura e confiável, respeitando o tempo e a ordem esperada pelo hardware.
+        O sistema deve adotar integralmente a identidade visual do laboratório, incluindo cores, tipografias,
+        estilos de botão, espaçamentos, logos, ícones e elementos gráficos. Todos os componentes devem seguir
+        esse padrão para garantir consistência visual e fortalecer a identidade institucional. A identidade
+        visual deve ser aplicada globalmente e de maneira padronizada.
       </td>
     </tr>
     <!-- Regras de negócio -->
     <tr>
-      <td rowspan="5">Regras de negócio</td>
+      <td rowspan="3">Regras de negócio</td>
       <td>
         <ul>
-        <b>Cálculo baseado em parâmetros válidos</b>
-            <li>
-            Os ângulos só podem ser calculados se todos os dados necessários estiverem disponíveis (como posição do satélite, localização da antena e horário). Parâmetros incompletos ou inválidos devem impedir o cálculo.
-            </li>
+          <b>Aplicação consistente</b>
+          <li>
+            Todos os elementos visuais devem seguir exatamente o guia de estilo do laboratório.
+          </li>
         </ul>
       </td>
     </tr>
     <tr>
       <td>
         <ul>
-            <b>Respeito aos limites físicos da antena</b>
-            <li>
-            O cálculo e o envio devem garantir que os ângulos nunca ultrapassem os limites físicos da antena:
-            <li>Azimute: 0° a 360°</li>
-            <li>Elevação: 0° a 180°</li>
-            Comandos fora desse intervalo devem ser automaticamente bloqueados e registrados.
-            </li>
+          <b>Centralização do padrão visual</b>
+          <li>
+            Estilos e componentes devem ser padronizados em temas globais ou bibliotecas compartilhadas
+            para evitar divergências.
+          </li>
         </ul>
       </td>
     </tr>
     <tr>
       <td>
         <ul>
-            <b>Precisão mínima</b>
-            <li>
-            O cálculo deve respeitar padrões de precisão definidos pelo sistema (ex.: erro máximo de 0,5°). Valores fora da precisão aceitável devem ser recalculados ou gerar aviso.
-            </li>
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <ul>
-            <b>Envio seguro para o hardware</b>
-            <li>
-            A transmissão dos ângulos deve usar o protocolo de comunicação definido pelo projeto, incluindo:
-            <li>confirmação de recebimento,</li>
-            <li>tratamento de falhas de comunicação,</li>
-            <li>repetição de envio em caso de perda.</li>
-            </li>
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <ul>
-            <b>Registro das operações</b>
-            <li>Cada cálculo e envio realizado deve ser registrado com horário e parâmetros utilizados, permitindo auditoria e rastreabilidade das operações da antena.</li>
+          <b>Proibição de estilos arbitrários</b>
+          <li>
+            É proibido utilizar estilos externos que não estejam alinhados com a identidade definida.
+          </li>
         </ul>
       </td>
     </tr>
     <!-- Critérios de aceitação -->
     <tr>
-      <td rowspan="4">Critérios de aceitação</td>
+      <td rowspan="3">Critérios de aceitação</td>
       <td>
-        <b>Cálculo correto</b>
+        <b>Adoção das cores e tipografias</b>
         <ul>
-            <li><b>Dado</b> que o usuário selecionou um satélite ou configurou uma rotina,</li>
-            <li><b>Quando</b> o software processar os dados,</li>
-            <li><b>Então</b> deve gerar ângulos de azimute e elevação respeitando a precisão definida.</li>
+            <li><b>Dado</b> que o usuário acessa o sistema,</li>
+            <li><b>Quando</b> visualizar a interface,</li>
+            <li><b>Então</b> todos os elementos devem seguir as cores e fontes definidas na identidade visual.</li>
         </ul>
       </td>
     </tr>
     <tr>
       <td>
-        <b>Envio bem-sucedido</b>
+        <b>Componentes padronizados</b>
         <ul>
-            <li><b>Dado</b> que os ângulos foram calculados,</li>
-            <li><b>Quando</b> o software enviar os valores para a antena,</li>
-            <li><b>Então</b> a antena deve receber e aplicar o comando corretamente.</li>
+            <li><b>Dado</b> que o desenvolvedor cria uma nova tela,</li>
+            <li><b>Quando</b> utilizar componentes visuais,</li>
+            <li><b>Então</b> todos devem seguir o padrão unificado da identidade visual.</li>
         </ul>
       </td>
     </tr>
     <tr>
       <td>
-        <b>Bloqueio de ângulos inválidos</b>
+        <b>Consistência total</b>
         <ul>
-            <li><b>Dado</b> que o cálculo gerar um ângulo fora dos limites físicos,</li>
-            <li><b>Quando</b> o operador tentar executar a rotina,</li>
-            <li><b>Então</b> o sistema deve impedir o envio e exibir um aviso ao usuário.</li>
+            <li><b>Dado</b> que o usuário navega por diferentes telas,</li>
+            <li><b>Quando</b> muda de seção,</li>
+            <li><b>Então</b> não deve haver divergência visual entre as páginas.</li>
         </ul>
       </td>
     </tr>
-    <tr>
-      <td>
-        <b>Registro da operação</b>
-        <ul>
-            <li><b>Dado</b> que uma operação de cálculo e envio foi realizada,</li>
-            <li><b>Quando</b> o processo terminar,</li>
-            <li><b>Então</b> o sistema deve armazenar o registro da ação para consulta futura.</li>
-        </ul>
-      </td>
-    </tr>
-    <!-- PONTUAÇÃO -->
+    <!-- Pontuação -->
     <tr>
       <td>Pontuação</td>
-      <td> 
-          > 8
-          <ul>
-            <li>Exige implementação matemática com alto nível de precisão.</li>
-            <li>Requer integração direta com hardware ou um subsistema de simulação/controle.</li>
-            <li>Contém risco técnico moderado-alto dependendo do protocolo da antena.</li>
-            <li>Deve ser altamente confiável para evitar erros críticos.</li>
-            <li>Inclui cálculos, validações, tratamento de falhas e registro, aumentando a complexidade geral.</li>
-          </ul>
+      <td>
+        > 2
+        <ul>
+          <li>Requer padronização visual ampla.</li>
+          <li>Envolve revisão e adequação de todos os componentes.</li>
+        </ul>
       </td>
     </tr>
-    <!--  -->
-   <tr>
+    <!-- Prioridade -->
+    <tr>
       <td>Prioridade</td>
       <td>Must</td>
     </tr>
+    <!-- Dependência -->
     <tr>
-      <td>Depedência</td>
+      <td>Dependência</td>
       <td>
-          <ul>
-            <li>
-            RF19 – Status das antenas.
-            </li>
-            <li>
-            RF11 – Evolução do posicionamento da antena.
-            </li>
-          </ul>
+        <ul>
+          <li>EN20 – Identidade visual definida</li>
+        </ul>
       </td>
     </tr>
+
   </tbody>
 </table>
 
+<center>
+  <figcaption>Tabela 33 — História do usuário: requisito NF01. Fonte: Autor.</figcaption>
+</center>
+
 ---
 
+### NF02 - Fluxos simplificados para realização de tarefas
 
+<table>
+  <thead>
+    <tr>
+      <th>Identificador</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Id -->
+    <tr>
+      <td>ID do requisito</td>
+      <td><a href="./requisitos_elicitados.md">[NF02]</td>
+    </tr>
+    <!-- História -->
+    <tr>
+      <td>História</td>
+      <td>
+        Como usuário da plataforma,
+        eu quero realizar minhas tarefas com o menor número possível de passos,
+        para ganhar produtividade e reduzir esforço operacional.
+      </td>
+    </tr>
+    <!-- Descrição -->
+    <tr>
+      <td>Descrição</td>
+      <td>
+        O sistema deve garantir que todos os principais fluxos sejam curtos, diretos e eficientes.
+        Telas intermediárias desnecessárias devem ser evitadas, e ações comuns devem ser acessíveis
+        rapidamente. A experiência do usuário deve priorizar praticidade.
+      </td>
+    </tr>
+    <!-- Regras -->
+    <tr>
+      <td rowspan="3">Regras de negócio</td>
+      <td>
+        <ul>
+          <b>Redução de passos</b>
+          <li>
+            Nenhuma tarefa deve exigir mais etapas do que o estritamente necessário.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+          <b>Acesso rápido</b>
+          <li>
+            As funções mais utilizadas devem estar em locais de acesso imediato, como atalhos ou menus principais.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+          <b>Evitar retrabalho</b>
+          <li>
+            O sistema deve minimizar cliques redundantes, confirmações repetitivas e formulários extensos.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <!-- Critérios -->
+    <tr>
+      <td rowspan="3">Critérios de aceitação</td>
+      <td>
+        <b>Eficiência do fluxo</b>
+        <ul>
+          <li><b>Dado</b> que o usuário executa uma tarefa,</li>
+          <li><b>Quando</b> percorre o fluxo completo,</li>
+          <li><b>Então</b> deve ser possível concluí-la com o mínimo de etapas possíveis.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Navegação otimizada</b>
+        <ul>
+          <li><b>Dado</b> que o usuário acessa funções comuns,</li>
+          <li><b>Quando</b> navega pela interface,</li>
+          <li><b>Então</b> deve encontrá-las rapidamente sem caminhos complexos.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Redução de ações redundantes</b>
+        <ul>
+          <li><b>Dado</b> que o usuário realiza ações repetidas,</li>
+          <li><b>Quando</b> utiliza o sistema,</li>
+          <li><b>Então</b> não deve ter que repetir cliques ou confirmações de forma desnecessária.</li>
+        </ul>
+      </td>
+    </tr>
+    <!-- Pontuação -->
+    <tr>
+      <td>Pontuação</td>
+      <td>
+        > 3
+        <ul>
+          <li>Impacta toda a estrutura da interface.</li>
+          <li>Envolve decisões de UX e arquitetura de navegação.</li>
+        </ul>
+      </td>
+    </tr>
+    <!-- Prioridade -->
+    <tr>
+      <td>Prioridade</td>
+      <td>Must</td>
+    </tr>
+    <!-- Dependência -->
+    <tr>
+      <td>Dependência</td>
+      <td>
+        <ul>
+          <li>EN16 – Diretrizes de fluxo curto</li>
+        </ul>
+      </td>
+    </tr>
 
-| RF01 | O usuário deve poder realizar login na plataforma. | IN03 | x
-| RF02 | O usuário deve poder redefinir sua senha. | EN10 | x
-| RF03 | O software deve ter perfis de usuário (administrador e usuário normal). | EN11, EN12 | x
-| RF04 | O administrador deve poder administrar novos usuários na plataforma. | IN02 |
-| RF05 | O usuário deve poder visualizar o status das antenas. | IN04, EN19 |
-| RF06 | O usuário deve poder visualizar uma lista de todas as antenas. | IN05 |
-| RF07 | O usuário deve poder abrir múltiplas janelas, uma para cada antena. | EN18 |
-| RF08 | O software deve mostrar o posicionamento da antena em tempo real. | EN24 |
-| RF09 | O software deve mostrar falhas no posicionamento da antena. | EN10 | x
-| RF10 | O software deve mostrar a última pessoa que moveu a antena. | EN07 | x
-| RF11 | O software deve mostrar qual foi a última rotina realizada pela antena. | EN09 | 
-| RF12 | O administrador deve poder bloquear uma antena. | IN23 |
-| RF13 | O usuário deve poder selecionar o satélite a ser rastreado/monitorado. | IN09 |
-| RF14 | O software deve listar os satélites disponíveis. |  EN02 |
-| RF15 | O software deve mostrar a trajetória do satélite. | IN19 |
-| RF16 | O software deve alertar se a antena está recebendo os dados do satélite selecionado. | IN16 |
-| RF17 | O software deve salvar os dados recebidos do satélite. | IN15, EN03 |
-| RF18 | O usuário deve poder baixar/exportar os dados salvos. | IN17, EN23 |
-| RF19 | O software deve mostrar a potência e a frequência do sinal recebido. | EN21, EN22 |
-| RF20 | O usuário deve poder salvar e deletar rotinas. | IN07, EN06 |
-| RF21 | O usuário deve poder realizar rotinas de calibração. | IN08 | 
-| RF22 | O usuário deve poder interromper uma rotina. | IN22 | x
-| RF23 | O software deve bloquear rotinas inválidas. | IN11 |
-| RF24 | O software deve calcular o posicionamento da antena conforme parâmetros fornecidos. | IN10, EN01, EN04 | x
-| RF25 | O software deve mostrar a evolução/histórico do posicionamento da antena. | IN14, EN05 |
-| RF26 | O software deve mostrar a última vez que a antena foi calibrada. | IN12, EN08 |
-| RF27 | O software deve alertar quando a antena precisar de calibração. | IN13 | x
-| RF28 | O usuário deve poder verificar o clima onde as antenas estão localizadas. | EN17 | x
-| RF29 | O banco deve limpar os dados coletados periodicamente. | IN18 |
-| RF30 | O usuário deve poder selecionar entre dark mode e light mode. | IN20 | x
-| RF31 | O usuário deve poder escolher entre português e inglês. | IN21, EN13 |
-| NF01 | O software deve seguir a identidade visual do laboratório. | EN20 |
-| NF02 | Os fluxos para realização de tarefas devem ser curtos. | EN16 |
-| NF03 | O software deve rodar na web. | EN14 |
-| NF04 | O software deve ser compatível com Chrome. | IN24 |
-| NF05 | O software deve ser compatível com Firefox. | IN25 |
-| NF06 | O software deve rodar nos principais navegadores. | EN15 |
-| NF07 | O software deve ter documentação adequada. | EN25 |
+  </tbody>
+</table>
+
+<center>
+  <figcaption>Tabela 34 — História do usuário: requisito NF02. Fonte: Autor.</figcaption>
+</center>
+
+---
+
+### NF03 - Execução do software na web
+
+<table>
+  <thead>
+    <tr>
+      <th>Identificador</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Id do requisito -->
+    <tr>
+      <td>ID do requisito</td>
+      <td><a href="./requisitos_elicitados.md">[NF03]</td>
+    </tr>
+    <!-- História -->
+    <tr>
+      <td>História</td>
+      <td>
+        Como usuário da plataforma,
+        eu quero acessar o sistema diretamente pelo navegador,
+        para utilizá-lo em qualquer dispositivo sem a necessidade de instalação.
+      </td>
+    </tr>
+    <!-- Descrição -->
+    <tr>
+      <td>Descrição</td>
+      <td>
+        O software deve ser totalmente executado em ambiente web, permitindo acesso via URL
+        e funcionamento completo sem instalação local. Todo o processamento necessário deve estar
+        disponível através da aplicação hospedada, garantindo compatibilidade com os navegadores suportados.
+      </td>
+    </tr>
+    <!-- Regras de negócio -->
+    <tr>
+      <td rowspan="2">Regras de negócio</td>
+      <td>
+        <ul>
+          <b>Acesso universal</b>
+          <li>
+            O sistema deve funcionar em qualquer dispositivo com acesso à internet.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+          <b>Disponibilidade constante</b>
+          <li>
+            A plataforma deve estar acessível 24/7, salvo períodos programados de manutenção.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <!-- Critérios de aceitação -->
+    <tr>
+      <td rowspan="2">Critérios de aceitação</td>
+      <td>
+        <b>Acesso via navegador</b>
+        <ul>
+          <li><b>Dado</b> que o usuário deseja acessar o sistema,</li>
+          <li><b>Quando</b> abre o navegador e insere a URL,</li>
+          <li><b>Então</b> a aplicação deve carregar corretamente e estar pronta para uso.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Funcionamento completo</b>
+        <ul>
+          <li><b>Dado</b> que o usuário está utilizando o sistema,</li>
+          <li><b>Quando</b> executa qualquer funcionalidade,</li>
+          <li><b>Então</b> todas devem funcionar plenamente sem instalação local.</li>
+        </ul>
+      </td>
+    </tr>
+    <!-- Pontuação -->
+    <tr>
+      <td>Pontuação</td>
+      <td>
+        > 2
+        <ul>
+          <li>Envolve hospedagem e arquitetura web.</li>
+          <li>Depende de compatibilidade entre navegadores.</li>
+        </ul>
+      </td>
+    </tr>
+    <!-- Prioridade -->
+    <tr>
+      <td>Prioridade</td>
+      <td>Must</td>
+    </tr>
+    <!-- Dependência -->
+    <tr>
+      <td>Dependência</td>
+      <td>
+        <ul>
+          <li>EN14 – Utilização via web</li>
+        </ul>
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+<center>
+  <figcaption>Tabela 35 — História do usuário: requisito NF03. Fonte: Autor.</figcaption>
+</center>
+
+---
+
+### NF04 - Compatibilidade com Google Chrome
+
+<table>
+  <thead>
+    <tr>
+      <th>Identificador</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Id -->
+    <tr>
+      <td>ID do requisito</td>
+      <td><a href="./requisitos_elicitados.md">[NF04]</td>
+    </tr>
+    <!-- História -->
+    <tr>
+      <td>História</td>
+      <td>
+        Como usuário da plataforma,
+        eu quero utilizar o sistema no navegador Google Chrome,
+        para garantir maior estabilidade e compatibilidade com o navegador mais utilizado.
+      </td>
+    </tr>
+    <!-- Descrição -->
+    <tr>
+      <td>Descrição</td>
+      <td>
+        O software deve ser completamente compatível com o Google Chrome, garantindo que todas as páginas,
+        funcionalidades, animações e interações funcionem de forma estável e sem erros nesse navegador.
+      </td>
+    </tr>
+    <!-- Regras -->
+    <tr>
+      <td rowspan="2">Regras de negócio</td>
+      <td>
+        <ul>
+          <b>Testes obrigatórios</b>
+          <li>
+            Todo novo recurso deve ser validado no Chrome antes da entrega.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+          <b>Correção de incompatibilidades</b>
+          <li>
+            Qualquer bug específico do navegador deve ser corrigido antes da liberação.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <!-- Critérios -->
+    <tr>
+      <td rowspan="2">Critérios de aceitação</td>
+      <td>
+        <b>Execução funcional</b>
+        <ul>
+          <li><b>Dado</b> que o usuário abre o sistema no Chrome,</li>
+          <li><b>Quando</b> utiliza qualquer funcionalidade,</li>
+          <li><b>Então</b> tudo deve funcionar sem erros específicos do navegador.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Renderização correta</b>
+        <ul>
+          <li><b>Dado</b> que a interface é carregada,</li>
+          <li><b>Quando</b> exibida no Chrome,</li>
+          <li><b>Então</b> todos os estilos, fontes e elementos visuais devem aparecer corretamente.</li>
+        </ul>
+      </td>
+    </tr>
+    <!-- Pontuação -->
+    <tr>
+      <td>Pontuação</td>
+      <td>
+        > 1
+        <ul>
+          <li>Testes diretos e ajustes de compatibilidade.</li>
+        </ul>
+      </td>
+    </tr>
+    <!-- Prioridade -->
+    <tr>
+      <td>Prioridade</td>
+      <td>Must</td>
+    </tr>
+    <!-- Dependência -->
+    <tr>
+      <td>Dependência</td>
+      <td>
+        <ul>
+          <li>IN24 – Compatibilidade Chrome</li>
+        </ul>
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+<center>
+  <figcaption>Tabela 36 — História do usuário: requisito NF04. Fonte: Autor.</figcaption>
+</center>
+
+---
+
+### NF05 - Compatibilidade com Firefox
+<table> <thead> <tr> <th>Identificador</th> <th>Descrição</th> </tr> </thead> <tbody>
+<!-- Id -->
+<tr>
+  <td>ID do requisito</td>
+  <td><a href="./requisitos_elicitados.md">[NF05]</td>
+</tr>
+
+<!-- História -->
+<tr>
+  <td>História</td>
+  <td>
+    Como usuário da plataforma,
+    eu quero utilizar o sistema no navegador Firefox,
+    para garantir funcionamento adequado mesmo em navegadores menos utilizados, mas amplamente suportados.
+  </td>
+</tr>
+
+<!-- Descrição -->
+<tr>
+  <td>Descrição</td>
+  <td>
+    O software deve ser totalmente compatível com o Firefox, assegurando que todas as funcionalidades,
+    animações, estilos e interações funcionem corretamente e sem falhas específicas desse navegador.
+  </td>
+</tr>
+
+<!-- Regras -->
+<tr>
+  <td rowspan="2">Regras de negócio</td>
+  <td>
+    <ul>
+      <b>Testes de compatibilidade</b>
+      <li>
+        Cada nova funcionalidade deve ser testada no Firefox antes de ser disponibilizada em produção.
+      </li>
+    </ul>
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <ul>
+      <b>Ajustes específicos</b>
+      <li>
+        Quaisquer inconsistências detectadas no Firefox devem ser corrigidas antes da entrega final.
+      </li>
+    </ul>
+  </td>
+</tr>
+
+<!-- Critérios -->
+<tr>
+  <td rowspan="2">Critérios de aceitação</td>
+  <td>
+    <b>Funcionamento completo</b>
+    <ul>
+      <li><b>Dado</b> que o usuário acessa o sistema no Firefox,</li>
+      <li><b>Quando</b> navega pelas funcionalidades,</li>
+      <li><b>Então</b> nenhuma funcionalidade deve apresentar comportamentos inesperados.</li>
+    </ul>
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <b>Renderização correta</b>
+    <ul>
+      <li><b>Dado</b> que a interface é carregada,</li>
+      <li><b>Quando</b> exibida no Firefox,</li>
+      <li><b>Então</b> todos os estilos, fontes e elementos visuais devem ser renderizados corretamente.</li>
+    </ul>
+  </td>
+</tr>
+
+<!-- Pontuação -->
+<tr>
+  <td>Pontuação</td>
+  <td>
+    > 1
+    <ul>
+      <li>Testes simples e correções pontuais de compatibilidade.</li>
+    </ul>
+  </td>
+</tr>
+
+<!-- Prioridade -->
+<tr>
+  <td>Prioridade</td>
+  <td>Must</td>
+</tr>
+
+<!-- Dependência -->
+<tr>
+  <td>Dependência</td>
+  <td>
+    <ul>
+      <li>IN25 – Compatibilidade Firefox</li>
+    </ul>
+  </td>
+</tr>
+
+</tbody> </table> <center> <figcaption>Tabela 37 — História do usuário: requisito NF05. Fonte: Autor.</figcaption> </center>
+
+---
+### NF06 - Compatibilidade com Navegadores Principais
+<table> <thead> <tr> <th>Identificador</th> <th>Descrição</th> </tr> </thead> <tbody>
+<!-- Id -->
+<tr>
+  <td>ID do requisito</td>
+  <td><a href="./requisitos_elicitados.md">[NF06]</td>
+</tr>
+
+<!-- História -->
+<tr>
+  <td>História</td>
+  <td>
+    Como usuário da plataforma,
+    eu quero acessar o sistema nos principais navegadores modernos,
+    para garantir que eu consiga utilizá-lo independentemente da tecnologia que prefiro usar.
+  </td>
+</tr>
+
+<!-- Descrição -->
+<tr>
+  <td>Descrição</td>
+  <td>
+    O software deve ser compatível com os principais navegadores utilizados atualmente,
+    incluindo Chrome, Firefox, Edge e Safari, garantindo funcionamento uniforme,
+    responsivo e sem inconsistências entre navegadores.
+  </td>
+</tr>
+
+<!-- Regras -->
+<tr>
+  <td rowspan="2">Regras de negócio</td>
+  <td>
+    <ul>
+      <b>Suporte mínimo obrigatório</b>
+      <li>
+        Todos os novos recursos devem ser testados nos navegadores suportados.
+      </li>
+    </ul>
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <ul>
+      <b>Padronização de comportamento</b>
+      <li>
+        O sistema deve apresentar comportamento equivalente em todos os navegadores principais.
+      </li>
+    </ul>
+  </td>
+</tr>
+
+<!-- Critérios -->
+<tr>
+  <td rowspan="2">Critérios de aceitação</td>
+  <td>
+    <b>Suporte funcional</b>
+    <ul>
+      <li><b>Dado</b> que o usuário acessa o sistema em qualquer navegador suportado,</li>
+      <li><b>Quando</b> utiliza as funcionalidades,</li>
+      <li><b>Então</b> todos os recursos devem funcionar sem erros.</li>
+    </ul>
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <b>Estilos consistentes</b>
+    <ul>
+      <li><b>Dado</b> que a interface é carregada em diferentes navegadores,</li>
+      <li><b>Quando</b> visualizada pelo usuário,</li>
+      <li><b>Então</b> todos os estilos, espaçamentos e elementos visuais devem permanecer consistentes.</li>
+    </ul>
+  </td>
+</tr>
+
+<!-- Pontuação -->
+<tr>
+  <td>Pontuação</td>
+  <td>
+    > 2
+    <ul>
+      <li>Testes cross-browser aumentam o nível de esforço.</li>
+    </ul>
+  </td>
+</tr>
+
+<!-- Prioridade -->
+<tr>
+  <td>Prioridade</td>
+  <td>Must</td>
+</tr>
+
+<!-- Dependência -->
+<tr>
+  <td>Dependência</td>
+  <td>
+    <ul>
+      <li>EN15 – Compatibilidade entre Navegadores</li>
+    </ul>
+  </td>
+</tr>
+
+</tbody> </table> <center> <figcaption>Tabela 38 — História do usuário: requisito NF06. Fonte: Autor.</figcaption> </center>
+
+---
+
+### NF07 - Documentação Adequada
+<table> <thead> <tr> <th>Identificador</th> <th>Descrição</th> </tr> </thead> <tbody>
+<!-- Id -->
+<tr>
+  <td>ID do requisito</td>
+  <td><a href="./requisitos_elicitados.md">[NF07]</td>
+</tr>
+
+<!-- História -->
+<tr>
+  <td>História</td>
+  <td>
+    Como usuário ou desenvolvedor,
+    eu quero acessar documentação clara, organizada e atualizada,
+    para entender como utilizar e manter o sistema.
+  </td>
+</tr>
+
+<!-- Descrição -->
+<tr>
+  <td>Descrição</td>
+  <td>
+    O software deve possuir documentação adequada cobrindo uso, arquitetura,
+    instalação, manutenção e fluxos principais. A documentação deve ser atualizada
+    conforme o software evolui.
+  </td>
+</tr>
+
+<!-- Regras -->
+<tr>
+  <td rowspan="2">Regras de negócio</td>
+  <td>
+    <ul>
+      <b>Documentação mínima exigida</b>
+      <li>
+        Deve existir documentação de uso, documentação técnica e guia de instalação.
+      </li>
+    </ul>
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <ul>
+      <b>Atualização contínua</b>
+      <li>
+        A documentação deve ser mantida atualizada a cada alteração relevante no sistema.
+      </li>
+    </ul>
+  </td>
+</tr>
+
+<!-- Critérios -->
+<tr>
+  <td rowspan="2">Critérios de aceitação</td>
+  <td>
+    <b>Conteúdo completo</b>
+    <ul>
+      <li><b>Dado</b> que o usuário acessa a documentação,</li>
+      <li><b>Quando</b> busca informações sobre uso ou arquitetura,</li>
+      <li><b>Então</b> deve encontrar instruções claras e detalhadas.</li>
+    </ul>
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <b>Atualização garantida</b>
+    <ul>
+      <li><b>Dado</b> que novas funcionalidades são lançadas,</li>
+      <li><b>Quando</b> a documentação é consultada,</li>
+      <li><b>Então</b> deve refletir a versão atual do sistema.</li>
+    </ul>
+  </td>
+</tr>
+
+<!-- Pontuação -->
+<tr>
+  <td>Pontuação</td>
+  <td>
+    > 3
+    <ul>
+      <li>Produção de documentação completa exige maior tempo e detalhamento.</li>
+    </ul>
+  </td>
+</tr>
+
+<!-- Prioridade -->
+<tr>
+  <td>Prioridade</td>
+  <td>Should</td>
+</tr>
+
+<!-- Dependência -->
+<tr>
+  <td>Dependência</td>
+  <td>
+    <ul>
+      <li>EN25 – Documentação mínima necessária</li>
+    </ul>
+  </td>
+</tr>
+
+</tbody> </table> <center> <figcaption>Tabela 39 — História do usuário: requisito NF07. Fonte: Autor.</figcaption> </center>
+
+---
+
+## Matriz de dependências
+
+| Requisito Funcional (RF) | Não Funcionais dos quais depende (NF) |
+|--------------------------|----------------------------------------|
+| RF01 – Login                         | NF03, NF04, NF05, NF06 |
+| RF02 – Redefinir senha               | NF03, NF04, NF05, NF06 |
+| RF03 – Perfis de usuário             | NF03, NF04, NF05, NF06 |
+| RF04 – Administração de usuários     | NF03, NF04, NF05, NF06, NF07 |
+| RF05 – Status das antenas            | NF03, NF04, NF05, NF06 |
+| RF06 – Lista de antenas              | NF03, NF04, NF05, NF06 |
+| RF07 – Múltiplas janelas             | NF03, NF04, NF05, NF06, NF02 |
+| RF08 – Posicionamento em tempo real  | NF03, NF04, NF05, NF06 |
+| RF09 – Falhas de posicionamento      | NF03, NF04, NF05, NF06 |
+| RF10 – Última pessoa que moveu       | NF03, NF04, NF05, NF06 |
+| RF11 – Última rotina                 | NF03, NF04, NF05, NF06 |
+| RF12 – Bloquear antena               | NF03, NF04, NF05, NF06 |
+| RF13 – Selecionar satélite           | NF03, NF04, NF05, NF06 |
+| RF14 – Listar satélites              | NF03, NF04, NF05, NF06 |
+| RF15 – Trajetória do satélite        | NF03, NF04, NF05, NF06, NF02 |
+| RF16 – Alerta de dados recebidos     | NF03, NF04, NF05, NF06 |
+| RF17 – Salvar dados recebidos        | NF03, NF04, NF05, NF06 |
+| RF18 – Baixar/exportar dados         | NF03, NF04, NF05, NF06 |
+| RF19 – Potência e frequência do sinal| NF03, NF04, NF05, NF06 |
+| RF20 – Salvar e deletar rotinas      | NF03, NF04, NF05, NF06 |
+| RF21 – Rotinas de calibração         | NF03, NF04, NF05, NF06 |
+| RF22 – Interromper rotina            | NF03, NF04, NF05, NF06 |
+| RF23 – Bloquear rotinas inválidas    | NF03, NF04, NF05, NF06 |
+| RF24 – Cálculo de posicionamento     | NF03, NF04, NF05, NF06 |
+| RF25 – Histórico de posicionamento    | NF03, NF04, NF05, NF06 |
+| RF26 – Última calibração             | NF03, NF04, NF05, NF06 |
+| RF27 – Alerta de calibração          | NF03, NF04, NF05, NF06 |
+| RF28 – Verificar clima               | NF03, NF04, NF05, NF06 |
+| RF29 – Limpeza periódica dos dados   | NF03, NF04, NF05, NF06 |
+| RF30 – Dark mode / Light mode        | NF01, NF03, NF04, NF05, NF06 |
+| RF31 – Português e inglês            | NF03, NF04, NF05, NF06, NF07 |
+
 
 
 ## Referência
@@ -1811,7 +5820,7 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
             <th>Autor</th>
         </tr>
         <tr>
-            <td>17/11</td>
+            <td>26/11</td>
             <td>1.0</td>
             <td>Primeira versão finalizada</td>
             <td><a href="https://github.com/ccarlaa">Carla Clementino</a></td>

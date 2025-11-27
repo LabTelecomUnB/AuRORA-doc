@@ -20,34 +20,57 @@ Este modelo garante que os recursos sejam focados nos "Must Haves", assegurando 
 
 ## Resultado
 
+### Tabela 1 - Priorização de Requisitos Funcionais
+
 | Identificador | Requisito | Priorização |
-|---------------|-----------|-----------------|
-| RF01 | O software deve mostrar a última pessoa que moveu a antena (log de operação). | Could |
-| RF02 | O software deve mostrar se a antena está apresentando falhas no posicionamento. | Should |
-| RF03 | O usuário deve poder verificar a situação atual do clima onde as antenas estão localizadas. | Could |
-| RF04 | O usuário deve poder realizar o login na plataforma. | Must |
-| RF05 | O usuário deve poder redefinir sua senha. | Must |
-| RF06 | O software deve alertar quando a antena precisa de calibração. | Must |
-| RF07 | O usuário deve poder selecionar entre dark mode e light mode. | Would |
-| RF08 | O usuário deve ser capaz de interromper uma rotina. | Must |
-| RF09 | O software deve calcular e enviar os ângulos de posicionamento da antena. | Must |
-| RF10 | O software deve ser capaz de salvar os dados recebidos pelo satélite monitorado. | Must |
-| RF11 | O software deve mostrar a evolução do posicionamento da antena. | Could |
-| RF12 | O usuário deve ser capaz de salvar rotinas de posicionamento. | Should |
-| RF13 | O software deve mostrar a última vez que a antena foi calibrada. | Must |
-| RF14 | O software deve bloquear rotinas que ultrapassem limites físicos ou de velocidade da antena. | Must |
-| RF15 | O administrador deve poder gerenciar (cadastrar/controlar) usuários na plataforma. | Must |
-| RF16 | O software deve ter um perfil de usuário normal (Operador). | Must |
-| RF17 | O usuário deve poder selecionar entre os idiomas português e inglês. | Could |
-| RF18 | O usuário deve poder exportar/baixar dados (gráficos de posicionamento e dados da medição). | Must |
-| RF19 | O usuário deve poder verificar o status das antenas (ex: disponível, indisponível e ocupada). | Must |
-| RN01 | O software deve ser acessível via web e compatível com os principais navegadores (ex: Chrome, Firefox). | Must |
-| RN02 | Os fluxos para a realização de tarefas devem ser curtos. | Must |
-| RN03 | O software deve seguir a identidade visual do laboratório. | Should |
-| RN04 | O software deve ter uma boa documentação. | Must |
+|---------------|-----------|-------------|
+| RF01 | O usuário deve poder realizar login na plataforma. | Must |
+| RF02 | O usuário deve poder redefinir sua senha. | Should |
+| RF03 | O software deve ter perfis de usuário (administrador e usuário normal). | Must |
+| RF04 | O administrador deve poder administrar novos usuários na plataforma. | Must |
+| RF05 | O usuário deve poder visualizar o status das antenas. | Must |
+| RF06 | O usuário deve poder visualizar uma lista de todas as antenas. | Should |
+| RF07 | O usuário deve poder abrir múltiplas janelas, uma para cada antena. | Could |
+| RF08 | O software deve mostrar o posicionamento da antena em tempo real. | Must |
+| RF09 | O software deve mostrar falhas no posicionamento da antena. | Should |
+| RF10 | O software deve mostrar a última pessoa que moveu a antena. | Could |
+| RF11 | O software deve mostrar qual foi a última rotina realizada pela antena. | Should |
+| RF12 | O administrador deve poder bloquear uma antena. | Must |
+| RF13 | O usuário deve poder selecionar o satélite a ser rastreado/monitorado. | Must |
+| RF14 | O software deve listar os satélites disponíveis. | Should |
+| RF15 | O software deve mostrar a trajetória do satélite. | Should |
+| RF16 | O software deve alertar se a antena está recebendo os dados do satélite selecionado. | Must |
+| RF17 | O software deve salvar os dados recebidos do satélite. | Must |
+| RF18 | O usuário deve poder baixar/exportar os dados salvos. | Should |
+| RF19 | O software deve mostrar a potência e a frequência do sinal recebido. | Should |
+| RF20 | O usuário deve poder salvar e deletar rotinas. | Should |
+| RF21 | O usuário deve poder realizar rotinas de calibração. | Must |
+| RF22 | O usuário deve poder interromper uma rotina. | Must |
+| RF23 | O software deve bloquear rotinas inválidas. | Must |
+| RF24 | O software deve calcular o posicionamento da antena conforme parâmetros fornecidos. | Must |
+| RF25 | O software deve mostrar a evolução/histórico do posicionamento da antena. | Could |
+| RF26 | O software deve mostrar a última vez que a antena foi calibrada. | Must |
+| RF27 | O software deve alertar quando a antena precisar de calibração. | Must |
+| RF28 | O usuário deve poder verificar o clima onde as antenas estão localizadas. | Could |
+| RF29 | O banco deve limpar os dados coletados periodicamente. | Should |
+| RF30 | O usuário deve poder selecionar entre dark mode e light mode. | Won't have this time |
+| RF31 | O usuário deve poder escolher entre português e inglês. | Could |
+
+### Tabela 2 - Priorização de Requisitos Não Funcionais
+
+| Identificador | Requisito | Priorização |
+|---------------|-----------|-------------|
+| NF01 | O software deve seguir a identidade visual do laboratório. | Should |
+| NF02 | Os fluxos para realização de tarefas devem ser curtos. | Must |
+| NF03 | O software deve rodar na web. | Must |
+| NF04 | O software deve ser compatível com Chrome. | Must |
+| NF05 | O software deve ser compatível com Firefox. | Must |
+| NF06 | O software deve rodar nos principais navegadores. | Must |
+| NF07 | O software deve ter documentação adequada. | Should |
 
 <center>
-    <figcaption>Tabela 1 - Priorização dos requisitos. Fonte: Autor.</figcaption>
+    <figcaption>Tabela 1 - Priorização dos requisitos funcionais. Fonte: Autor.</figcaption>
+    <figcaption>Tabela 2 - Priorização dos requisitos não funcionais. Fonte: Autor.</figcaption>
 </center>
 
 ## Referências

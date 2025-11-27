@@ -40,16 +40,14 @@ Os requisitos são listados nas tabelas 1 e 2, as quais possuem 3 colunas: uma p
 | RF21 | O usuário deve poder realizar rotinas de calibração. | IN08 |
 | RF22 | O usuário deve poder interromper uma rotina. | IN22 |
 | RF23 | O software deve bloquear rotinas inválidas. | IN11 |
-| RF24 | O software deve calcular o posicionamento da antena conforme parâmetros fornecidos. | IN10 |
-| RF25 | O software deve calcular a trajetória da antena. | IEN01 |
-| RF26 | O usuário deve poder inserir manualmente dados de posicionamento. | EN04 |
-| RF27 | O software deve mostrar a evolução/histórico do posicionamento da antena. | IN14, EN05 |
-| RF28 | O software deve mostrar a última vez que a antena foi calibrada. | IN12, EN08 |
-| RF29 | O software deve alertar quando a antena precisar de calibração. | IN13 |
-| RF30 | O usuário deve poder verificar o clima onde as antenas estão localizadas. | EN17 |
-| RF31 | O banco deve limpar os dados coletados periodicamente. | IN18 |
-| RF32 | O usuário deve poder selecionar entre dark mode e light mode. | IN20 |
-| RF33 | O usuário deve poder escolher entre português e inglês. | IN21, EN13 |
+| RF24 | O software deve calcular o posicionamento da antena conforme parâmetros fornecidos. | IN10, EN01, EN04 |
+| RF25 | O software deve mostrar a evolução/histórico do posicionamento da antena. | IN14, EN05 |
+| RF26 | O software deve mostrar a última vez que a antena foi calibrada. | IN12, EN08 |
+| RF27 | O software deve alertar quando a antena precisar de calibração. | IN13 |
+| RF28 | O usuário deve poder verificar o clima onde as antenas estão localizadas. | EN17 |
+| RF29 | O banco deve limpar os dados coletados periodicamente. | IN18 |
+| RF30 | O usuário deve poder selecionar entre dark mode e light mode. | IN20 |
+| RF31 | O usuário deve poder escolher entre português e inglês. | IN21, EN13 |
 
 <center>
     <figcaption>Tabela 1 - Requisitos funcionais e suas rastreabilidades. Fonte: Autor.</figcaption>
