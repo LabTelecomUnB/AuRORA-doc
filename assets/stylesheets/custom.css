@@ -1,23 +1,23 @@
 /* Override all focus and highlight colors to teal */
 :root {
-    --md-accent-fg-color: #6CC99E !important;
+    --md-accent-fg-color: #00A275 !important;
     --md-accent-fg-color--transparent: rgba(0, 150, 136, 0.1) !important;
 }
 
 /* Text selection */
 ::selection {
-    background-color: #6CC99E !important;
+    background-color: #00A275 !important;
     color: white !important;
 }
 
 ::-moz-selection {
-    background-color: #6CC99E !important;
+    background-color: #00A275 !important;
     color: white !important;
 }
 
 /* Links and interactive elements */
 .md-typeset a {
-    color: #6CC99E !important;
+    color: #00A275 !important;
 }
 
 .md-typeset a:hover,
@@ -29,38 +29,38 @@
 .md-nav__link--active,
 .md-nav__link:focus,
 .md-nav__link:hover {
-    color: #6CC99E !important;
+    color: #00A275 !important;
 }
 
 /* Search highlighting */
 .md-search-result__teaser mark {
-    background-color: #6CC99E !important;
+    background-color: #00A275 !important;
     color: white !important;
 }
 
 /* Code highlighting */
 .md-typeset mark,
 .md-typeset .highlight {
-    background-color: #6CC99E !important;
+    background-color: #00A275 !important;
     color: white !important;
 }
 
 /* Button focus states */
 .md-button:focus,
 .md-button:hover {
-    background-color: #6CC99E !important;
+    background-color: #00A275 !important;
     color: white !important;
 }
 
 /* Tab active states */
 .md-tabs__link--active {
-    color: #6CC99E !important;
+    color: #00A275 !important;
 }
 
 /* Footer links */
 .md-footer-nav__link:focus,
 .md-footer-nav__link:hover {
-    color: #6CC99E !important;
+    color: #00A275 !important;
 }
 
 /* Logo size */
@@ -77,7 +77,7 @@
 /* Sidebar structure lines in red */
 
 .md-nav--integrated>.md-nav__list>.md-nav__item--active .md-nav--secondary {
-    border-left: 2px solid #6CC99E !important;
+    border-left: 2px solid #00A275 !important;
 }
 
 /* H1 styling to fix warning */
