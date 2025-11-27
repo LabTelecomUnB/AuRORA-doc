@@ -5849,44 +5849,6 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
 
 ---
 
-## Matriz de dependências
-
-| Requisito Funcional (RF) | Não Funcionais dos quais depende (NF) |
-|--------------------------|----------------------------------------|
-| RF01 – Login                         | NF03, NF04, NF05, NF06 |
-| RF02 – Redefinir senha               | NF03, NF04, NF05, NF06 |
-| RF03 – Perfis de usuário             | NF03, NF04, NF05, NF06 |
-| RF04 – Administração de usuários     | NF03, NF04, NF05, NF06, NF07 |
-| RF05 – Status das antenas            | NF03, NF04, NF05, NF06 |
-| RF06 – Lista de antenas              | NF03, NF04, NF05, NF06 |
-| RF07 – Múltiplas janelas             | NF03, NF04, NF05, NF06, NF02 |
-| RF08 – Posicionamento em tempo real  | NF03, NF04, NF05, NF06 |
-| RF09 – Falhas de posicionamento      | NF03, NF04, NF05, NF06 |
-| RF10 – Última pessoa que moveu       | NF03, NF04, NF05, NF06 |
-| RF11 – Última rotina                 | NF03, NF04, NF05, NF06 |
-| RF12 – Bloquear antena               | NF03, NF04, NF05, NF06 |
-| RF13 – Selecionar satélite           | NF03, NF04, NF05, NF06 |
-| RF14 – Listar satélites              | NF03, NF04, NF05, NF06 |
-| RF15 – Trajetória do satélite        | NF03, NF04, NF05, NF06, NF02 |
-| RF16 – Alerta de dados recebidos     | NF03, NF04, NF05, NF06 |
-| RF17 – Salvar dados recebidos        | NF03, NF04, NF05, NF06 |
-| RF18 – Baixar/exportar dados         | NF03, NF04, NF05, NF06 |
-| RF19 – Potência e frequência do sinal| NF03, NF04, NF05, NF06 |
-| RF20 – Salvar e deletar rotinas      | NF03, NF04, NF05, NF06 |
-| RF21 – Rotinas de calibração         | NF03, NF04, NF05, NF06 |
-| RF22 – Interromper rotina            | NF03, NF04, NF05, NF06 |
-| RF23 – Bloquear rotinas inválidas    | NF03, NF04, NF05, NF06 |
-| RF24 – Cálculo de posicionamento     | NF03, NF04, NF05, NF06 |
-| RF25 – Histórico de posicionamento    | NF03, NF04, NF05, NF06 |
-| RF26 – Última calibração             | NF03, NF04, NF05, NF06 |
-| RF27 – Alerta de calibração          | NF03, NF04, NF05, NF06 |
-| RF28 – Verificar clima               | NF03, NF04, NF05, NF06 |
-| RF29 – Limpeza periódica dos dados   | NF03, NF04, NF05, NF06 |
-| RF30 – Dark mode / Light mode        | NF01, NF03, NF04, NF05, NF06 |
-| RF31 – Português e inglês            | NF03, NF04, NF05, NF06, NF07 |
-
-
-
 ## Referência
 
 [1] COHN, Mike. User Stories Applied: For Agile Software Development. Addison-Wesley, 2004.

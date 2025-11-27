@@ -684,6 +684,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Resultado">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tabela-1-priorizacao-de-requisitos-funcionais" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabela 1 - Priorização de Requisitos Funcionais
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tabela-2-priorizacao-de-requisitos-nao-funcionais" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabela 2 - Priorização de Requisitos Não Funcionais
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -798,6 +826,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Resultado">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tabela-1-priorizacao-de-requisitos-funcionais" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabela 1 - Priorização de Requisitos Funcionais
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tabela-2-priorizacao-de-requisitos-nao-funcionais" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabela 2 - Priorização de Requisitos Não Funcionais
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -863,6 +919,7 @@
 </ol>
 <p>Este modelo garante que os recursos sejam focados nos "Must Haves", assegurando que o produto mínimo viável (MVP) seja entregue dentro do prazo e atenda às necessidades críticas do negócio. A transparência na priorização do MoSCoW facilita a gestão de expectativas do cliente, mitiga riscos de escopo excessivo e otimiza o planejamento das iterações futuras.</p>
 <h2 id="resultado">Resultado</h2>
+<h3 id="tabela-1-priorizacao-de-requisitos-funcionais">Tabela 1 - Priorização de Requisitos Funcionais</h3>
 <table>
 <thead>
 <tr>
@@ -874,123 +931,211 @@
 <tbody>
 <tr>
 <td>RF01</td>
-<td>O software deve mostrar a última pessoa que moveu a antena (log de operação).</td>
-<td>Could</td>
+<td>O usuário deve poder realizar login na plataforma.</td>
+<td>Must</td>
 </tr>
 <tr>
 <td>RF02</td>
-<td>O software deve mostrar se a antena está apresentando falhas no posicionamento.</td>
+<td>O usuário deve poder redefinir sua senha.</td>
 <td>Should</td>
 </tr>
 <tr>
 <td>RF03</td>
-<td>O usuário deve poder verificar a situação atual do clima onde as antenas estão localizadas.</td>
-<td>Could</td>
+<td>O software deve ter perfis de usuário (administrador e usuário normal).</td>
+<td>Must</td>
 </tr>
 <tr>
 <td>RF04</td>
-<td>O usuário deve poder realizar o login na plataforma.</td>
+<td>O administrador deve poder administrar novos usuários na plataforma.</td>
 <td>Must</td>
 </tr>
 <tr>
 <td>RF05</td>
-<td>O usuário deve poder redefinir sua senha.</td>
+<td>O usuário deve poder visualizar o status das antenas.</td>
 <td>Must</td>
 </tr>
 <tr>
 <td>RF06</td>
-<td>O software deve alertar quando a antena precisa de calibração.</td>
-<td>Must</td>
+<td>O usuário deve poder visualizar uma lista de todas as antenas.</td>
+<td>Should</td>
 </tr>
 <tr>
 <td>RF07</td>
-<td>O usuário deve poder selecionar entre dark mode e light mode.</td>
-<td>Would</td>
+<td>O usuário deve poder abrir múltiplas janelas, uma para cada antena.</td>
+<td>Could</td>
 </tr>
 <tr>
 <td>RF08</td>
-<td>O usuário deve ser capaz de interromper uma rotina.</td>
+<td>O software deve mostrar o posicionamento da antena em tempo real.</td>
 <td>Must</td>
 </tr>
 <tr>
 <td>RF09</td>
-<td>O software deve calcular e enviar os ângulos de posicionamento da antena.</td>
-<td>Must</td>
-</tr>
-<tr>
-<td>RF10</td>
-<td>O software deve ser capaz de salvar os dados recebidos pelo satélite monitorado.</td>
-<td>Must</td>
-</tr>
-<tr>
-<td>RF11</td>
-<td>O software deve mostrar a evolução do posicionamento da antena.</td>
-<td>Could</td>
-</tr>
-<tr>
-<td>RF12</td>
-<td>O usuário deve ser capaz de salvar rotinas de posicionamento.</td>
+<td>O software deve mostrar falhas no posicionamento da antena.</td>
 <td>Should</td>
 </tr>
 <tr>
+<td>RF10</td>
+<td>O software deve mostrar a última pessoa que moveu a antena.</td>
+<td>Could</td>
+</tr>
+<tr>
+<td>RF11</td>
+<td>O software deve mostrar qual foi a última rotina realizada pela antena.</td>
+<td>Should</td>
+</tr>
+<tr>
+<td>RF12</td>
+<td>O administrador deve poder bloquear uma antena.</td>
+<td>Must</td>
+</tr>
+<tr>
 <td>RF13</td>
-<td>O software deve mostrar a última vez que a antena foi calibrada.</td>
+<td>O usuário deve poder selecionar o satélite a ser rastreado/monitorado.</td>
 <td>Must</td>
 </tr>
 <tr>
 <td>RF14</td>
-<td>O software deve bloquear rotinas que ultrapassem limites físicos ou de velocidade da antena.</td>
-<td>Must</td>
+<td>O software deve listar os satélites disponíveis.</td>
+<td>Should</td>
 </tr>
 <tr>
 <td>RF15</td>
-<td>O administrador deve poder gerenciar (cadastrar/controlar) usuários na plataforma.</td>
-<td>Must</td>
+<td>O software deve mostrar a trajetória do satélite.</td>
+<td>Should</td>
 </tr>
 <tr>
 <td>RF16</td>
-<td>O software deve ter um perfil de usuário normal (Operador).</td>
+<td>O software deve alertar se a antena está recebendo os dados do satélite selecionado.</td>
 <td>Must</td>
 </tr>
 <tr>
 <td>RF17</td>
-<td>O usuário deve poder selecionar entre os idiomas português e inglês.</td>
-<td>Could</td>
+<td>O software deve salvar os dados recebidos do satélite.</td>
+<td>Must</td>
 </tr>
 <tr>
 <td>RF18</td>
-<td>O usuário deve poder exportar/baixar dados (gráficos de posicionamento e dados da medição).</td>
-<td>Must</td>
+<td>O usuário deve poder baixar/exportar os dados salvos.</td>
+<td>Should</td>
 </tr>
 <tr>
 <td>RF19</td>
-<td>O usuário deve poder verificar o status das antenas (ex: disponível, indisponível e ocupada).</td>
+<td>O software deve mostrar a potência e a frequência do sinal recebido.</td>
+<td>Should</td>
+</tr>
+<tr>
+<td>RF20</td>
+<td>O usuário deve poder salvar e deletar rotinas.</td>
+<td>Should</td>
+</tr>
+<tr>
+<td>RF21</td>
+<td>O usuário deve poder realizar rotinas de calibração.</td>
 <td>Must</td>
 </tr>
 <tr>
-<td>RN01</td>
-<td>O software deve ser acessível via web e compatível com os principais navegadores (ex: Chrome, Firefox).</td>
+<td>RF22</td>
+<td>O usuário deve poder interromper uma rotina.</td>
 <td>Must</td>
 </tr>
 <tr>
-<td>RN02</td>
-<td>Os fluxos para a realização de tarefas devem ser curtos.</td>
+<td>RF23</td>
+<td>O software deve bloquear rotinas inválidas.</td>
 <td>Must</td>
 </tr>
 <tr>
-<td>RN03</td>
+<td>RF24</td>
+<td>O software deve calcular o posicionamento da antena conforme parâmetros fornecidos.</td>
+<td>Must</td>
+</tr>
+<tr>
+<td>RF25</td>
+<td>O software deve mostrar a evolução/histórico do posicionamento da antena.</td>
+<td>Could</td>
+</tr>
+<tr>
+<td>RF26</td>
+<td>O software deve mostrar a última vez que a antena foi calibrada.</td>
+<td>Must</td>
+</tr>
+<tr>
+<td>RF27</td>
+<td>O software deve alertar quando a antena precisar de calibração.</td>
+<td>Must</td>
+</tr>
+<tr>
+<td>RF28</td>
+<td>O usuário deve poder verificar o clima onde as antenas estão localizadas.</td>
+<td>Could</td>
+</tr>
+<tr>
+<td>RF29</td>
+<td>O banco deve limpar os dados coletados periodicamente.</td>
+<td>Should</td>
+</tr>
+<tr>
+<td>RF30</td>
+<td>O usuário deve poder selecionar entre dark mode e light mode.</td>
+<td>Won't have this time</td>
+</tr>
+<tr>
+<td>RF31</td>
+<td>O usuário deve poder escolher entre português e inglês.</td>
+<td>Could</td>
+</tr>
+</tbody>
+</table>
+<h3 id="tabela-2-priorizacao-de-requisitos-nao-funcionais">Tabela 2 - Priorização de Requisitos Não Funcionais</h3>
+<table>
+<thead>
+<tr>
+<th>Identificador</th>
+<th>Requisito</th>
+<th>Priorização</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NF01</td>
 <td>O software deve seguir a identidade visual do laboratório.</td>
 <td>Should</td>
 </tr>
 <tr>
-<td>RN04</td>
-<td>O software deve ter uma boa documentação.</td>
+<td>NF02</td>
+<td>Os fluxos para realização de tarefas devem ser curtos.</td>
 <td>Must</td>
+</tr>
+<tr>
+<td>NF03</td>
+<td>O software deve rodar na web.</td>
+<td>Must</td>
+</tr>
+<tr>
+<td>NF04</td>
+<td>O software deve ser compatível com Chrome.</td>
+<td>Must</td>
+</tr>
+<tr>
+<td>NF05</td>
+<td>O software deve ser compatível com Firefox.</td>
+<td>Must</td>
+</tr>
+<tr>
+<td>NF06</td>
+<td>O software deve rodar nos principais navegadores.</td>
+<td>Must</td>
+</tr>
+<tr>
+<td>NF07</td>
+<td>O software deve ter documentação adequada.</td>
+<td>Should</td>
 </tr>
 </tbody>
 </table>
 <center>
-    <figcaption>Tabela 1 - Priorização dos requisitos. Fonte: Autor.</figcaption>
+    <figcaption>Tabela 1 - Priorização dos requisitos funcionais. Fonte: Autor.</figcaption>
+    <figcaption>Tabela 2 - Priorização dos requisitos não funcionais. Fonte: Autor.</figcaption>
 </center>
 
 <h2 id="referencias">Referências</h2>
