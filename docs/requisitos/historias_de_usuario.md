@@ -65,7 +65,7 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
     <!-- Id do requisito -->
     <tr>
       <td>ID do requisito</td>
-      <td><a href="./requisitos_elicitados.md">[RF01]</td>
+      <td><a href="../../docs/requisitos/requisitos_elicitados.md">[RF01]</td>
     </tr>
     <!-- História -->
     <tr>
@@ -175,7 +175,14 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
     </tr>
     <tr>
       <td>Depedência</td>
-      <td>-</td>
+      <td>
+        <ul>
+          <li>NF03</li>
+          <li>NF04</li>
+          <li>NF05</li>
+          <li>NF06</li>
+        </ul>
+      </td>
     </tr>
   </tbody>
 </table>
@@ -201,7 +208,7 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
     <!-- Id do requisito -->
     <tr>
       <td>ID do requisito</td>
-      <td><a href="./requisitos_elicitados.md">[RF02]</td>
+      <td><a href="../../docs/requisitos/requisitos_elicitados.md">[RF02]</td>
     </tr>
     <!-- História -->
     <tr>
@@ -333,9 +340,10 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
     <tr>
       <td>Depedência</td>
       <td>
-          <ul>
-            <li>[RF01]  –  Sistema de login</li>
-          </ul>
+        <ul>
+          <li>RF01</li>
+          <li>NF03</li>
+        </ul>
       </td>
     </tr>
   </tbody>
@@ -361,15 +369,15 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
     <!-- Id do requisito -->
     <tr>
       <td>ID do requisito</td>
-      <td><a href="./requisitos_elicitados.md">[RF03]</td>
+      <td><a href="../../docs/requisitos/requisitos_elicitados.md">[RF03]</td>
     </tr>
     <!-- História -->
     <tr>
       <td>História</td>
       <td>  
         Como administrador da plataforma,
-eu quero que o sistema possua perfis de usuário distintos (administrador e usuário normal),
-para garantir que apenas pessoas autorizadas possam realizar ações críticas, enquanto usuários comuns tenham acesso apenas às funcionalidades necessárias para operação diária.</td>
+        eu quero que o sistema possua perfis de usuário distintos (administrador e usuário normal),
+        para garantir que apenas pessoas autorizadas possam realizar ações críticas, enquanto usuários comuns tenham acesso apenas às funcionalidades necessárias para operação diária.</td>
     </tr>
     <!-- Descrição -->
     <tr>
@@ -492,8 +500,10 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     <tr>
       <td>Depedência</td>
       <td>
-        <li>[RF01]  –  Sistema de login</li>
-        <li>[RF04]  –  Gerenciamento de usuários.</li>
+        <ul>
+          <li>RF01</li>
+          <li>NF03</li>
+        </ul>
       </td>
     </tr>
   </tbody>
@@ -518,7 +528,7 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     <!-- Id do requisito -->
     <tr>
       <td>ID do requisito</td>
-      <td><a href="./requisitos_elicitados.md">[RF04]</td>
+      <td><a href="../../docs/requisitos/requisitos_elicitados.md">[RF04]</td>
     </tr>
     <!-- História -->
     <tr>
@@ -678,7 +688,10 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     <tr>
       <td>Depedência</td>
       <td>
-        <li>[RF01]  –  Sistema de login</li>
+        <ul>
+          <li>RF03</li>
+          <li>NF03</li>
+        </ul>
       </td>
     </tr>
   </tbody>
@@ -704,7 +717,7 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     <!-- Id do requisito -->
     <tr>
       <td>ID do requisito</td>
-      <td><a href="./requisitos_elicitados.md">[RF05]</td>
+      <td><a href="../../docs/requisitos/requisitos_elicitados.md">[RF05]</td>
     </tr>
     <!-- História -->
     <tr>
@@ -859,7 +872,10 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     <tr>
       <td>Depedência</td>
       <td>
-        <li>[RF01]  –  Sistema de login</li>
+        <ul>
+          <li>RF01</li>
+          <li>NF03</li>
+        </ul>
       </td>
     </tr>
   </tbody>
@@ -884,7 +900,7 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     <!-- Id do requisito -->
     <tr>
       <td>ID do requisito</td>
-      <td><a href="./requisitos_elicitados.md">[RF06]</td>
+      <td><a href="../../docs/requisitos/requisitos_elicitados.md">[RF06]</td>
     </tr>
     <!-- História -->
     <tr>
@@ -1022,8 +1038,10 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     <tr>
       <td>Depedência</td>
       <td>
-        <li>[RF01]  –  Sistema de login</li>
-        <li>[RF05]  –  Status das antenas</li>
+        <ul>
+          <li>RF01</li>
+          <li>NF03</li>
+        </ul>
       </td>
     </tr>
   </tbody>
@@ -1048,7 +1066,7 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     <!-- Id do requisito -->
     <tr>
       <td>ID do requisito</td>
-      <td><a href="./requisitos_elicitados.md">[RF07]</td>
+      <td><a href="../../docs/requisitos/requisitos_elicitados.md">[RF07]</td>
     </tr>
     <!-- História -->
     <tr>
@@ -1170,9 +1188,10 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     <tr>
       <td>Depedência</td>
       <td>
-        <li>[RF01]  –  Sistema de login</li>
-        <li>[RF05]  –  Status das antenas</li>
-        <li>[RF06]  –  Listagem de Antenas</li>
+        <ul>
+          <li>RF06</li>
+          <li>NF03</li>
+        </ul>
       </td>
     </tr>
   </tbody>
@@ -1197,7 +1216,7 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     <!-- Id do requisito -->
     <tr>
       <td>ID do requisito</td>
-      <td><a href="./requisitos_elicitados.md">[RF08]</td>
+      <td><a href="../../docs/requisitos/requisitos_elicitados.md">[RF08]</td>
     </tr>
     <!-- História -->
     <tr>
@@ -1329,9 +1348,10 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     <tr>
       <td>Depedência</td>
       <td>
-        <li>[RF01]  –  Sistema de login</li>
-        <li>[RF05]  –  Status das antenas AQUI!!!!</li> 
-        <li>[RF06]  –  Listagem de Antenas</li>
+        <ul>
+          <li>RF05</li>
+          <li>NF03</li>
+        </ul>
       </td>
     </tr>
   </tbody>
@@ -1357,7 +1377,7 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     <!-- Id do requisito -->
     <tr>
       <td>ID do requisito</td>
-      <td><a href="./requisitos_elicitados.md">[RF09]</td>
+      <td><a href="../../docs/requisitos/requisitos_elicitados.md">[RF09]</td>
     </tr>
     <!-- História -->
     <tr>
@@ -1516,8 +1536,8 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
       <td>Depedência</td>
       <td>
         <ul>
-          <li>[RF09] - Cálculo de posicionamento.</li>
-          <li>Entrada contínua dos dados do hardware.</li>
+          <li>RF08</li>
+          <li>NF03</li>
         </ul>
       </td>
     </tr>
@@ -1543,7 +1563,7 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     <!-- Id do requisito -->
     <tr>
       <td>ID do requisito</td>
-      <td><a href="./requisitos_elicitados.md">[RF10]</td>
+      <td><a href="../../docs/requisitos/requisitos_elicitados.md">[RF10]</td>
     </tr>
     <!-- História -->
     <tr>
@@ -1642,7 +1662,13 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     </tr>
     <tr>
       <td>Depedência</td>
-      <td>-</td>
+      <td>
+        <ul>
+          <li>RF01</li>
+          <li>RF05</li>
+          <li>NF03</li>
+        </ul>
+      </td>
     </tr>
   </tbody>
 </table>
@@ -1666,7 +1692,7 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     <!-- Id do requisito -->
     <tr>
       <td>ID do requisito</td>
-      <td><a href="./requisitos_elicitados.md">[RF11]</td>
+      <td><a href="../../docs/requisitos/requisitos_elicitados.md">[RF11]</td>
     </tr>
     <!-- História -->
     <tr>
@@ -1777,7 +1803,13 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     </tr>
     <tr>
       <td>Depedência</td>
-      <td>-</td>
+      <td>
+        <ul>
+          <li>RF20</li>
+          <li>RF21</li>
+          <li>NF03</li>
+        </ul>
+      </td>
     </tr>
   </tbody>
 </table>
@@ -1801,7 +1833,7 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     <!-- Id do requisito -->
     <tr>
       <td>ID do requisito</td>
-      <td><a href="./requisitos_elicitados.md">[RF12]</td>
+      <td><a href="../../docs/requisitos/requisitos_elicitados.md">[RF12]</td>
     </tr>
     <!-- História -->
     <tr>
@@ -1899,7 +1931,13 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     </tr>
     <tr>
       <td>Depedência</td>
-      <td>-</td>
+      <td>
+        <ul>
+          <li>RF03</li>
+          <li>RF05</li>
+          <li>NF03</li>
+        </ul>
+      </td>
     </tr>
   </tbody>
 </table>
@@ -1924,7 +1962,7 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     <!-- Id do requisito -->
     <tr>
       <td>ID do requisito</td>
-      <td><a href="./requisitos_elicitados.md">[RF13]</td>
+      <td><a href="../../docs/requisitos/requisitos_elicitados.md">[RF13]</td>
     </tr>
     <!-- História -->
     <tr>
@@ -2067,7 +2105,13 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     </tr>
     <tr>
       <td>Depedência</td>
-      <td>-</td>
+      <td>
+        <ul>
+          <li>RF06</li>
+          <li>RF14</li>
+          <li>NF03</li>
+        </ul>
+      </td>
     </tr>
   </tbody>
 </table>
@@ -2091,7 +2135,7 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     <!-- Id do requisito -->
     <tr>
       <td>ID do requisito</td>
-      <td><a href="./requisitos_elicitados.md">[RF14]</td>
+      <td><a href="../../docs/requisitos/requisitos_elicitados.md">[RF14]</td>
     </tr>
     <!-- História -->
     <tr>
@@ -2193,7 +2237,11 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     </tr>
     <tr>
       <td>Depedência</td>
-      <td>-</td>
+      <td>
+        <ul>
+          <li>NF03</li>
+        </ul>
+      </td>
     </tr>
   </tbody>
 </table>
@@ -2217,7 +2265,7 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     <!-- Id do requisito -->
     <tr>
       <td>ID do requisito</td>
-      <td><a href="./requisitos_elicitados.md">[RF15]</td>
+      <td><a href="../../docs/requisitos/requisitos_elicitados.md">[RF15]</td>
     </tr>
     <!-- História -->
     <tr>
@@ -2334,7 +2382,13 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     </tr>
     <tr>
       <td>Depedência</td>
-      <td>-</td>
+      <td>
+        <ul>
+          <li>RF13</li>
+          <li>RF14</li>
+          <li>NF03</li>
+        </ul>
+      </td>
     </tr>
   </tbody>
 </table>
@@ -2369,7 +2423,7 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     <!-- Id do requisito -->
     <tr>
       <td>ID do requisito</td>
-      <td><a href="./requisitos_elicitados.md">[RF16]</td>
+      <td><a href="../../docs/requisitos/requisitos_elicitados.md">[RF16]</td>
     </tr>
     <!-- História -->
     <tr>
@@ -2510,7 +2564,12 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     </tr>
     <tr>
       <td>Depedência</td>
-      <td>-</td>
+      <td>
+        <ul>
+          <li>RF13</li>
+          <li>NF03</li>
+        </ul>
+      </td>
     </tr>
   </tbody>
 </table>
@@ -2534,7 +2593,7 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     <!-- Id do requisito -->
     <tr>
       <td>ID do requisito</td>
-      <td><a href="./requisitos_elicitados.md">[RF17]</td>
+      <td><a href="../../docs/requisitos/requisitos_elicitados.md">[RF17]</td>
     </tr>
     <!-- História -->
     <tr>
@@ -2709,7 +2768,13 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     </tr>
     <tr>
       <td>Depedência</td>
-      <td>-</td>
+      <td>
+        <ul>
+          <li>RF16</li>
+          <li>NF03</li>
+          <li>NF07</li>
+        </ul>
+      </td>
     </tr>
   </tbody>
 </table>
@@ -2733,7 +2798,7 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     <!-- Id do requisito -->
     <tr>
       <td>ID do requisito</td>
-      <td><a href="./requisitos_elicitados.md">[RF18]</td>
+      <td><a href="../../docs/requisitos/requisitos_elicitados.md">[RF18]</td>
     </tr>
     <!-- História -->
     <tr>
@@ -2869,7 +2934,12 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     </tr>
     <tr>
       <td>Depedência</td>
-      <td>-</td>
+      <td>
+        <ul>
+          <li>RF17</li>
+          <li>NF03</li>
+        </ul>
+      </td>
     </tr>
   </tbody>
 </table>
@@ -2893,7 +2963,7 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     <!-- Id do requisito -->
     <tr>
       <td>ID do requisito</td>
-      <td><a href="./requisitos_elicitados.md">[RF19]</td>
+      <td><a href="../../docs/requisitos/requisitos_elicitados.md">[RF19]</td>
     </tr>
     <!-- História -->
     <tr>
@@ -3029,7 +3099,12 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     </tr>
     <tr>
       <td>Depedência</td>
-      <td>-</td>
+      <td>
+        <ul>
+          <li>RF16</li>
+          <li>NF03</li>
+        </ul>
+      </td>
     </tr>
   </tbody>
 </table>
@@ -3053,7 +3128,7 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     <!-- Id do requisito -->
     <tr>
       <td>ID do requisito</td>
-      <td><a href="./requisitos_elicitados.md">[RF20]</td>
+      <td><a href="../../docs/requisitos/requisitos_elicitados.md">[RF20]</td>
     </tr>
     <!-- História -->
     <tr>
@@ -3199,7 +3274,12 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     </tr>
     <tr>
       <td>Depedência</td>
-      <td>-</td>
+      <td>
+        <ul>
+          <li>RF21</li>
+          <li>NF03</li>
+        </ul>
+      </td>
     </tr>
   </tbody>
 </table>
@@ -3224,7 +3304,7 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     <!-- Id do requisito -->
     <tr>
       <td>ID do requisito</td>
-      <td><a href="./requisitos_elicitados.md">[RF21]</td>
+      <td><a href="../../docs/requisitos/requisitos_elicitados.md">[RF21]</td>
     </tr>
     <!-- História -->
     <tr>
@@ -3360,7 +3440,12 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     </tr>
     <tr>
       <td>Depedência</td>
-      <td>-</td>
+      <td>
+        <ul>
+          <li>RF26</li>
+          <li>NF03</li>
+        </ul>
+      </td>
     </tr>
   </tbody>
 </table>
@@ -3522,7 +3607,12 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
 <!-- Dependência -->
 <tr>
   <td>Dependência</td>
-  <td>-</td>
+  <td>
+    <ul>
+      <li>RF21</li>
+      <li>NF03</li>
+    </ul>
+  </td>
 </tr>
 </tbody> </table> <center> <figcaption>Tabela 23 - História do usuário: requisito RF22. Fonte: Autor.</figcaption> </center>
 
@@ -3541,7 +3631,7 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     <!-- Id do requisito -->
     <tr>
       <td>ID do requisito</td>
-      <td><a href="./requisitos_elicitados.md">[RF23]</td>
+      <td><a href="../../docs/requisitos/requisitos_elicitados.md">[RF23]</td>
     </tr>
     <!-- História -->
     <tr>
@@ -3720,7 +3810,11 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     <tr>
       <td>Depedência</td>
       <td>
-          -
+        <ul>
+          <li>RF20</li>
+          <li>RF21</li>
+          <li>NF03</li>
+        </ul>
       </td>
     </tr>
   </tbody>
@@ -3745,7 +3839,7 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     <!-- Id do requisito -->
     <tr>
       <td>ID do requisito</td>
-      <td><a href="./requisitos_elicitados.md">[RF24]</td>
+      <td><a href="../../docs/requisitos/requisitos_elicitados.md">[RF24]</td>
     </tr>
     <!-- História -->
     <tr>
@@ -3881,12 +3975,9 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
       <td>Depedência</td>
       <td>
           <ul>
-            <li>
-            RF19 – Status das antenas.
-            </li>
-            <li>
-            RF11 – Evolução do posicionamento da antena.
-            </li>
+            <li>RF13</li>
+            <li>RF21</li>
+            <li>NF03</li>
           </ul>
       </td>
     </tr>
@@ -3901,7 +3992,7 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
 
 ### RF025 - Visualização do posicionamento da antena
 
-<table> <thead> <tr> <th>Identificador</th> <th>Descrição</th> </tr> </thead> <tbody> <!-- Id do requisito --> <tr> <td>ID do requisito</td> <td><a href="./requisitos_elicitados.md">[RF25]</a></td> </tr>
+<table> <thead> <tr> <th>Identificador</th> <th>Descrição</th> </tr> </thead> <tbody> <!-- Id do requisito --> <tr> <td>ID do requisito</td> <td><a href="../../docs/requisitos/requisitos_elicitados.md">[RF25]</a></td> </tr>
 <!-- História -->
 <tr>
   <td>História</td>
@@ -4042,7 +4133,13 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
 <!-- Dependência -->
 <tr>
   <td>Dependência</td>
-  <td>IN14, EN05</td>
+  <td>
+    <ul>
+        <li>RF08</li>
+        <li>RF24</li>
+        <li>NF03</li>
+      </ul>
+  </td>
 </tr>
 
 </tbody> </table> <center> <figcaption>Tabela 26 - História do usuário: requisito RF25. Fonte: Autor.</figcaption> </center>
@@ -4054,7 +4151,7 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
 <!-- Id do requisito -->
 <tr>
   <td>ID do requisito</td>
-  <td><a href="./requisitos_elicitados.md">[RF26]</a></td>
+  <td><a href="../../docs/requisitos/requisitos_elicitados.md">[RF26]</a></td>
 </tr>
 
 <!-- História -->
@@ -4198,7 +4295,12 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
 <!-- Dependência -->
 <tr>
   <td>Dependência</td>
-  <td>IN12, EN08, RF21</td>
+  <td>
+      <ul>
+        <li>RF21</li>
+        <li>NF03</li>
+      </ul>
+  </td>
 </tr>
 
 </tbody> </table> <center> <figcaption>Tabela 27 - História do usuário: requisito RF26. Fonte: Autor.</figcaption> </center>
@@ -4210,7 +4312,7 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
 <!-- Id do requisito -->
 <tr>
   <td>ID do requisito</td>
-  <td><a href="./requisitos_elicitados.md">[RF27]</a></td>
+  <td><a href="../../docs/requisitos/requisitos_elicitados.md">[RF27]</a></td>
 </tr>
 
 <!-- História -->
@@ -4351,7 +4453,12 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
 <!-- Dependência -->
 <tr>
   <td>Dependência</td>
-  <td>IN13, RF21, RF26, RF23</td>
+  <td>
+    <ul>
+      <li>RF26</li>
+      <li>NF03</li>
+    </ul>
+  </td>
 </tr>
 
 </tbody> </table> <center> <figcaption>Tabela 28 - História do usuário: requisito RF27. Fonte: Autor.</figcaption> </center>
@@ -4372,7 +4479,7 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     <!-- Id do requisito -->
     <tr>
       <td>ID do requisito</td>
-      <td><a href="./requisitos_elicitados.md">[RF28]</a></td>
+      <td><a href="../../docs/requisitos/requisitos_elicitados.md">[RF28]</a></td>
     </tr>
     <!-- História -->
     <tr>
@@ -4490,7 +4597,12 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     <!-- Dependência -->
     <tr>
       <td>Dependência</td>
-      <td>EN17, RF06</td>
+      <td>
+        <ul>
+          <li>RF06</li>
+          <li>NF03</li>
+        </ul>
+      </td>
     </tr>
 
   </tbody>
@@ -4513,13 +4625,11 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
   </thead>
 
   <tbody>
-
     <!-- Id do requisito -->
     <tr>
       <td>ID do requisito</td>
-      <td><a href="./requisitos_elicitados.md">[RF29]</a></td>
+      <td><a href="../../docs/requisitos/requisitos_elicitados.md">[RF29]</a></td>
     </tr>
-
     <!-- História -->
     <tr>
       <td>História</td>
@@ -4529,15 +4639,12 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
         para que o sistema mantenha desempenho adequado, evite acúmulo excessivo de informações e reduza custos de armazenamento a longo prazo.
       </td>
     </tr>
-
     <!-- Descrição -->
     <tr>
       <td>Descrição</td>
       <td>
         O sistema deve remover automaticamente do banco de dados os dados coletados que ultrapassarem o período máximo de retenção definido em <b>IN18</b>.<br/><br/>
-
         A limpeza deve ocorrer de forma programada, sem necessidade de intervenção manual e sem impactar a operação das antenas ou dos usuários ativos.<br/><br/>
-
         A funcionalidade deve:
         <ul>
           <li>executar rotinas automatizadas de exclusão com base em critérios definidos por tempo (ex.: dias, semanas ou meses),</li>
@@ -4546,15 +4653,12 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
           <li>evitar indisponibilidade do sistema durante o processo de limpeza,</li>
           <li>ser configurável pelo administrador (período de retenção, janela de execução, etc.).</li>
         </ul>
-
         A limpeza periódica garante estabilidade, previsibilidade no tamanho do banco e evita degradação por excesso de dados.
       </td>
     </tr>
-
     <!-- Regras de negócio -->
     <tr>
       <td rowspan="4">Regras de negócio</td>
-
       <td>
         <ul>
           <b>Parâmetros definidos em IN18</b>
@@ -4562,7 +4666,6 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
         </ul>
       </td>
     </tr>
-
     <tr>
       <td>
         <ul>
@@ -4571,7 +4674,6 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
         </ul>
       </td>
     </tr>
-
     <tr>
       <td>
         <ul>
@@ -4580,7 +4682,6 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
         </ul>
       </td>
     </tr>
-
     <tr>
       <td>
         <ul>
@@ -4589,11 +4690,9 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
         </ul>
       </td>
     </tr>
-
     <!-- Critérios de aceitação -->
     <tr>
       <td rowspan="3">Critérios de aceitação</td>
-
       <td>
         <b>Remoção de dados antigos</b>
         <ul>
@@ -4603,7 +4702,6 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
         </ul>
       </td>
     </tr>
-
     <tr>
       <td>
         <b>Registro em log</b>
@@ -4614,7 +4712,6 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
         </ul>
       </td>
     </tr>
-
     <tr>
       <td>
         <b>Sem impacto na operação</b>
@@ -4625,7 +4722,6 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
         </ul>
       </td>
     </tr>
-
     <!-- Pontuação -->
     <tr>
       <td>Pontuação</td>
@@ -4638,17 +4734,20 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
         </ul>
       </td>
     </tr>
-
     <!-- Prioridade -->
     <tr>
       <td>Prioridade</td>
       <td>Should</td>
     </tr>
-
     <!-- Dependência -->
     <tr>
       <td>Dependência</td>
-      <td>IN18</td>
+      <td>
+        <ul>
+          <li>RF17</li>
+          <li>NF03</li>
+        </ul>
+      </td>
     </tr>
 
   </tbody>
@@ -4673,7 +4772,7 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     <!-- Id do requisito -->
     <tr>
       <td>ID do requisito</td>
-      <td><a href="./requisitos_elicitados.md">[RF30]</td>
+      <td><a href="../../docs/requisitos/requisitos_elicitados.md">[RF30]</td>
     </tr>
     <!-- História -->
     <tr>
@@ -4794,9 +4893,10 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     <tr>
       <td>Depedência</td>
       <td>
-          <ul>
-            <li>RF23 – Identidade visual do sistema</li>
-          </ul>
+        <ul>
+          <li>NF01</li>
+          <li>NF02</li>
+        </ul>
       </td>
     </tr>
   </tbody>
@@ -4821,7 +4921,7 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     <!-- Id do requisito -->
     <tr>
       <td>ID do requisito</td>
-      <td><a href="./requisitos_elicitados.md">[RF31]</td>
+      <td><a href="../../docs/requisitos/requisitos_elicitados.md">[RF31]</td>
     </tr>
     <!-- História -->
     <tr>
@@ -4941,9 +5041,9 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     <tr>
       <td>Dependência</td>
       <td>
-          <ul>
-            <li>EN13 – Suporte à internacionalização</li>
-          </ul>
+        <ul>
+          <li>NF07</li>
+        </ul>
       </td>
     </tr>
   </tbody>
@@ -4969,7 +5069,7 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     <!-- Id do requisito -->
     <tr>
       <td>ID do requisito</td>
-      <td><a href="./requisitos_elicitados.md">[NF01]</td>
+      <td><a href="../../docs/requisitos/requisitos_elicitados.md">[NF01]</td>
     </tr>
     <!-- História -->
     <tr>
@@ -5074,11 +5174,7 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     <!-- Dependência -->
     <tr>
       <td>Dependência</td>
-      <td>
-        <ul>
-          <li>EN20 – Identidade visual definida</li>
-        </ul>
-      </td>
+      <td>-</td>
     </tr>
 
   </tbody>
@@ -5103,7 +5199,7 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     <!-- Id -->
     <tr>
       <td>ID do requisito</td>
-      <td><a href="./requisitos_elicitados.md">[NF02]</td>
+      <td><a href="../../docs/requisitos/requisitos_elicitados.md">[NF02]</td>
     </tr>
     <!-- História -->
     <tr>
@@ -5206,11 +5302,7 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     <!-- Dependência -->
     <tr>
       <td>Dependência</td>
-      <td>
-        <ul>
-          <li>EN16 – Diretrizes de fluxo curto</li>
-        </ul>
-      </td>
+      <td>-</td>
     </tr>
 
   </tbody>
@@ -5235,7 +5327,7 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     <!-- Id do requisito -->
     <tr>
       <td>ID do requisito</td>
-      <td><a href="./requisitos_elicitados.md">[NF03]</td>
+      <td><a href="../../docs/requisitos/requisitos_elicitados.md">[NF03]</td>
     </tr>
     <!-- História -->
     <tr>
@@ -5318,11 +5410,7 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     <!-- Dependência -->
     <tr>
       <td>Dependência</td>
-      <td>
-        <ul>
-          <li>EN14 – Utilização via web</li>
-        </ul>
-      </td>
+      <td>-</td>
     </tr>
 
   </tbody>
@@ -5347,7 +5435,7 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
     <!-- Id -->
     <tr>
       <td>ID do requisito</td>
-      <td><a href="./requisitos_elicitados.md">[NF04]</td>
+      <td><a href="../../docs/requisitos/requisitos_elicitados.md">[NF04]</td>
     </tr>
     <!-- História -->
     <tr>
@@ -5430,7 +5518,7 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
       <td>Dependência</td>
       <td>
         <ul>
-          <li>IN24 – Compatibilidade Chrome</li>
+          <li>NF03</li>
         </ul>
       </td>
     </tr>
@@ -5449,7 +5537,7 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
 <!-- Id -->
 <tr>
   <td>ID do requisito</td>
-  <td><a href="./requisitos_elicitados.md">[NF05]</td>
+  <td><a href="../../docs/requisitos/requisitos_elicitados.md">[NF05]</td>
 </tr>
 
 <!-- História -->
@@ -5540,9 +5628,9 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
 <tr>
   <td>Dependência</td>
   <td>
-    <ul>
-      <li>IN25 – Compatibilidade Firefox</li>
-    </ul>
+        <ul>
+          <li>NF03</li>
+        </ul>
   </td>
 </tr>
 
@@ -5554,7 +5642,7 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
 <!-- Id -->
 <tr>
   <td>ID do requisito</td>
-  <td><a href="./requisitos_elicitados.md">[NF06]</td>
+  <td><a href="../../docs/requisitos/requisitos_elicitados.md">[NF06]</td>
 </tr>
 
 <!-- História -->
@@ -5646,9 +5734,11 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
 <tr>
   <td>Dependência</td>
   <td>
-    <ul>
-      <li>EN15 – Compatibilidade entre Navegadores</li>
-    </ul>
+        <ul>
+          <li>NF03</li>
+          <li>NF04</li>
+          <li>NF05</li>
+        </ul>
   </td>
 </tr>
 
@@ -5661,7 +5751,7 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
 <!-- Id -->
 <tr>
   <td>ID do requisito</td>
-  <td><a href="./requisitos_elicitados.md">[NF07]</td>
+  <td><a href="../../docs/requisitos/requisitos_elicitados.md">[NF07]</td>
 </tr>
 
 <!-- História -->
@@ -5752,11 +5842,7 @@ para garantir que apenas pessoas autorizadas possam realizar ações críticas, 
 <!-- Dependência -->
 <tr>
   <td>Dependência</td>
-  <td>
-    <ul>
-      <li>EN25 – Documentação mínima necessária</li>
-    </ul>
-  </td>
+  <td>-</td>
 </tr>
 
 </tbody> </table> <center> <figcaption>Tabela 39 — História do usuário: requisito NF07. Fonte: Autor.</figcaption> </center>
