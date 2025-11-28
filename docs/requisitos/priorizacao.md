@@ -29,7 +29,7 @@ Este modelo garante que os recursos sejam focados nos "Must Haves", assegurando 
 | RF03 | O software deve ter perfis de usuário (administrador e usuário normal). | Must |
 | RF04 | O administrador deve poder administrar novos usuários na plataforma. | Must |
 | RF05 | O usuário deve poder visualizar o status das antenas. | Must |
-| RF06 | O usuário deve poder visualizar uma lista de todas as antenas. | Should |
+| RF06 | O usuário deve poder visualizar uma lista de todas as antenas. | Must |
 | RF07 | O usuário deve poder abrir múltiplas janelas, uma para cada antena. | Could |
 | RF08 | O software deve mostrar o posicionamento da antena em tempo real. | Must |
 | RF09 | O software deve mostrar falhas no posicionamento da antena. | Should |
@@ -41,7 +41,7 @@ Este modelo garante que os recursos sejam focados nos "Must Haves", assegurando 
 | RF15 | O software deve mostrar a trajetória do satélite. | Should |
 | RF16 | O software deve alertar se a antena está recebendo os dados do satélite selecionado. | Must |
 | RF17 | O software deve salvar os dados recebidos do satélite. | Must |
-| RF18 | O usuário deve poder baixar/exportar os dados salvos. | Should |
+| RF18 | O usuário deve poder baixar/exportar os dados salvos. | Must |
 | RF19 | O software deve mostrar a potência e a frequência do sinal recebido. | Should |
 | RF20 | O usuário deve poder salvar e deletar rotinas. | Should |
 | RF21 | O usuário deve poder realizar rotinas de calibração. | Must |
@@ -69,8 +69,7 @@ Este modelo garante que os recursos sejam focados nos "Must Haves", assegurando 
 | NF07 | O software deve ter documentação adequada. | Should |
 
 <center>
-    <figcaption>Tabela 1 - Priorização dos requisitos funcionais. Fonte: Autor.</figcaption>
-    <figcaption>Tabela 2 - Priorização dos requisitos não funcionais. Fonte: Autor.</figcaption>
+    <figcaption>Tabela 1 - Priorização dos requisitos. Fonte: Autor.</figcaption>
 </center>
 
 ## Referências

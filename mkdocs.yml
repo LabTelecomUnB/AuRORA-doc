@@ -83,5 +83,10 @@ nav:
     - Requisitos elicitados: requisitos/requisitos_elicitados.md
     - Priorização: requisitos/priorizacao.md
     - Histórias de usuário: requisitos/historias_de_usuario.md
-
+  - Identidade Visual:
+    - Logo: id_visual/logo.md
+    - Cores: id_visual/cores.md
+    # - Fontes:
+    # - Icones:
+    # - Componentes:
 
