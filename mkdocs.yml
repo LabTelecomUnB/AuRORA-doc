@@ -86,7 +86,7 @@ nav:
   - Identidade Visual:
     - Logo: id_visual/logo.md
     - Cores: id_visual/cores.md
-    # - Fontes:
+    - Fontes: id_visual/tipografia.md
     # - Icones:
     # - Componentes:
 
