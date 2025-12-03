@@ -1,6 +1,6 @@
 # Ícones
 
-Será utilizada a biblioteca [heroicons](https://heroicons.dev/) na plataforma visando seu visual minimalista e a integração com os frameworks [Tailwind CSS](https://tailwindcss.com/) e [React](https://react.dev/), os quais serão utilizados para aa implementação sa parte visual da aplicação.
+Será utilizada a biblioteca [Heroicons](https://heroicons.dev/) na plataforma visando seu visual minimalista e a integração com os frameworks [Tailwind CSS](https://tailwindcss.com/) e [React](https://react.dev/), os quais serão utilizados para aa implementação sa parte visual da aplicação.
 
 
 ## Ícones Outiline (Padrão)

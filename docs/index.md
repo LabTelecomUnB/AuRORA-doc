@@ -24,7 +24,7 @@ Nesta página você encontrará toda a documentação dos processos de desenvolv
         </div>
     </a>
 
-    <a href="requisitos/backlog.md">
+    <a href="requisitos/backlog/">
         <div style="border: 1px solid #6CC99E; box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); border-radius: 20px; padding: 20px 10px; transition: background-color 0.3s; cursor: pointer;" onmouseover="this.style.backgroundColor='#F5FDFA';" onmouseout="this.style.backgroundColor='';">
 
             <img src="assets/images/to-do-list-icon.png" alt="Guias" width="80">
@@ -33,7 +33,7 @@ Nesta página você encontrará toda a documentação dos processos de desenvolv
         </div>
     </a>
 
-        <a href="requisitos/backlog.md">
+        <a href="id_visual/logo/">
         <div style="border: 1px solid #6CC99E; box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); border-radius: 20px; padding: 20px 10px; transition: background-color 0.3s; cursor: pointer;" onmouseover="this.style.backgroundColor='#F5FDFA';" onmouseout="this.style.backgroundColor='';">
 
             <img src="assets/images/ferramentas.png" alt="Guias" width="80">

@@ -107,44 +107,44 @@ As cores da identidade visual do AuRORA foram desenvolvidas para refletir os val
     </thead>
     <tbody>
       <tr>
-        <td>primary-50</td>
-        <td>#E6F6F1</td>
+        <td>secondary-50</td>
+        <td>#E8EFF6</td>
       </tr>
       <tr>
-        <td>primary-100</td>
-        <td>#C2E9DE</td>
+        <td>secondary-100</td>
+        <td>#C6D4E8</td>
       </tr>
       <tr>
-        <td>primary-200</td>
-        <td>#9FDBCA</td>
+        <td>secondary-200</td>
+        <td>#A4B9DA</td>
       </tr>
       <tr>
-        <td>primary-300</td>
-        <td>#7CCEB7</td>
+        <td>secondary-300</td>
+        <td>#839EC9</td>
       </tr>
       <tr>
-        <td>primary-400</td>
-        <td>#59C0A4</td>
+        <td>secondary-400</td>
+        <td>#6383B8</td>
       </tr>
       <tr>
-        <td>primary-500</td>
-        <td>#36B391</td>
+        <td>secondary-500</td>
+        <td>#4268A8</td>
       </tr>
       <tr>
-        <td>primary-600</td>
-        <td>#1EA683</td>
+        <td>secondary-600</td>
+        <td>#2D558F</td>
       </tr>
       <tr>
-        <td>primary-700</td>
-        <td>#009F76</td>
+        <td>secondary-700</td>
+        <td>#1A4477</td>
       </tr>
       <tr>
-        <td>primary-800</td>
-        <td>#008B68</td>
+        <td>secondary-800</td>
+        <td>#083360</td>
       </tr>
       <tr>
-        <td>primary-900</td>
-        <td>#006E51</td>
+        <td>secondary-900</td>
+        <td>#00294F</td>
       </tr>
     </tbody>
   </table>
@@ -417,43 +417,43 @@ As cores da identidade visual do AuRORA foram desenvolvidas para refletir os val
     </thead>
     <tbody>
       <tr>
-        <td>success-50</td>
+        <td>coolGray-50</td>
         <td>#F8FAFC</td>
       </tr>
       <tr>
-        <td>success-100</td>
+        <td>coolGray-100</td>
         <td>#F1F5F9</td>
       </tr>
       <tr>
-        <td>success-200</td>
+        <td>coolGray-200</td>
         <td>#E2E8F0</td>
       </tr>
       <tr>
-        <td>success-300</td>
+        <td>coolGray-300</td>
         <td>#CAD5E2</td>
       </tr>
       <tr>
-        <td>success-400</td>
+        <td>coolGray-400</td>
         <td>#90A1B9</td>
       </tr>
       <tr>
-        <td>success-500</td>
+        <td>coolGray-500</td>
         <td>#62748E</td>
       </tr>
       <tr>
-        <td>success-600</td>
+        <td>coolGray-600</td>
         <td>#45556C</td>
       </tr>
       <tr>
-        <td>success-700</td>
+        <td>coolGray-700</td>
         <td>#314158</td>
       </tr>
       <tr>
-        <td>success-800</td>
+        <td>coolGray-800</td>
         <td>#1D293D</td>
       </tr>
       <tr>
-        <td>success-900</td>
+        <td>coolGray-900</td>
         <td>#0F172B</td>
       </tr>
     </tbody>

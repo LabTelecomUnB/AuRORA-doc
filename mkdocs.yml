@@ -89,5 +89,6 @@ nav:
     - Cores: id_visual/cores.md
     - Fontes: id_visual/tipografia.md
     - Ícones: id_visual/icons.md
-    # - Componentes:
+    - Grid: id_visual/grid.md
+  - Hardware: guilhermo/doc_hardware.md
 
