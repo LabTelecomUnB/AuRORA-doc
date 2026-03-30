@@ -324,7 +324,7 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
     <tr>
       <td>Pontuação</td>
       <td> 
-          > 4
+          > 3
           <ul>
             <li>Envolve fluxo de segurança mais complexo que o login.</li>
             <li>Exige geração e validação de tokens temporários.</li>
@@ -440,7 +440,7 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
     </tr>
     <!-- Critérios de aceitação -->
     <tr>
-      <td rowspan="4">Acesso restrito por perfil</td>
+      <td rowspan="4">Critérios de aceitação</td>
       <td>
         <b>Restrição de acesso</b>
         <ul>
@@ -467,16 +467,6 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
             <li><b>Dado</b> que o usuário realizou login,</li>
             <li><b>Quando</b> o sistema carregar a interface,</li>
             <li><b>Então</b> deve exibir apenas as opções referentes ao perfil do usuário.</li>
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <b>Registro de ação crítica</b>
-        <ul>
-            <li><b>Dado</b> que um administrador executou uma ação sensível,</li>
-            <li><b>Quando</b> a operação for concluída,</li>
-            <li><b>Então</b> o sistema deve registrar o evento em log com usuário, data e tipo de ação.</li>
         </ul>
       </td>
     </tr>
@@ -584,9 +574,6 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
             <li>
             O administrador deve ser capaz de alterar os dados de um usuário, exceto o ID interno.
             </li>
-            <li>
-            Trocas de perfil exigem registro de auditoria.
-            </li>
         </ul>
       </td>
     </tr>
@@ -655,16 +642,6 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
             <li><b>Dado</b> que o administrador optou por desativar uma conta,</li>
             <li><b>Quando</b> confirmar a ação,</li>
             <li><b>Então</b> o sistema impede novos logins daquela conta.</li>
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <b>Registro das ações</b>
-        <ul>
-            <li><b>Dado</b> que qualquer operação foi realizada,</li>
-            <li><b>Quando</b> consulto o log administrativo,</li>
-            <li><b>Então</b> devo ver o registro completo da ação.</li>
         </ul>
       </td>
     </tr>
@@ -824,7 +801,7 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
     </tr>
     <tr>
       <td>
-        <b>Erro ao consultar status</b>
+        <b>Atualização do status</b>
         <ul>
             <li><b>Dado</b> que estou acompanhando os status,</li>
             <li><b>Quando</b> o sistema realizar nova consulta,</li>
@@ -834,7 +811,7 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
     </tr>
     <tr>
       <td>
-        <b>Representação padronizada</b>
+        <b>Erro ao consultar status</b>
         <ul>
             <li><b>Dado</b> que houve falha na comunicação com o subsistema,</li>
             <li><b>Quando</b> o sistema tentar obter o status,</li>
@@ -844,7 +821,7 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
     </tr>
     <tr>
       <td>
-        <b>Desativação de usuário</b>
+        <b>Representação padronizada</b>
         <ul>
             <li><b>Dado</b> que os estados das antenas existem,</li>
             <li><b>Quando</b> o status for exibido,</li>
@@ -856,7 +833,7 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
     <tr>
       <td>Pontuação</td>
       <td> 
-          > 3
+          > 5
           <ul>
             <li>Complexidade média: depende de consulta periódica e atualização de interface.</li>
             <li>Envolve integração com subsistema que fornece o status.</li>
@@ -1013,7 +990,7 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
     <tr>
       <td>Pontuação</td>
       <td> 
-          > 3
+          > 5
           <ul>
             <li>Exige integração com o serviço/banco de dados de antenas.</li>
           </ul>
@@ -1266,7 +1243,6 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
             <ul>
               <li>indicadores numéricos,</li>
               <li>gráficos de movimento,</li>
-              <li>representações visuais animadas (se aplicável).</li>
             </ul>
             </li>
         </ul>
@@ -1343,7 +1319,7 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
     <!--  -->
    <tr>
       <td>Prioridade</td>
-      <td>Must</td>
+      <td>Should</td>
     </tr>
     <tr>
       <td>Depedência</td>
@@ -1530,7 +1506,7 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
     <!--  -->
    <tr>
       <td>Prioridade</td>
-      <td>Should</td>
+      <td>Could</td>
     </tr>
     <tr>
       <td>Depedência</td>
@@ -1713,7 +1689,8 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
         <li>o nome ou identificador da rotina, </li>
         <li>a data e hora em que ela foi iniciada, </li>
         <li>a data e hora de término (se aplicável), </li>
-        <li>o status do encerramento (concluída com sucesso, interrompida, falha, etc.).</li>
+        <li>o status do encerramento (concluída com sucesso, interrompida, falha, etc.),</li>
+        <li>operador responsável.</li>
       </ul>
       A informação deve estar disponível na interface de monitoramento da antena ou em sua seção de histórico.
       </td>
@@ -1789,7 +1766,7 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
     <tr>
       <td>Pontuação</td>
       <td>
-        > 3
+        > 5
         <ul>
           <li>Requer integração com o sistema de rotinas e banco de dados.</li>
           <li>Exige apenas formatação e apresentação dos dados.</li>
@@ -1916,7 +1893,7 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
     <tr>
       <td>Pontuação</td>
       <td>
-        > 5
+        > 3
         <ul>
           <li>Envolve controle de permissões e diferenças entre perfis de usuário.</li>
           <li>Requer lógica de atualização de status e impacto em diversas funcionalidades dependentes (movimentação, rotinas, monitoramento).</li>
@@ -2005,11 +1982,7 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
       <td>
         <ul>
             <b>Alteração de satélite</b>
-            <li>Se o usuário mudar de satélite durante um monitoramento:
-              <ul>
-                <li>o sistema deve encerrar ou ajustar automaticamente a rotina atual,</li>
-                <li>deve solicitar confirmação caso exista operação em andamento.</li>
-              </ul>
+            <li> Não deve ser possível alterar o satélite, a menos que a rotna atual seja cancelada.
             </li>
         </ul>
       </td>
@@ -2072,7 +2045,7 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
         <ul>
             <li><b>Dado</b> que existe uma rotina ativa,</li>
             <li><b>Quando</b> tento trocar o satélite,</li>
-            <li><b>Então</b> o sistema deve solicitar confirmação, evitando trocas acidentais.</li>
+            <li><b>Então</b> o usuário deve receber um aviso que a rotina atual deve ser cancelada antes de realizar a ação.</li>
         </ul>
       </td>
     </tr>
@@ -2233,7 +2206,7 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
     <!--  -->
    <tr>
       <td>Prioridade</td>
-      <td>Should</td>
+      <td>Must</td>
     </tr>
     <tr>
       <td>Depedência</td>
@@ -2290,7 +2263,7 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
         <ul>
         <b>Origem dos dados</b>
           <li>
-            A trajetória deve ser calculada com base em dados orbitais válidos e atualizados segundo o padrão exigido.
+            A trajetória deve ser calculada com base em dados orbitais válidos obtidos de APIs externas.
           </li>
         </ul>
       </td>
@@ -2329,7 +2302,7 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
         <ul>
             <li><b>Dado</b> que selecionei um satélite,</li>
             <li><b>Quando</b> acesso a visualização da trajetória,</li>
-            <li><b>Então</b> devo ver sua rota orbital completa (passada e prevista).</li>
+            <li><b>Então</b> devo ver sua rota orbital completa (prevista).</li>
         </ul>
       </td>
     </tr>
@@ -2389,18 +2362,6 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
           <li>NF03</li>
         </ul>
       </td>
-    </tr>
-  </tbody>
-</table>
-
-
-<tr>
-      <td>Prioridade</td>
-      <td>Should</td>
-    </tr>
-    <tr>
-      <td>Depedência</td>
-      <td>-</td>
     </tr>
   </tbody>
 </table>
@@ -2608,7 +2569,7 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
     <tr>
       <td>Descrição</td>
       <td>
-      O sistema deve armazenar todos os dados recebidos do satélite de forma estruturada e contínua, conforme as diretrizes técnicas definidas em IN15 (parâmetros de captura e armazenamento) e EN03 (especificações de ambiente, infraestrutura ou requisitos de persistência).
+      O sistema deve armazenar todos os dados recebidos do satélite de forma estruturada e contínua.
       Esses dados podem incluir telemetria, medições, posição orbital, intensidade de sinal, pacotes de comunicação ou qualquer outro conteúdo definido como relevante pelo software.
       O processo deve ocorrer automaticamente, sem depender de ação manual do usuário, garantindo que nenhuma informação recebida em tempo real seja perdida.
       O sistema deve ainda manter logs e registros organizados por antena, satélite e período, permitindo consultas posteriores.
@@ -2705,7 +2666,7 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
         <ul>
             <li><b>Dado</b> um conjunto de dados salvos,</li>
             <li><b>Quando</b> acesso o banco ou interface de consulta,</li>
-            <li><b>Então</b> devo ver que estão organizados por antena, satélite e horário.</li>
+            <li><b>Então</b> devo ver que estão organizados por antena, satélite e data.</li>
         </ul>
       </td>
     </tr>
@@ -2889,7 +2850,7 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
       <td>
         <b>Geração do arquivo</b>
         <ul>
-            <li><b>Dado</b> que selecionei filtros e formato (se aplicável),</li>
+            <li><b>Dado</b> que selecionei om arquivo,</li>
             <li><b>Quando</b> confirmo a exportação,</li>
             <li><b>Então</b> o sistema deve gerar um arquivo válido contendo os dados correspondentes.</li>
         </ul>
@@ -3170,6 +3131,7 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
       <td>
         <ul>
             <b>Campos obrigatórios ao salvar uma rotina</b>
+            
             Cada rotina deve conter no mínimo:
             <li>nome da rotina,</li>
             <li>descrição,</li>
@@ -3376,8 +3338,8 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
     <tr>
       <td>
         <ul>
-            <b>Resultados obrigatórios</b>
-            <li>O sistema deve permitir interromper a rotina somente se IN08 permitir interrupção segura durante o processo.</li>
+            <b>Interrupção da rotina</b>
+            <li>O sistema deve permitir interromper a rotina se obedecer os critérios de segurança.</li>
         </ul>
       </td>
     </tr>
@@ -3486,7 +3448,6 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
     <li>verificar se a interrupção é segura naquele momento,</li>
     <li>emitir aviso claro ao usuário caso a interrupção possa causar instabilidade,</li>
     <li>registrar o evento em log,</li>
-    <li>retornar a antena para um estado operacional seguro sempre que possível.</li>
     A interrupção deve ser bloqueada caso:
     <li>o processo esteja em etapa crítica e não seja seguro parar,</li>
     <li>a antena esteja realizando uma operação que não permite cancelamento imediato (ex.: calibração final, alinhamento de precisão).</li>
@@ -3513,17 +3474,6 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
       <b>Aviso de risco</b>
       <li>
         Se a interrupção tiver risco potencial, o sistema deve alertar o usuário antes de concluir a ação.
-      </li>
-    </ul>
-  </td>
-</tr>
-
-<tr>
-  <td>
-    <ul>
-      <b>Retorno ao estado seguro</b>
-      <li>
-        Após a interrupção, a antena deve ser colocada automaticamente em estado seguro, quando possível.
       </li>
     </ul>
   </td>
@@ -3560,17 +3510,6 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
       <li><b>Dado</b> que a rotina está em uma fase crítica,</li>
       <li><b>Quando</b> o usuário tenta interromper,</li>
       <li><b>Então</b> o sistema deve informar que o cancelamento não é permitido naquele momento.</li>
-    </ul>
-  </td>
-</tr>
-
-<tr>
-  <td>
-    <b>Retorno ao estado seguro</b>
-    <ul>
-      <li><b>Dado</b> que a rotina foi interrompida,</li>
-      <li><b>Quando</b> o processo é encerrado,</li>
-      <li><b>Então</b> a antena deve retornar automaticamente a um estado operacional seguro.</li>
     </ul>
   </td>
 </tr>
@@ -3654,6 +3593,7 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
           <li>representa risco ao hardware,</li>
           <li>depende de condições que não foram atendidas (ex.: ausência de calibração, bloqueios ativos, configurações incompletas),</li>
           </li>ou foi configurada com valores fora dos limites permitidos.</li>
+          
           Ao detectar uma rotina inválida, o sistema deve:
           <li>impedir sua execução,</li>
           <li>informar claramente o motivo do bloqueio,</li>
@@ -3680,7 +3620,7 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
       <td>
         <ul>
             <b>Avaliação do estado da antena</b></br>
-           Dependendo da criticidade do sistema, pode ser exigido que o usuário confirme a interrupção para evitar cancelamentos acidentais — exceto em modo emergencial, onde a interrupção deve ser imediaA rotina deve ser compatível com o estado atual da antena:
+           Dependendo da criticidade do sistema, pode ser exigido que o usuário confirme a interrupção para evitar cancelamentos acidentais — exceto em modo emergencial, onde a interrupção deve ser imediata. A rotina deve ser compatível com o estado atual da antena:
             <li>calibrada,</li>
             <li>desbloqueada,</li>
             <li>monitorando o satélite correto,</li>
@@ -3956,7 +3896,7 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
     <tr>
       <td>Pontuação</td>
       <td> 
-          > 8
+          > 13
           <ul>
             <li>Exige implementação matemática com alto nível de precisão.</li>
             <li>Requer integração direta com hardware ou um subsistema de simulação/controle.</li>
@@ -4020,8 +3960,6 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
     <li>filtrar por período, evento, tipo de rotina ou movimentação da antena,</li>
     <li>exportar o histórico quando permitido.</li>
 
-    O histórico deve ser consistente, contínuo e não editável, garantindo integridade para auditoria.  
-    O sistema também deve registrar variações pequenas (quando relevantes), mas pode aplicar filtros para evitar excesso de informação irrelevante.
   </td>
 </tr>
 
@@ -4085,17 +4023,6 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
       <li><b>Dado</b> que a antena altera sua posição,</li>
       <li><b>Quando</b> o movimento ultrapassa o limiar configurado,</li>
       <li><b>Então</b> o sistema deve criar um registro no histórico com timestamp.</li>
-    </ul>
-  </td>
-</tr>
-
-<tr>
-  <td>
-    <b>Filtros de histórico</b>
-    <ul>
-      <li><b>Dado</b> que o usuário aplica um filtro (ex.: período),</li>
-      <li><b>Quando</b> o filtro é aplicado,</li>
-      <li><b>Então</b> o sistema deve atualizar a visualização exibindo apenas registros correspondentes.</li>
     </ul>
   </td>
 </tr>
@@ -4171,7 +4098,6 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
     O sistema deve exibir claramente a informação da última calibração da antena, incluindo:
     <li>data completa (dia/mês/ano),</li>
     <li>horário exato (hh:mm:ss),</li>
-    <li>tipo de calibração realizada (quando aplicável),</li>
     <li>responsável pela calibração ou origem (manual, automática ou rotina).</li>
 
     Essa informação deve ser exibida em locais estratégicos da interface, como:
@@ -4181,10 +4107,6 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
 
     O dado deve ser atualizado automaticamente sempre que uma rotina de calibração for concluída (RF21).  
     O sistema deve garantir a integridade desse registro, impedindo alterações manuais.
-
-    A funcionalidade deve obedecer aos requisitos definidos em:
-    <li>IN12 — regras internas sobre registros operacionais,</li>
-    <li>EN08 — normas de monitoramento e exibição de estado operacional.</li>
   </td>
 </tr>
 
@@ -4277,7 +4199,7 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
 <tr>
   <td>Pontuação</td>
   <td>
-    > 5
+    > 3
     <ul>
       <li>Cenário simples, mas fundamental para diversas validações e rotinas.</li>
       <li>Envolve leitura e atualização automática de dados críticos.</li>
@@ -4321,7 +4243,7 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
   <td>
     Como usuário da plataforma,<br/>
     eu quero ser alertado quando a antena precisar ser calibrada,<br/>
-    para que eu possa realizar a calibração no momento adequado, evitar perda de precisão no rastreamento e garantir que as rotinas dependentes de calibração funcionem corretamente.
+    para garantir que as rotinas dependentes de calibração funcionem corretamente.
   </td>
 </tr>
 
@@ -4329,52 +4251,11 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
 <tr>
   <td>Descrição</td>
   <td>
-    O sistema deve identificar automaticamente quando uma antena necessita de calibração e emitir avisos claros ao usuário.  
-    A necessidade de calibração pode ser determinada por diversos fatores definidos em <b>IN13</b>, como:
-    <li>tempo máximo desde a última calibração,</li>
-    <li>perda de precisão nos sensores,</li>
-    <li>detecção de deriva nos eixos,</li>
-    <li>alterações bruscas no comportamento da antena,</li>
-    <li>execução prévia de rotinas que exigem recalibração posterior.</li>
-
-    O sistema deve:
-    <li>exibir alertas visuais (ex.: banners, ícones, indicadores de atenção),</li>
-    <li>impedir a execução de rotinas que exigem calibração recente (quando aplicável),</li>
-    <li>notificar o usuário em tempo real na interface,</li>
-    <li>registrar o alerta em log interno.</li>
-
-    O alerta deve permanecer ativo até que a antena seja calibrada novamente (RF21).  
+    A antena deve ser calibrada antes de toda rotina.
   </td>
 </tr>
 
 <!-- Regras de negócio -->
-<tr>
-  <td rowspan="4">Regras de negócio</td>
-  <td>
-    <ul>
-      <b>Critérios definidos em IN13</b>
-      <li>Os limites e condições que determinam a necessidade de calibração devem seguir rigorosamente o que está definido em IN13.</li>
-    </ul>
-  </td>
-</tr>
-
-<tr>
-  <td>
-    <ul>
-      <b>Alerta contínuo</b>
-      <li>O alerta deve permanecer visível enquanto a antena está fora dos padrões de calibração.</li>
-    </ul>
-  </td>
-</tr>
-
-<tr>
-  <td>
-    <ul>
-      <b>Bloqueio de rotinas dependentes</b>
-      <li>Rotinas que exigem calibração recente devem ser automaticamente bloqueadas (RF23) quando a antena estiver em estado não calibrado.</li>
-    </ul>
-  </td>
-</tr>
 
 <tr>
   <td>
@@ -4389,53 +4270,26 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
 <tr>
   <td rowspan="4">Critérios de aceitação</td>
   <td>
-    <b>Exibição do alerta</b>
-    <ul>
-      <li><b>Dado</b> que a antena atingiu uma condição definida em IN13,</li>
-      <li><b>Quando</b> o usuário acessa a tela da antena,</li>
-      <li><b>Então</b> o sistema deve exibir um alerta indicando “Calibração necessária”.</li>
-    </ul>
-  </td>
+    -
 </tr>
 
 <tr>
   <td>
     <b>Atualização automática</b>
     <ul>
-      <li><b>Dado</b> que o estado da antena mudou,</li>
-      <li><b>Quando</b> a condição de calibração necessária for detectada,</li>
-      <li><b>Então</b> o alerta deve surgir automaticamente na interface, sem recarregar a página.</li>
+      <li><b>Dado</b> uma rotina,</li>
+      <li><b>Quando</b> quando sua execução iniciar,</li>
+      <li><b>Então</b> então a antena deve ser inicialmente calibrada.</li>
     </ul>
   </td>
 </tr>
 
-<tr>
-  <td>
-    <b>Remoção do alerta após calibração</b>
-    <ul>
-      <li><b>Dado</b> que uma calibração foi concluída,</li>
-      <li><b>Quando</b> o sistema registra a nova calibração,</li>
-      <li><b>Então</b> o alerta deve desaparecer imediatamente.</li>
-    </ul>
-  </td>
-</tr>
-
-<tr>
-  <td>
-    <b>Bloqueio de rotinas dependentes</b>
-    <ul>
-      <li><b>Dado</b> que a antena precisa de calibração,</li>
-      <li><b>Quando</b> o usuário tenta iniciar uma rotina que dependa de calibração,</li>
-      <li><b>Então</b> o sistema deve impedir a execução e informar o motivo.</li>
-    </ul>
-  </td>
-</tr>
 
 <!-- PONTUAÇÃO -->
 <tr>
   <td>Pontuação</td>
   <td>
-    > 6
+    > 3
     <ul>
       <li>Exige monitoramento contínuo da antena.</li>
       <li>Envolve regras internas e dependências com calibração (RF21, RF26).</li>
@@ -4494,7 +4348,7 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
     <tr>
       <td>Descrição</td>
       <td>
-        Os dados climáticos devem seguir padrões definidos em <b>EN17</b>, contemplando variáveis como:
+        Os dados climáticos devem seguir padrões definidos, contemplando variáveis como:
         <ul>
           <li>temperatura ambiente,</li>
           <li>umidade relativa do ar,</li>
@@ -4507,7 +4361,7 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
           <li>exibir as informações de forma clara e organizada dentro da interface da antena,</li>
           <li>atualizar automaticamente os dados em intervalos definidos,</li>
           <li>notificar o usuário caso não seja possível recuperar os dados,</li>
-          <li>realizar consultas a serviços meteorológicos externos conforme especificado em EN17.</li>
+          <li>realizar consultas a serviços meteorológicos externos.</li>
         </ul>
       </td>
     </tr>
@@ -4517,7 +4371,7 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
       <td>
         <ul>
           <b>Fonte dos dados climáticos</b>
-          <li>Os dados devem ser obtidos exclusivamente de provedores confiáveis definidos em EN17.</li>
+          <li>Os dados devem ser obtidos exclusivamente de provedores confiáveis.</li>
         </ul>
       </td>
     </tr>
@@ -4525,7 +4379,7 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
       <td>
         <ul>
           <b>Atualização periódica</b>
-          <li>As informações devem ser atualizadas automaticamente com base no intervalo sugerido por EN17.</li>
+          <li>As informações devem ser atualizadas automaticamente com base no intervalo sugerido.</li>
         </ul>
       </td>
     </tr>
@@ -4643,15 +4497,13 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
     <tr>
       <td>Descrição</td>
       <td>
-        O sistema deve remover automaticamente do banco de dados os dados coletados que ultrapassarem o período máximo de retenção definido em <b>IN18</b>.<br/><br/>
+        O sistema deve remover automaticamente do banco de dados os dados coletados que ultrapassarem o período máximo de retenção definido.<br/><br/>
         A limpeza deve ocorrer de forma programada, sem necessidade de intervenção manual e sem impactar a operação das antenas ou dos usuários ativos.<br/><br/>
         A funcionalidade deve:
         <ul>
           <li>executar rotinas automatizadas de exclusão com base em critérios definidos por tempo (ex.: dias, semanas ou meses),</li>
           <li>respeitar limites mínimos de retenção que garantam que dados essenciais não sejam perdidos antecipadamente,</li>
-          <li>registrar logs das remoções realizadas,</li>
           <li>evitar indisponibilidade do sistema durante o processo de limpeza,</li>
-          <li>ser configurável pelo administrador (período de retenção, janela de execução, etc.).</li>
         </ul>
         A limpeza periódica garante estabilidade, previsibilidade no tamanho do banco e evita degradação por excesso de dados.
       </td>
@@ -4661,8 +4513,8 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
       <td rowspan="4">Regras de negócio</td>
       <td>
         <ul>
-          <b>Parâmetros definidos em IN18</b>
-          <li>A retenção dos dados deve seguir exatamente os intervalos e diretrizes de eliminação estabelecidas em IN18.</li>
+          <b>Parâmetros de retenção de dados</b>
+          <li>A retenção dos dados deve seguir exatamente os intervalos e diretrizes de eliminação estabelecidas.</li>
         </ul>
       </td>
     </tr>
@@ -4704,16 +4556,6 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
     </tr>
     <tr>
       <td>
-        <b>Registro em log</b>
-        <ul>
-          <li><b>Dado</b> que a limpeza periódica ocorreu,</li>
-          <li><b>Quando</b> o administrador consulta os logs,</li>
-          <li><b>Então</b> ele deve ver o registro contendo detalhes da operação.</li>
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td>
         <b>Sem impacto na operação</b>
         <ul>
           <li><b>Dado</b> que existem usuários ativos,</li>
@@ -4726,7 +4568,7 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
     <tr>
       <td>Pontuação</td>
       <td>
-        > 4
+        > 3
         <ul>
           <li>Requer manipulação interna do banco de dados.</li>
           <li>Inclui lógica automatizada e configuração de agendamentos.</li>
@@ -4957,16 +4799,6 @@ A baixo temos o modelo que será utilizado para a definição das histórias de 
           <b>Tradução completa da interface</b>
           <li>
             Todos os textos exibidos ao usuário devem acompanhar o idioma selecionado, incluindo mensagens de erro, títulos, tooltips, placeholders e avisos.
-          </li>
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <ul>
-          <b>Compatibilidade com padrões de internacionalização</b>
-          <li>
-            A implementação deve seguir boas práticas de i18n, garantindo que o conteúdo seja mantido em arquivos de tradução adequados (ex.: JSON, YAML ou padrão adotado pelo framework).
           </li>
         </ul>
       </td>

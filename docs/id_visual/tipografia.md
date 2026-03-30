@@ -1,6 +1,6 @@
 # Fontes
 
-Foram escolhidas duas fontes para compor oo projeto: Nunito e Anta. A fonte Anta faz parte da marca e junto com a logo transmite o objetivo da marca. A fonte Nunito é utilizada para a interface do software tendo em vista seu design limpo e sua grande gama de pesos, o que permite a implementação de uma hierarquia tipográfica e assim guia o usuário ao longo da aplicação.
+Foram escolhidas duas fontes para compor oo projeto: Geist e Anta. A fonte Anta faz parte da marca e junto com a logo transmite o objetivo da marca. A fonte Geist é utilizada para a interface do software tendo em vista seu design limpo e sua grande gama de pesos, o que permite a implementação de uma hierarquia tipográfica e assim guia o usuário ao longo da aplicação.
 
 
 ## Fonte Anta
@@ -26,7 +26,7 @@ Exclusivo da logomarca e aplicações especiais.
   <figcaption>Figura 1 - Fonte Anta. Fonte: Autor.</figcaption>
 </figure>
 
-## Fonte Nunito
+## Fonte Geist
 
 Utilizado em interface, textos, títulos, parágrafos e documentação.
 
@@ -45,8 +45,8 @@ Utilizado em interface, textos, títulos, parágrafos e documentação.
 
 
 <figure markdown="span">  
-  ![stakeholders age](../assets/images/id_visual/font_nunito.png){ width="600" }
-  <figcaption>Figura 2 - Fonte Nunito. Fonte: Autor.</figcaption>
+  ![stakeholders age](../assets/images/id_visual/font_geist.png){ width="600" }
+  <figcaption>Figura 2 - Fonte Geist. Fonte: Autor.</figcaption>
 </figure>
 
 ## Histórico de versões
